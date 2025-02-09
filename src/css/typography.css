@@ -1,6 +1,7 @@
 @font-face {
     font-family: "Dash";
     font-style: normal;
+    font-display: swap;
     font-weight: 400;
     src: url("/fonts/Dash/Dash-Regular.woff2") format("woff2");
 }
@@ -8,6 +9,7 @@
 @font-face {
     font-family: "Dash";
     font-style: normal;
+    font-display: swap;
     font-weight: 700;
     src: url("/fonts/Dash/Dash-Bold.woff2") format("woff2");
 }
@@ -15,6 +17,7 @@
 @font-face {
     font-family: "Nunito Sans";
     font-style: normal;
+    font-display: swap;
     font-weight: 400;
     src: url("/fonts/NunitoSans/NunitoSans_10pt-Regular.ttf") format("truetype");
 }
@@ -22,6 +25,7 @@
 @font-face {
     font-family: "Nunito Sans";
     font-style: normal;
+    font-display: swap;
     font-weight: 700;
     src: url("/fonts/Nunito/NunitoSans_10pt-Bold.ttf") format("truetype");
 }
