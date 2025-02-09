@@ -8,7 +8,7 @@ import path from "node:path";
 const { DATOCMS_TOKEN } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default function ({
-  dest = "src/.generated",
+  dest = ".astro",
   prefix = "icon-",
 }: {
   dest?: string;
@@ -49,7 +49,7 @@ export default function ({
 
           const { result } = await spriter.compileAsync();
 
-          const filePath = path.join(dest, "icon-sprite.svg");
+          const filePath = path.join(process.cwd(), dest, "icon-sprite.svg");
 
           await writeFile(
             filePath,

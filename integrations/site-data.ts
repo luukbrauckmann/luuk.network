@@ -7,7 +7,7 @@ import path from "node:path";
 const { DATOCMS_TOKEN } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default function ({
-  dest = "src/.generated",
+  dest = ".astro",
 }: { dest?: string } = {}): AstroIntegration {
   return {
     name: "site-data",
@@ -18,7 +18,7 @@ export default function ({
             apiToken: DATOCMS_TOKEN,
           });
           const data = await client.site.find();
-          const filePath = path.join(dest, "site.json");
+          const filePath = path.join(process.cwd(), dest, "site.json");
           await writeFile(filePath, JSON.stringify(data, null, 2));
           logger.info(`Generated`);
         } catch (error: any) {
