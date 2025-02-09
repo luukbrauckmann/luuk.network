@@ -6,11 +6,13 @@ import path from "node:path";
 
 const { DATOCMS_TOKEN } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
-export default function ({ dest = '.astro' }: { dest?: string } = {}): AstroIntegration {
+export default function ({
+  dest = "src/.generated",
+}: { dest?: string } = {}): AstroIntegration {
   return {
     name: "site-data",
     hooks: {
-      'astro:config:setup': async ({ logger }) => {
+      "astro:config:setup": async ({ logger }) => {
         try {
           const client = buildClient({
             apiToken: DATOCMS_TOKEN,
@@ -22,7 +24,7 @@ export default function ({ dest = '.astro' }: { dest?: string } = {}): AstroInte
         } catch (error: any) {
           console.log(`Error fetching icons: ${error.message}`);
         }
-      }
-    }
-  }
+      },
+    },
+  };
 }

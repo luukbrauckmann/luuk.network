@@ -1,4 +1,4 @@
-import { locales } from ".astro/site.json";
+import { locales } from "@generated/site.json";
 
 export const getPath = ({ locale, page }: { locale: string, page?: any }) => {
   if (!page) {

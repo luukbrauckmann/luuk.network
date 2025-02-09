@@ -8,7 +8,7 @@ import path from "node:path";
 const { DATOCMS_TOKEN } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default function ({
-  dest = ".astro",
+  dest = "src/.generated",
   prefix = "icon-",
 }: {
   dest?: string;
@@ -17,7 +17,7 @@ export default function ({
   return {
     name: "icon-sprite",
     hooks: {
-      "astro:server:start": async ({ logger }) => {
+      "astro:config:setup": async ({ logger }) => {
         try {
           const client = buildClient({
             apiToken: DATOCMS_TOKEN,
