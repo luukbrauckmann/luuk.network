@@ -7,3 +7,27 @@
     margin: -1px;
     border: 1px solid #1b263b;
 }
+
+a {
+    color: #009EE0;
+}
+
+a:hover,
+a:focus {
+    color: #C2EDFF;
+}
+
+.bg-elevated {
+    background-color: #415a77;
+    border: 1px solid #415a77;
+    margin: -1px;
+}
+
+.bg-elevated a {
+    color: #83B81A;
+}
+
+.bg-elevated a:hover,
+.bg-elevated a:focus {
+    color: #A5D432;
+}

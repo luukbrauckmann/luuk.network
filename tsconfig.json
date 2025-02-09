@@ -10,7 +10,6 @@
       "@api/*": ["src/pages/api/*"],
       "@components/*": ["src/components/*"],
       "@css/*": ["src/css/*"],
-      "@generated/*": ["src/.generated/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"]
     },

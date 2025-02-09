@@ -1,4 +1,4 @@
-import { locales } from "@generated/site.json";
+import { locales } from "@lib/site.json";
 
 export const getPath = ({ locale, page }: { locale: string, page?: any }) => {
   if (!page) {

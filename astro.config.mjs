@@ -1,8 +1,6 @@
 import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
 import cloudflare from "@astrojs/cloudflare";
-import siteData from "./integrations/site-data"
-import iconSprite from "./integrations/icon-sprite"
 import graphql from "@rollup/plugin-graphql";
 
 const { OUTPUT } = loadEnv(import.meta.env.MODE, process.cwd(), "");
@@ -13,10 +11,6 @@ export default defineConfig({
   adapter: cloudflare({
     imageService: "passthrough",
   }),
-  integrations: [
-    siteData(),
-    iconSprite()
-  ],
   vite: {
     plugins: [graphql()],
   },

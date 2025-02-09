@@ -1,5 +1,5 @@
 ---
-import { locales } from "@generated/site.json";
+import { locales } from "@lib/site.json";
 import Button from "@components/Button/Button.astro";
 
 const { locale } = Astro.params;
@@ -9,7 +9,7 @@ const { localizedPaths } = Astro.props;
 {
     locales.map((localeItem) => (
         <>
-            {localeItem !== locale && (
+            {localeItem in localizedPaths && localeItem !== locale && (
                 <Button
                     as="a"
                     variant="transparent"
