@@ -23,16 +23,13 @@ export default function ({
             apiToken: DATOCMS_TOKEN,
           });
 
-          let iconsData = await Promise.all(
-            (
-              await Array.fromAsync(
-                client.items.listPagedIterator({ filter: { type: "icon" } }),
-              )
-            ).map(async (item) => ({
+          const iconsData = [];
+          for await (const item of client.items.listPagedIterator({ filter: { type: "icon" } })) {
+            iconsData.push({
               name: item.name,
               file: (await client.uploads.find(item.file.upload_id)).url,
-            })),
-          ) as { name: string; file: string }[];
+            });
+          }
 
           const spriter = new SVGSprite({
             mode: {
