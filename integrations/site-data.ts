@@ -7,7 +7,7 @@ import path from "node:path";
 const { DATOCMS_TOKEN } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default function ({
-  dest = ".astro",
+  dest = "src/.generated",
 }: { dest?: string } = {}): AstroIntegration {
   return {
     name: "site-data",

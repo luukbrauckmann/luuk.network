@@ -10,7 +10,7 @@
       "@api/*": ["src/pages/api/*"],
       "@components/*": ["src/components/*"],
       "@css/*": ["src/css/*"],
-      "@generated/*": [".astro/*"],
+      "@generated/*": ["src/.generated/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"]
     },
