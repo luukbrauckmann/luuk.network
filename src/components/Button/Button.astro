@@ -1,0 +1,78 @@
+---
+import Icon from "@components/Icon/Icon.astro";
+import type { Polymorphic } from "astro/types";
+
+type Props<Tag extends "button" | "a"> = Polymorphic<{
+    as: Tag;
+    variant?: "primary" | "secondary" | "transparent" | "link";
+    icon?: string;
+    iconOnly?: boolean;
+}>;
+
+const {
+    as: Tag = "button",
+    variant = "primary",
+    icon,
+    iconOnly,
+    ...props
+} = Astro.props;
+---
+
+<Tag
+    class:list={[
+        "button",
+        `button--${variant}`,
+        { "button--icon-only": iconOnly },
+    ]}
+    {...props}
+>
+    {icon && <Icon class="button__icon" name={icon} />}
+    <span class:list={["button__label", { "sr-only": iconOnly }]}><slot /></span
+    >
+</Tag>
+
+<style>
+    .button {
+        display: inline-flex;
+        align-items: center;
+        gap: 1ch;
+        padding: 0.75em 1.25em;
+        text-decoration: none;
+        color: currentColor;
+        transition: 200ms;
+    }
+
+    .button--primary {
+        border: 1px solid #0070cc;
+        background-color: #0070cc;
+    }
+
+    .button--secondary {
+        border: 1px solid #4a5568;
+        background-color: #4a5568;
+    }
+
+    .button--transparent {
+        border: 1px solid transparent;
+        background-color: transparent;
+    }
+
+    .button--transparent:hover {
+        border: 1px solid #152B44;
+        background-color: #152B44;
+    }
+
+    .button--link {
+        border: 1px solid transparent;
+        background-color: transparent;
+        padding: 0px;
+    }
+
+    .button--icon-only {
+        padding: 0.75em;
+    }
+
+    .button__label {
+        line-height: 1;
+    }
+</style>

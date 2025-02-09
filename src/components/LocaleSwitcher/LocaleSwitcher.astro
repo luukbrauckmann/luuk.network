@@ -1,0 +1,23 @@
+---
+import { locales } from "@assets/site.json";
+import Button from "@components/Button/Button.astro";
+
+const { locale } = Astro.params;
+const { localizedPaths } = Astro.props;
+---
+
+{
+    locales.map((localeItem) => (
+        <>
+            {localeItem !== locale && (
+                <Button
+                    as="a"
+                    variant="transparent"
+                    href={localizedPaths[localeItem]}
+                >
+                    {localeItem}
+                </Button>
+            )}
+        </>
+    ))
+}

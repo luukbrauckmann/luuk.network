@@ -1,0 +1,15 @@
+---
+interface Props {
+    data: Record<string, any>;
+}
+
+const { data } = Astro.props;
+---
+
+<li class="data-list-item">{data.title}</li>
+
+<style>
+    .data-list-item {
+        padding: 1rem 0.5rem;
+    }
+</style>

@@ -1,0 +1,85 @@
+@font-face {
+    font-family: "Dash";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/Dash/Dash-Regular.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Dash";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Dash/Dash-Bold.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 400;
+    src: url("/fonts/NunitoSans/NunitoSans_10pt-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Nunito Sans";
+    font-style: normal;
+    font-weight: 700;
+    src: url("/fonts/Nunito/NunitoSans_10pt-Bold.ttf") format("truetype");
+}
+
+:root {
+    --step--2: clamp(0.5556rem, 0.7219rem + -0.4094vw, 0.64rem);
+    --step--1: clamp(0.8rem, 0.7677rem + 0.1616vw, 0.8333rem);
+    --step-0: clamp(1rem, 0.7576rem + 1.2121vw, 1.25rem);
+    --step-1: clamp(1.25rem, 0.6439rem + 3.0303vw, 1.875rem);
+    --step-2: clamp(1.5625rem, 0.3504rem + 6.0606vw, 2.8125rem);
+    --step-3: clamp(1.9531rem, -0.2438rem + 10.9848vw, 4.2188rem);
+    --step-4: clamp(2.4414rem, -1.3275rem + 18.8447vw, 6.3281rem);
+}
+
+body {
+    font-family: "Nunito Sans", system-ui, sans-serif;
+    font-size: var(--step-0);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Dash", system-ui, sans-serif;
+    font-weight: 400;
+    line-height: 1.15;
+}
+
+h1,
+.heading-1 {
+    font-size: var(--step-4);
+}
+
+h2,
+.heading-2 {
+    font-size: var(--step-3);
+}
+
+h3,
+.heading-3 {
+    font-size: var(--step-2);
+}
+
+h4,
+.heading-4 {
+    font-size: var(--step-1);
+}
+
+h5 {
+    font-size: var(--step-0);
+}
+
+h6 {
+    font-size: var(--step--1);
+}
+
+.text-xs {
+    font-size: var(--step--2);
+}

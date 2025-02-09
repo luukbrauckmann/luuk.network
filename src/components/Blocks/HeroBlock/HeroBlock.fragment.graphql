@@ -1,0 +1,9 @@
+#import '@lib/image.fragment.graphql'
+
+fragment HeroBlock on HeroBlockRecord {
+    image {
+        ...Image
+    }
+    title
+    description
+}

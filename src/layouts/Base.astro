@@ -1,0 +1,38 @@
+---
+import { Seo } from "@datocms/astro";
+import Header from "@components/Header/Header.astro";
+import Footer from "@components/Footer/Footer.astro";
+import IconSprite from "@components/IconSprite/IconSprite.astro";
+
+import "@css/a11y.css";
+import "@css/layout.css";
+import "@css/reset.css";
+import "@css/theme.css";
+import "@css/typography.css";
+import "@css/variables.css";
+
+const { locale, seo, localizedPaths } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+
+        <Seo data={seo} />
+    </head>
+    <body>
+        <div>
+            <Header {localizedPaths} />
+            <main>
+                <slot />
+            </main>
+
+            <Footer />
+        </div>
+
+        <IconSprite />
+    </body>
+</html>

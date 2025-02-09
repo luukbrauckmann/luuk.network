@@ -1,0 +1,24 @@
+fragment Path on PageRecord {
+    _allSlugLocales {
+        locale
+        value
+    }
+    parentPage {
+        _allSlugLocales {
+            locale
+            value
+        }
+        parentPage {
+            _allSlugLocales {
+                locale
+                value
+            }
+            parentPage {
+                _allSlugLocales {
+                    locale
+                    value
+                }
+            }
+        }
+    }
+}

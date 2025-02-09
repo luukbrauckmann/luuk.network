@@ -1,0 +1,10 @@
+body {
+    max-width: 60ch;
+    margin: 0 auto;
+    padding: var(--step-0);
+}
+
+body > div {
+    border: 1px solid #1B263B;
+    margin: -1px;
+}
