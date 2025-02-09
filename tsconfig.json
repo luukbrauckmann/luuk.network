@@ -8,7 +8,6 @@
     "baseUrl": ".",
     "paths": {
       "@api/*": ["src/pages/api/*"],
-      "@assets/*": [".astro/*"],
       "@components/*": ["src/components/*"],
       "@css/*": ["src/css/*"],
       "@layouts/*": ["src/layouts/*"],

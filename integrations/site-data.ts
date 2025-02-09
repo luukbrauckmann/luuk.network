@@ -10,7 +10,7 @@ export default function ({ dest = '.astro' }: { dest?: string } = {}): AstroInte
   return {
     name: "site-data",
     hooks: {
-      'astro:build:start': async ({ logger }) => {
+      'astro:config:setup': async ({ logger }) => {
         try {
           const client = buildClient({
             apiToken: DATOCMS_TOKEN,

@@ -1,5 +1,5 @@
 import type { APIRoute } from "astro";
-import { locales } from "@assets/site.json"
+import { locales } from ".astro/site.json"
 import { executeQuery } from "@lib/datocms";
 import { parse } from "graphql";
 
