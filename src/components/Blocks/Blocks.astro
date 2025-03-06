@@ -1,16 +1,15 @@
 ---
 interface Props {
-    blocks: { __typename: string }[];
+  blocks: { __typename: string }[];
 }
 
 const { blocks } = Astro.props;
 ---
 
 {
-    blocks.map(async (block) => {
-        const blockName = block.__typename.replace("Record", "");
-        const Block = (await import(`./${blockName}/${blockName}.astro`))
-            .default;
-        return <Block {...block} />;
-    })
+  blocks.map(async (block) => {
+    const blockName = block.__typename.replace("Record", "");
+    const Block = (await import(`./${blockName}/${blockName}.astro`)).default;
+    return <Block {...block} />;
+  })
 }

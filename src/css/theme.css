@@ -1,33 +1,33 @@
 :root {
-    color-scheme: dark;
-    background: #0d1b2a;
+  background: #0d1b2a;
+  color-scheme: dark;
 }
 
 .border {
-    margin: -1px;
-    border: 1px solid #1b263b;
+  margin: -1px;
+  border: 1px solid #1b263b;
 }
 
 a {
-    color: #009EE0;
+  color: #009ee0;
 }
 
 a:hover,
 a:focus {
-    color: #C2EDFF;
+  color: #c2edff;
 }
 
 .bg-elevated {
-    background-color: #415a77;
-    border: 1px solid #415a77;
-    margin: -1px;
+  margin: -1px;
+  border: 1px solid #415a77;
+  background-color: #415a77;
 }
 
 .bg-elevated a {
-    color: #83B81A;
+  color: #83b81a;
 }
 
 .bg-elevated a:hover,
 .bg-elevated a:focus {
-    color: #A5D432;
+  color: #a5d432;
 }

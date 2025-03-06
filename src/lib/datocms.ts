@@ -7,7 +7,7 @@ import { parse } from "graphql";
 
 export const executeQuery = <Result = unknown, Variables = unknown>(
   query: TypedDocumentNode<Result, Variables>,
-  variables?: Variables,
+  variables?: Variables
 ) => {
   return libExecuteQuery(query, {
     token: DATOCMS_TOKEN,
@@ -23,7 +23,7 @@ export const getStaticPathsFromPages = async () => {
           count
         }
       }
-    `),
+    `)
   );
 
   const recordsPerPage = 100;
@@ -53,11 +53,11 @@ export const getStaticPathsFromPages = async () => {
             }
           }
         `),
-          { first: recordsPerPage, skip: recordsPerPage * i },
+          { first: recordsPerPage, skip: recordsPerPage * i }
         );
 
         return pages.map((page) => getPathFromPage(page)).flat();
-      }),
+      })
     )
   ).flat();
 };
@@ -68,7 +68,7 @@ const getPathFromPage = (page) => {
     let parentPage = page.parentPage;
     while (parentPage) {
       const parentPageSlug = parentPage._allSlugLocales.find(
-        (parentSlugLocale) => slugLocale.locale === parentSlugLocale.locale,
+        (parentSlugLocale) => slugLocale.locale === parentSlugLocale.locale
       );
       path = `${parentPageSlug.value}/${path}`;
       parentPage = parentPage.parentPage;

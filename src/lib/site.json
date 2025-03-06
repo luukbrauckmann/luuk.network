@@ -1,7 +1,4 @@
 {
-  "locales": [
-    "en",
-    "nl"
-  ],
+  "locales": ["en", "nl"],
   "defaultLocale": "en"
 }

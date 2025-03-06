@@ -1,15 +1,15 @@
 :root {
-    --max-width: 60ch;
-    --spacing-section: 3.236rem 2rem;
-    --spacing-button: 0.5em 0.809em;
+  --max-width: 60ch;
+  --spacing-section: 3.236rem 2rem;
+  --spacing-button: 0.5em 0.809em;
 
-    --spacing-xl: 3.236rem;
-    --spacing-lg: 2rem;
-    --spacing-md: 1.236rem;
-    --spacing-sm: 0.763rem;
+  --spacing-xl: 3.236rem;
+  --spacing-lg: 2rem;
+  --spacing-md: 1.236rem;
+  --spacing-sm: 0.763rem;
 }
 
 input[type="search" i] {
-    padding: var(--spacing-button);
-    border: 1px solid black;
+  border: 1px solid black;
+  padding: var(--spacing-button);
 }

@@ -9,7 +9,7 @@ class DataList extends HTMLElement {
       return liElement;
     });
 
-    this.listElement?.replaceChildren(...listItems);
+    this.listElement?.replaceChildren(listItems);
   }
 
   connectedCallback() {

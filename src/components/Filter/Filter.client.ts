@@ -13,7 +13,7 @@ class Filter extends HTMLElement {
           new CustomEvent("filter", {
             bubbles: true,
             detail: { data },
-          }),
+          })
         );
       } catch (error) {
         console.error(error);

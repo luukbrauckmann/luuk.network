@@ -4,20 +4,26 @@ import Button from "@components/Button/Button.astro";
 
 const { locale } = Astro.params;
 const { localizedPaths } = Astro.props;
+
+const pathsMap = Object.fromEntries(
+  localizedPaths.map(({ locale, value }) => [locale, value])
+);
+
+const filteredLocalizedPaths = locales
+  .filter((localeItem) => localeItem !== locale)
+  .map((localeItem) => ({
+    locale: localeItem,
+    value:
+      pathsMap[localeItem].length > 0
+        ? `/${pathsMap[localeItem]}/`
+        : `/${localeItem}/`,
+  }));
 ---
 
 {
-    locales.map((localeItem) => (
-        <>
-            {localeItem in localizedPaths && localeItem !== locale && (
-                <Button
-                    as="a"
-                    variant="transparent"
-                    href={localizedPaths[localeItem]}
-                >
-                    {localeItem}
-                </Button>
-            )}
-        </>
-    ))
+  filteredLocalizedPaths.map(({ locale, value }) => (
+    <Button as="a" variant="transparent" href={value}>
+      {locale}
+    </Button>
+  ))
 }

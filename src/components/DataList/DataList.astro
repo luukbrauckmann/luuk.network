@@ -1,27 +1,25 @@
 ---
-import { GET as BLOG_GET } from "@api/blog";
 import Filter from "@components/Filter/Filter.astro";
 import DataListItem from "@components/DataListItem/DataListItem.astro";
 
-export const endpoints = {
-    "/api/blog/": BLOG_GET,
-};
-export type Endpoint = keyof typeof endpoints;
+export const endpoints = ["/api/blog/"] as const;
+
+export type Endpoint = (typeof endpoints)[number];
 
 interface Props {
-    endpoint: Endpoint;
+  endpoint: Endpoint;
 }
 
 const { endpoint } = Astro.props;
 
-const response = await endpoints[endpoint](Astro);
+const response = await fetch(endpoint);
 const { data } = await response.json();
 ---
 
 <my-data-list>
-    <Filter endpoint={endpoint}>
-        <ul class="data-list">
-            {data.map((item: any) => <DataListItem data={item} />)}
-        </ul>
-    </Filter>
+  <Filter endpoint={endpoint}>
+    <ul class="data-list">
+      {data.map((item: any) => <DataListItem data={item} />)}
+    </ul>
+  </Filter>
 </my-data-list>

@@ -1,19 +1,21 @@
-#import '@lib/path.fragment.graphql'
-
 #import '@components/Blocks/DataListBlock/DataListBlock.fragment.graphql'
 #import '@components/Blocks/HeroBlock/HeroBlock.fragment.graphql'
 #import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
 
-query PageQuery($locale: SiteLocale, $id: ItemId) {
-  site: _site {
+query Page($locale: SiteLocale!, $path: String!) {
+  _site {
     faviconMetaTags {
       attributes
       content
       tag
     }
   }
-  page(locale: $locale, filter: { id: { eq: $id } }) {
-    seo: _seoMetaTags {
+  page(filter: { path: { eq: $path } }, locale: $locale) {
+    _allPathLocales {
+      locale
+      value
+    }
+    _seoMetaTags {
       attributes
       content
       tag
@@ -24,8 +26,5 @@ query PageQuery($locale: SiteLocale, $id: ItemId) {
       ...HeroBlock
       ...SectionBlock
     }
-    id
-    title
-    ...Path
   }
 }

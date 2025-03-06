@@ -2,20 +2,20 @@
 import DataList from "@components/DataList/DataList.astro";
 
 interface Props {
-    endpoint: string;
+  endpoint: string;
 }
 
 const { endpoint } = Astro.props;
 ---
 
 <div class="data-list-block">
-    <DataList endpoint="/api/blog/" />
+  <DataList endpoint="/api/blog/" />
 </div>
 
 <style>
-    .data-list-block {
-        padding: 3.236rem 2rem;
-        border: 1px solid #1b263b;
-        margin: -1px;
-    }
+  .data-list-block {
+    margin: -1px;
+    border: 1px solid #1b263b;
+    padding: 3.236rem 2rem;
+  }
 </style>

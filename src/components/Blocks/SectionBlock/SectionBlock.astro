@@ -1,29 +1,25 @@
 ---
-const { title } = Astro.props;
+import { StructuredText } from "@datocms/astro";
+const { title, body } = Astro.props;
 ---
 
 <section class="section-block">
-    <header class="section-block-header">
-        <h2>{title}</h2>
-    </header>
+  <header class="section-block-header">
+    <h2>{title}</h2>
+  </header>
 
-    <p>Hej dit is de content van de section block</p>
-    <p>Hej dit is de content van de section block</p>
-    <p>Hej dit is de content van de section block</p>
-    <p>Hej dit is de content van de section block</p>
-    <p>Hej dit is de content van de section block</p>
-    <p>Hej dit is de content van de section block</p>
+  <StructuredText data={body[0].text.value} />
 </section>
 
 <style>
-    .section-block {
-        padding: var(--step-2) var(--step-1);
-        position: relative;
-        border: 1px solid #1B263B;
-        margin: -1px;
-    }
+  .section-block {
+    position: relative;
+    margin: -1px;
+    border: 1px solid #1b263b;
+    padding: var(--step-2) var(--step-1);
+  }
 
-    /* .section-block-header {
+  /* .section-block-header {
         position: absolute;
         top: 0;
         transform: translateY(calc(-50% - 0.45em));

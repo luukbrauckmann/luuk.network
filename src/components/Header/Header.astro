@@ -7,32 +7,31 @@ const { localizedPaths } = Astro.props;
 ---
 
 <header class="header">
-    <Logo />
+  <Logo />
 
-    <div>
-        <Button
-            as="a"
-            variant="transparent"
-            icon="github"
-            iconOnly={true}
-            href="https://github.com/luukbrauckmann/luuk.network"
-            target="_blank"
-            >GitHub</Button
-        >
-        <LocaleSwitcher {localizedPaths} />
-    </div>
+  <div>
+    <Button
+      as="a"
+      variant="transparent"
+      icon="github"
+      iconOnly={true}
+      href="https://github.com/luukbrauckmann/luuk.network"
+      target="_blank">GitHub</Button
+    >
+    <LocaleSwitcher {localizedPaths} />
+  </div>
 </header>
 
 <style>
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 0.75em;
-    }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.75em;
+  }
 
-    .header > div {
-        display: flex;
-        gap: 0.75em;
-    }
+  .header > div {
+    display: flex;
+    gap: 0.75em;
+  }
 </style>

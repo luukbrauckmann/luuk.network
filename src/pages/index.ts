@@ -12,7 +12,7 @@ export const GET: APIRoute = ({ cookies, request, redirect }) => {
 
   const headersLocale = pick(
     locales,
-    request.headers.get("accept-language") || "",
+    request.headers.get("accept-language") || ""
   );
   if (headersLocale) {
     cookies.set("locale", headersLocale);

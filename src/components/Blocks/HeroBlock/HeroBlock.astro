@@ -1,22 +1,47 @@
 ---
-const { title, description } = Astro.props;
+const { image, title, description } = Astro.props;
 ---
 
 <div class="hero-block">
+  <div class="hero-block-visual">
+    <img class="hero-block-visual__image" src={image.responsiveImage.src} />
+  </div>
+  <div class="hero-block-content">
     <h1>{title}</h1>
     <p>{description}</p>
+  </div>
 </div>
 
 <style>
-    .hero-block {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-inline: var(--step-1);
-        height: 90dvh;
-        gap: 2rem;
-        border: 1px solid #1B263B;
-        margin: -1px;
-        margin-block-start: calc(-2.5em - 3px);
-    }
+  .hero-block {
+    --visual-size: 150px;
+    margin: -1px;
+    border: 1px solid #1b263b;
+  }
+
+  .hero-block-visual {
+    position: relative;
+    height: var(--visual-size);
+  }
+
+  .hero-block-visual__image {
+    position: absolute;
+    bottom: 0px;
+    left: var(--step-2);
+    transform: translateY(50%);
+    width: var(--visual-size);
+    height: var(--visual-size);
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .hero-block-content {
+    background-color: #1b263b;
+    padding: calc((var(--visual-size) / 2) + var(--step-1)) var(--step-2) var(--step-3);
+  }
+
+  .hero-block-content h1 {
+    font-size: var(--step-2);
+    margin-bottom: var(--step-1);
+  }
 </style>

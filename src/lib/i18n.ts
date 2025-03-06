@@ -1,6 +1,6 @@
 import { locales } from "@lib/site.json";
 
-export const getPath = ({ locale, page }: { locale: string, page?: any }) => {
+export const getPath = ({ locale, page }: { locale: string; page?: any }) => {
   if (!page) {
     return `/${locale}/`;
   }
@@ -19,12 +19,16 @@ export const getLocalizedPaths = (page: any) => {
   const paths = {};
 
   locales.forEach((locale) => {
-    const slug = page._allSlugLocales.find((slugLocale) => slugLocale.locale === locale).value;
+    const slug = page._allSlugLocales.find(
+      (slugLocale) => slugLocale.locale === locale
+    ).value;
     const params = [slug];
 
     let parentPage = page.parentPage;
     while (parentPage) {
-      const parentSlug = parentPage._allSlugLocales.find((slugLocale) => slugLocale.locale === locale).value;
+      const parentSlug = parentPage._allSlugLocales.find(
+        (slugLocale) => slugLocale.locale === locale
+      ).value;
       params.unshift(parentSlug);
       parentPage = parentPage.parentPage;
     }

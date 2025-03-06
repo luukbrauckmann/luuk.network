@@ -6,6 +6,7 @@ import graphql from "@rollup/plugin-graphql";
 const { OUTPUT } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default defineConfig({
+  prefetch: true,
   trailingSlash: "always",
   output: OUTPUT === "server" ? "server" : "static",
   adapter: cloudflare({

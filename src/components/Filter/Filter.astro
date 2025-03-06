@@ -2,37 +2,37 @@
 import Button from "@components/Button/Button.astro";
 
 interface Props {
-    endpoint: string;
+  endpoint: string;
 }
 
 const { endpoint } = Astro.props;
 ---
 
 <my-filter>
-    <form class="filter" action={endpoint} method="get">
-        <div>
-            <div class="filter-field">
-                <label for="search">Zoek</label>
-                <input type="search" id="search" name="search" />
-            </div>
+  <form class="filter" action={endpoint} method="get">
+    <div>
+      <div class="filter-field">
+        <label for="search">Zoek</label>
+        <input type="search" id="search" name="search" />
+      </div>
 
-            <div>
-                <Button type="submit">Submit</Button>
-            </div>
-        </div>
+      <div>
+        <Button type="submit">Submit</Button>
+      </div>
+    </div>
 
-        <output>
-            <slot />
-        </output>
-    </form>
+    <output>
+      <slot />
+    </output>
+  </form>
 </my-filter>
 
 <script src="./Filter.client.ts"></script>
 
 <style>
-    .filter-field {
-        display: flex;
-        flex-direction: column;
-        max-width: 15rem;
-    }
+  .filter-field {
+    display: flex;
+    flex-direction: column;
+    max-width: 15rem;
+  }
 </style>
