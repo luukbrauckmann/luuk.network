@@ -13,10 +13,7 @@ const filteredLocalizedPaths = locales
   .filter((localeItem) => localeItem !== locale)
   .map((localeItem) => ({
     locale: localeItem,
-    value:
-      pathsMap[localeItem].length > 0
-        ? `/${pathsMap[localeItem]}/`
-        : `/${localeItem}/`,
+    value: `/${localeItem}/` + (pathsMap[localeItem] && `${pathsMap[localeItem]}/`),
   }));
 ---
 
