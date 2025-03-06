@@ -9,6 +9,7 @@ const { image, title, description } = Astro.props;
         pictureClass="hero-block-visual__image"
         data={image.responsiveImage}
         priority={true}
+        srcSetCandidates={[0.05]}
     />
   </div>
   <div class="hero-block-content">
