@@ -5,7 +5,11 @@ const { image, title, description } = Astro.props;
 
 <div class="hero-block">
   <div class="hero-block-visual">
-    <Image pictureClass="hero-block-visual__image" data={image.responsiveImage} />
+    <Image
+        pictureClass="hero-block-visual__image"
+        data={image.responsiveImage}
+        priority={true}
+    />
   </div>
   <div class="hero-block-content">
     <h1>{title}</h1>
