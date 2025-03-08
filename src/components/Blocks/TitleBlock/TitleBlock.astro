@@ -1,0 +1,12 @@
+---
+const { title, level } = Astro.props;
+
+const Tag = `h${level}`;
+---
+<Tag class:list="title">{title}</Tag>
+
+<style>
+    .title {
+        padding: var(--step-2);
+    }
+</style>

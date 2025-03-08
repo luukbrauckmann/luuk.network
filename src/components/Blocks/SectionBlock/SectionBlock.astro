@@ -8,20 +8,15 @@ const { title, body } = Astro.props;
     <h2>{title}</h2>
   </header>
 
-  <StructuredText data={body[0].text.value} />
+  <StructuredText data={body[0].text} />
 </section>
 
 <style>
   .section-block {
-    position: relative;
-    margin: -1px;
-    border: 1px solid #1b263b;
     padding: var(--step-2) var(--step-1);
   }
 
-  /* .section-block-header {
-        position: absolute;
-        top: 0;
-        transform: translateY(calc(-50% - 0.45em));
-    } */
+  .section-block-header {
+    margin-block-end: var(--step-1);
+  }
 </style>

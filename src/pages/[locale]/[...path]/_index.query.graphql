@@ -1,6 +1,8 @@
 #import '@components/Blocks/DataListBlock/DataListBlock.fragment.graphql'
 #import '@components/Blocks/HeroBlock/HeroBlock.fragment.graphql'
 #import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
+#import '@components/Blocks/TextBlock/TextBlock.fragment.graphql'
+#import '@components/Blocks/TitleBlock/TitleBlock.fragment.graphql'
 
 query Page($locale: SiteLocale!, $path: String!) {
   _site {
@@ -25,6 +27,8 @@ query Page($locale: SiteLocale!, $path: String!) {
       ...DataListBlock
       ...HeroBlock
       ...SectionBlock
+      ...TextBlock
+      ...TitleBlock
     }
   }
 }

@@ -1,0 +1,14 @@
+---
+import { StructuredText } from "@datocms/astro";
+
+const { text } = Astro.props;
+---
+<div class="text-block">
+    <StructuredText data={text} />
+</div>
+
+<style>
+    .text-block {
+        padding-inline: var(--step-2);
+    }
+</style>
