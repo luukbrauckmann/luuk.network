@@ -1,0 +1,6 @@
+fragment ActionBlock on ActionBlockRecord {
+    label
+    page {
+        path
+    }
+}

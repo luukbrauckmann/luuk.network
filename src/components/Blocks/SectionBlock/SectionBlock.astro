@@ -1,5 +1,5 @@
 ---
-import { StructuredText } from "@datocms/astro";
+import Blocks from "../Blocks.astro";
 const { title, body } = Astro.props;
 ---
 
@@ -8,15 +8,16 @@ const { title, body } = Astro.props;
     <h2>{title}</h2>
   </header>
 
-  <StructuredText data={body[0].text} />
+  <Blocks blocks={body} />
 </section>
 
 <style>
   .section-block {
-    padding: var(--step-2) var(--step-1);
+    padding-block: var(--step-1);
   }
 
   .section-block-header {
+    padding-inline: var(--step-2);
     margin-block-end: var(--step-1);
   }
 </style>

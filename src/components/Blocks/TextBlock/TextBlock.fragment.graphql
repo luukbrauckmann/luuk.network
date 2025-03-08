@@ -1,6 +1,12 @@
+#import '@components/Blocks/ActionBlock/ActionBlock.fragment.graphql'
+
 fragment TextBlock on TextBlockRecord {
     text {
-        blocks
         value
+        blocks {
+            id
+            __typename
+            ...ActionBlock
+        }
     }
 }

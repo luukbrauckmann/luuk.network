@@ -1,14 +1,28 @@
 ---
 import { StructuredText } from "@datocms/astro";
+import ActionBlock from "../ActionBlock/ActionBlock.astro";
 
 const { text } = Astro.props;
 ---
 <div class="text-block">
-    <StructuredText data={text} />
+    <StructuredText
+        blockComponents={{
+          'ActionBlockRecord': ActionBlock
+        }}
+        data={text}
+    />
 </div>
 
 <style>
     .text-block {
         padding-inline: var(--step-2);
+    }
+
+    :global(.text-block p) {
+        margin-block: var(--step-0);
+    }
+
+    :global(.text-block .action-block) {
+        margin-block-start: var(--step-0);
     }
 </style>

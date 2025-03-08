@@ -1,8 +1,9 @@
+#import '@components/Blocks/TextBlock/TextBlock.fragment.graphql'
+
 fragment SectionBlock on SectionBlockRecord {
   title
   body {
-    text {
-      value
-    }
+    __typename
+    ...TextBlock
   }
 }

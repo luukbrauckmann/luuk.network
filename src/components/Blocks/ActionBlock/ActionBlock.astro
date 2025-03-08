@@ -1,0 +1,13 @@
+---
+import Button from "@components/Button/Button.astro";
+
+const { locale } = Astro.params;
+const { block } = Astro.props;
+---
+
+<Button
+  class="action-block"
+  as="a"
+  icon="arrow-right"
+  href={`/${locale}/${block.page.path}/`}>{block.label}</Button
+>
