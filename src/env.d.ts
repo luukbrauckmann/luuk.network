@@ -4,7 +4,6 @@ interface ImportMetaEnv {
   readonly SITE: string;
   readonly OUTPUT: "static" | "server";
   readonly DATOCMS_TOKEN: string;
-  readonly GITHUB_TOKEN: string;
 }
 
 interface ImportMeta {
