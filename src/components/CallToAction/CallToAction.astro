@@ -1,0 +1,36 @@
+---
+import ActionGroupBlock from "@components/Blocks/ActionGroupBlock/ActionGroupBlock.astro";
+import TextBlock from "@components/Blocks/TextBlock/TextBlock.astro";
+
+const { data } = Astro.props;
+---
+
+<section class="call-to-action">
+  <header class="call-to-action-header">
+    <h2>{data.title}</h2>
+  </header>
+
+  <TextBlock block={data.text} />
+
+  <footer class="call-to-action-footer">
+    <ActionGroupBlock block={data.actionGroup} />
+  </footer>
+</section>
+
+<style>
+  .call-to-action {
+    margin: -1px;
+    border: 1px solid #1b263b;
+    padding-block: var(--step-3);
+  }
+
+  .call-to-action-header {
+    margin-block-end: var(--step-1);
+    padding-inline: var(--step-2);
+  }
+
+  .call-to-action-footer {
+    margin-block-start: var(--step-1);
+    padding-inline: var(--step-2);
+  }
+</style>

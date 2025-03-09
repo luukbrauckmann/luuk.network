@@ -1,0 +1,23 @@
+---
+import ActionBlock from "@components/Blocks/ActionBlock/ActionBlock.astro";
+
+const { block } = Astro.props;
+---
+
+<ul class="action-group-block">
+  {
+    block.actions.map((action) => (
+      <li>
+        <ActionBlock block={action} />
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .action-group-block {
+    list-style-type: "";
+    padding: 0;
+    margin: 0;
+  }
+</style>
