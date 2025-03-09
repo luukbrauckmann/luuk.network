@@ -1,20 +1,20 @@
 ---
 import { Image } from '@datocms/astro'
-const { image, title, description } = Astro.props;
+const { block } = Astro.props;
 ---
 
 <div class="hero-block">
   <div class="hero-block-visual">
     <Image
         pictureClass="hero-block-visual__image"
-        data={image.responsiveImage}
+        data={block.image.responsiveImage}
         priority={true}
         srcSetCandidates={[0.05]}
     />
   </div>
   <div class="hero-block-content">
-    <h1>{title}</h1>
-    <p>{description}</p>
+    <h1>{block.title}</h1>
+    <p>{block.description}</p>
   </div>
 </div>
 

@@ -10,6 +10,6 @@ const { blocks } = Astro.props;
   blocks.map(async (block) => {
     const blockName = block.__typename.replace("Record", "");
     const Block = (await import(`./${blockName}/${blockName}.astro`)).default;
-    return <Block {...block} />;
+    return <Block block={block} />;
   })
 }

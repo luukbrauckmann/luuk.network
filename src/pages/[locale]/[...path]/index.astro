@@ -30,13 +30,14 @@ export async function getStaticPaths() {
 
 const { locale, path = "" } = Astro.params;
 
-const { _site, page } = await executeQuery(query, { locale, path });
+const { _site, callToAction, page } = await executeQuery(query, { locale, path });
 ---
 
 <BaseLayout
   locale={locale}
   seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}
   localizedPaths={page._allPathLocales}
+  callToAction={callToAction}
 >
   <Blocks blocks={page.body} />
 </BaseLayout>

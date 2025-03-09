@@ -1,6 +1,17 @@
 fragment ActionBlock on ActionBlockRecord {
-    label
-    page {
+  label
+  icon {
+    name
+  }
+  action {
+    __typename
+    ... on InternalActionRecord {
+      page {
         path
+      }
     }
+    ... on ExternalActionRecord {
+      link
+    }
+  }
 }

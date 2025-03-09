@@ -2,6 +2,7 @@
 import { Seo } from "@datocms/astro";
 import Header from "@components/Header/Header.astro";
 import Footer from "@components/Footer/Footer.astro";
+import CallToAction from "@components/CallToAction/CallToAction.astro";
 import IconSprite from "@components/IconSprite/IconSprite.astro";
 
 import "@css/a11y.css";
@@ -11,7 +12,7 @@ import "@css/theme.css";
 import "@css/typography.css";
 import "@css/variables.css";
 
-const { locale, seo, localizedPaths } = Astro.props;
+const { locale, seo, localizedPaths, callToAction } = Astro.props;
 ---
 
 <!doctype html>
@@ -47,6 +48,8 @@ const { locale, seo, localizedPaths } = Astro.props;
       <main>
         <slot />
       </main>
+
+      <CallToAction data={callToAction} />
 
       <Footer />
     </div>

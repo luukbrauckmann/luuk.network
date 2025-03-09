@@ -2,18 +2,23 @@ import { defineConfig, envField } from "astro/config";
 import { loadEnv } from "vite";
 import cloudflare from "@astrojs/cloudflare";
 import graphql from "@rollup/plugin-graphql";
+import icons from "./integrations/icons";
 
 const { OUTPUT } = loadEnv(import.meta.env.MODE, process.cwd(), "");
 
 export default defineConfig({
-  prefetch: true,
   trailingSlash: "always",
   output: OUTPUT === "server" ? "server" : "static",
   adapter: cloudflare({
     imageService: "passthrough",
   }),
+  integrations: [
+    icons(),
+  ],
   vite: {
-    plugins: [graphql()],
+    plugins: [
+      graphql(),
+    ],
   },
   env: {
     schema: {
@@ -25,4 +30,5 @@ export default defineConfig({
   devToolbar: {
     enabled: false,
   },
+  prefetch: true,
 });

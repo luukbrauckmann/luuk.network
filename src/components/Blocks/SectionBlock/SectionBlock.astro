@@ -1,23 +1,33 @@
 ---
 import Blocks from "../Blocks.astro";
-const { title, body } = Astro.props;
+import ActionGroupBlock from "../ActionGroupBlock/ActionGroupBlock.astro";
+const { block } = Astro.props;
 ---
 
 <section class="section-block">
   <header class="section-block-header">
-    <h2>{title}</h2>
+    <h2>{block.title}</h2>
   </header>
 
-  <Blocks blocks={body} />
+  <Blocks blocks={block.body} />
+
+  <footer class="section-block-footer">
+    <ActionGroupBlock block={block.actions} />
+  </footer>
 </section>
 
 <style>
   .section-block {
-    padding-block: var(--step-1);
+    padding-block: var(--step-3);
   }
 
   .section-block-header {
-    padding-inline: var(--step-2);
     margin-block-end: var(--step-1);
+    padding-inline: var(--step-2);
+  }
+
+  .section-block-footer {
+    margin-block-start: var(--step-1);
+    padding-inline: var(--step-2);
   }
 </style>

@@ -5,9 +5,18 @@ const { locale } = Astro.params;
 const { block } = Astro.props;
 ---
 
-<Button
-  class="action-block"
-  as="a"
-  icon="arrow-right"
-  href={`/${locale}/${block.page.path}/`}>{block.label}</Button
->
+{
+  block.action.__typename === "InternalActionRecord" && (
+    <Button as="a" icon={block.icon.name} href={`/${locale}/${block.action.page.path}/`}>
+      {block.label}
+    </Button>
+  )
+}
+
+{
+  block.action.__typename === "ExternalActionRecord" && (
+    <Button as="a" icon={block.icon.name} href={block.action.link}>
+      {block.label}
+    </Button>
+  )
+}
