@@ -4,7 +4,7 @@
 }
 
 .border {
-  margin: -1px;
+  margin: 0px -1px -1px -1px;
   border: 1px solid #1b263b;
 }
 
@@ -18,7 +18,7 @@ a:focus {
 }
 
 .bg-elevated {
-  margin: -1px;
+  margin: 0px -1px -1px -1px;
   border: 1px solid #415a77;
   background-color: #415a77;
 }

@@ -1,0 +1,31 @@
+---
+import type { HTMLTag, Polymorphic } from "astro/types";
+import type { IconName } from "@generated/icon-sprite";
+
+import Icon from "@components/Icon/Icon.astro";
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+  as: Tag;
+  icon?: IconName;
+}>;
+
+const { as: Tag = "span", icon, ...props } = Astro.props;
+---
+
+<Tag class:list="pill" {...props}>
+  {icon && <Icon name={icon} />}
+  <slot />
+</Tag>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--step--2);
+    border-radius: var(--step-0);
+    background: rgba(230, 234, 245, 0.4);
+    padding: var(--step--3) var(--step--1);
+    font-size: var(--step--1);
+    line-height: 1;
+  }
+</style>

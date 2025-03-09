@@ -25,6 +25,7 @@ export default defineConfig({
       SITE: envField.string({ context: "server", access: "secret" }),
       OUTPUT: envField.string({ context: "server", access: "secret" }),
       DATOCMS_TOKEN: envField.string({ context: "server", access: "secret" }),
+      GITHUB_TOKEN: envField.string({ context: "server", access: "secret" }),
     },
   },
   devToolbar: {

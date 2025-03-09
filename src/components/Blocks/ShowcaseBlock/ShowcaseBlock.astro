@@ -1,0 +1,125 @@
+---
+import Icon from '@components/Icon/Icon.astro';
+
+const { locale } = Astro.params;
+const { block } = Astro.props;
+---
+
+{
+  block.pages.length > 0 ? (
+    <ul class="showcase-list">
+      {block.pages.map((page) => (
+        <li>
+          <a class="showcase-item" href={`/${locale}/${page.path}/`}>
+            <Icon class="showcase-item__icon" name="square-arrow-up-right" />
+            <img
+              class="showcase-item__image"
+              src={page.image}
+              alt={page.title}
+            />
+            <div class="showcase-item__details">
+              <h3>{page.title}</h3>
+              <p>{page.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+      {block.pages.map((page) => (
+        <li>
+          <a class="showcase-item" href={`/${locale}/${page.path}/`}>
+            <Icon class="showcase-item__icon" name="square-arrow-up-right" />
+            <img
+              class="showcase-item__image"
+              src={page.image}
+              alt={page.title}
+            />
+            <div class="showcase-item__details">
+              <h3>{page.title}</h3>
+              <p>{page.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+      {block.pages.map((page) => (
+        <li>
+          <a class="showcase-item" href={`/${locale}/${page.path}/`}>
+            <Icon class="showcase-item__icon" name="square-arrow-up-right" />
+            <img
+              class="showcase-item__image"
+              src={page.image}
+              alt={page.title}
+            />
+            <div class="showcase-item__details">
+              <h3>{page.title}</h3>
+              <p>{page.description}</p>
+            </div>
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <p class="showcase-empty-message">No items</p>
+  )
+}
+
+<style>
+  .showcase-list {
+    display: flex;
+    gap: var(--step--1);
+    margin: 0px;
+    padding: 0px var(--step-2);
+    width: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    list-style-type: "";
+  }
+
+  .showcase-list li {
+    flex: 0 0 100%;
+    max-width: 100%;
+    scroll-snap-align: center;
+  }
+
+  .showcase-item {
+    display: inline-block;
+    background-color: #415a77;
+    max-width: 100%;
+    scroll-snap-align: center;
+    color: currentColor;
+    text-decoration: none;
+    position: relative;
+  }
+
+  .showcase-item :global(.showcase-item__icon) {
+    position: absolute;
+    top: var(--step--2);
+    right: var(--step--2);
+    fill: #0D1B2A;
+  }
+
+  .showcase-item__image {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    background: grey;
+  }
+
+  .showcase-item__details {
+    padding: var(--step-0);
+    overflow: hidden;
+  }
+
+  .showcase-item__details h3 {
+    margin-block-end: var(--step--2);
+  }
+
+  .showcase-item__details p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .showcase-empty-message {
+    padding-inline: var(--step-2);
+  }
+</style>

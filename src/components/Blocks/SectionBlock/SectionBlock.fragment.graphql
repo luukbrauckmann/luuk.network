@@ -1,11 +1,13 @@
 #import '@components/Blocks/TextBlock/TextBlock.fragment.graphql'
 #import '@components/Blocks/ActionGroupBlock/ActionGroupBlock.fragment.graphql'
+#import '@components/Blocks/ShowcaseBlock/ShowcaseBlock.fragment.graphql'
 
 fragment SectionBlock on SectionBlockRecord {
   title
   body {
     __typename
     ...TextBlock
+    ...ShowcaseBlock
   }
   actions {
     ...ActionGroupBlock

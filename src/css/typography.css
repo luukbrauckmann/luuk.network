@@ -31,12 +31,13 @@
 }
 
 :root {
-  --step--2: clamp(0.4775rem, 0.6725rem + -0.1625vw, 0.64rem);
-  --step--1: clamp(0.7726rem, 0.8055rem + -0.0274vw, 0.8rem);
-  --step-0: clamp(1rem, 0.95rem + 0.25vw, 1.25rem);
-  --step-1: clamp(1.25rem, 1.0955rem + 0.7725vw, 2.0225rem);
-  --step-2: clamp(1.5625rem, 1.2205rem + 1.7099vw, 3.2724rem);
-  --step-3: clamp(1.9531rem, 1.2848rem + 3.3416vw, 5.2948rem);
+    --step--3: clamp(0.3537rem, 0.3376rem + 0.0808vw, 0.3704rem);
+    --step--2: clamp(0.5002rem, 0.4464rem + 0.2686vw, 0.5556rem);
+    --step--1: clamp(0.7072rem, 0.5849rem + 0.6115vw, 0.8333rem);
+    --step-0: clamp(1rem, 0.7576rem + 1.2121vw, 1.25rem);
+    --step-1: clamp(1.414rem, 0.967rem + 2.2352vw, 1.875rem);
+    --step-2: clamp(1.9994rem, 1.2109rem + 3.9423vw, 2.8125rem);
+    --step-3: clamp(2.8271rem, 1.4777rem + 6.7472vw, 4.2188rem);
 }
 
 body {
