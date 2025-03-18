@@ -1,7 +1,7 @@
 @font-face {
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/Nunito/Nunito-Regular.ttf') format('TrueType');
+    src: url('/fonts/Nunito/Nunito-Regular.woff2') format('woff2');
     font-family: 'Nunito';
     font-display: swap;
 }
@@ -9,7 +9,7 @@
 @font-face {
     font-style: normal;
     font-weight: 700;
-    src: url('/fonts/Nunito/Nunito-Bold.ttf') format('TrueType');
+    src: url('/fonts/Nunito/Nunito-Bold.woff2') format('woff2');
     font-family: 'Nunito';
     font-display: swap;
 }
