@@ -1,5 +1,26 @@
-@import "./fonts/dash.css";
-@import "./fonts/nunito.css";
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Dash-Regular.woff2') format('woff2');
+    font-family: 'Dash';
+    font-display: swap;
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Nunito-Regular.woff2') format('woff2');
+    font-family: 'Nunito';
+    font-display: swap;
+}
+
+@font-face {
+    font-style: normal;
+    font-weight: 700;
+    src: url('/fonts/Nunito-Bold.woff2') format('woff2');
+    font-family: 'Nunito';
+    font-display: swap;
+}
 
 body {
     font-size: var(--step-0);
