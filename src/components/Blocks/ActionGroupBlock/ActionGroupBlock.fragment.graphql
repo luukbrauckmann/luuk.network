@@ -1,7 +1,0 @@
-#import '@components/Blocks/ActionBlock/ActionBlock.fragment.graphql'
-
-fragment ActionGroupBlock on ActionGroupBlockRecord {
-    actions {
-        ...ActionBlock
-    }
-}

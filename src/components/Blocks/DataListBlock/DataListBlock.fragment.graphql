@@ -1,3 +1,0 @@
-fragment DataListBlock on DataListBlockRecord {
-  endpoint
-}

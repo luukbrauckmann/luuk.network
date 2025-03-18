@@ -1,36 +1,39 @@
 ---
-import ActionGroupBlock from "@components/Blocks/ActionGroupBlock/ActionGroupBlock.astro";
-import TextBlock from "@components/Blocks/TextBlock/TextBlock.astro";
+import { Button, DecoratedText, StructuredText } from '@components';
 
-const { data } = Astro.props;
+const { title, content } = Astro.props;
 ---
 
 <section class="call-to-action">
-  <header class="call-to-action-header">
-    <h2>{data.title}</h2>
+  <header class="call-to-action__header">
+    <DecoratedText as="h2">{title}</DecoratedText>
   </header>
 
-  <TextBlock block={data.text} />
+  <StructuredText data={content} />
 
-  <footer class="call-to-action-footer">
-    <ActionGroupBlock block={data.actionGroup} />
+  <footer class="call-to-action__footer">
+    <Button as="a" href="mailto:info@luuk.network" icon="envelope"
+      >info@luuk.network</Button
+    >
   </footer>
 </section>
 
 <style>
   .call-to-action {
+    position: relative;
     margin: 0px -1px -1px -1px;
     border: 1px solid #1b263b;
-    padding-block: var(--step-3);
+    padding: var(--spacing-xxl) var(--spacing-xl);
   }
 
-  .call-to-action-header {
-    margin-block-end: var(--step-1);
-    padding-inline: var(--step-2);
+  .call-to-action__header {
+    /* position: absolute;
+    top: 0px;
+    transform: translateY(-70%); */
+    margin-block-end: var(--spacing-xl);
   }
 
-  .call-to-action-footer {
-    margin-block-start: var(--step-1);
-    padding-inline: var(--step-2);
+  .call-to-action__footer {
+    margin-block-start: var(--spacing-xl);
   }
 </style>

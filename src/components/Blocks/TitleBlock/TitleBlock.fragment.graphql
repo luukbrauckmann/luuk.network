@@ -1,4 +1,0 @@
-fragment TitleBlock on TitleBlockRecord {
-  title
-  level
-}

@@ -1,11 +1,8 @@
-#import '@components/Blocks/ActionGroupBlock/ActionGroupBlock.fragment.graphql'
-#import '@components/Blocks/DataListBlock/DataListBlock.fragment.graphql'
 #import '@components/Blocks/HeroBlock/HeroBlock.fragment.graphql'
 #import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
-#import '@components/Blocks/TextBlock/TextBlock.fragment.graphql'
-#import '@components/Blocks/TitleBlock/TitleBlock.fragment.graphql'
+#import '@components/Blocks/StoryBlock/StoryBlock.fragment.graphql'
 
-query Page($locale: SiteLocale!, $path: String!) {
+query Page($id: ItemId!, $locale: SiteLocale!) {
   _site {
     faviconMetaTags {
       attributes
@@ -13,22 +10,27 @@ query Page($locale: SiteLocale!, $path: String!) {
       tag
     }
   }
-  callToAction(locale: $locale) {
-    title
-    text {
-      text {
-        value
+
+  menu(locale: $locale) {
+    items {
+      icon {
+        name
       }
-    }
-    actionGroup {
-      ...ActionGroupBlock
+      page {
+        path
+      }
+      title
     }
   }
-  page(filter: { path: { eq: $path } }, locale: $locale) {
-    _allPathLocales {
-      locale
+
+  callToAction(locale: $locale) {
+    title
+    content {
       value
     }
+  }
+
+  page(filter: { id: { eq: $id } }, locale: $locale) {
     _seoMetaTags {
       attributes
       content
@@ -36,11 +38,9 @@ query Page($locale: SiteLocale!, $path: String!) {
     }
     body {
       __typename
-      ...DataListBlock
       ...HeroBlock
       ...SectionBlock
-      ...TextBlock
-      ...TitleBlock
+      ...StoryBlock
     }
   }
 }

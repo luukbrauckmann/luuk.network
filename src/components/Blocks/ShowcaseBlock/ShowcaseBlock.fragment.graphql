@@ -1,7 +1,0 @@
-fragment ShowcaseBlock on ShowcaseBlockRecord {
-    pages {
-        title
-        description
-        path
-    }
-}

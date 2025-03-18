@@ -1,15 +1,25 @@
+/* @link https://utopia.fyi/type/calculator?c=320,16,1.618,800,20,1.618,3,2,&s=0.75|0.5|0.25,1.5|2|3|4|6,s-l&g=s,l,xl,12 */
+
 :root {
-  --max-width: 60ch;
-  --spacing-section: 3.236rem 2rem;
-  --spacing-button: 0.5em 0.809em;
+    --step--3: clamp(0.2361rem, 0.1967rem + 0.1967vw, 0.2951rem);
+    --step--2: clamp(0.382rem, 0.3183rem + 0.3183vw, 0.4775rem);
+    --step--1: clamp(0.618rem, 0.515rem + 0.515vw, 0.7726rem);
+    --step-0: clamp(1rem, 0.8333rem + 0.8333vw, 1.25rem);
+    --step-1: clamp(1.618rem, 1.3483rem + 1.3483vw, 2.0225rem);
+    --step-2: clamp(2.6179rem, 2.1816rem + 2.1816vw, 3.2724rem);
+    --step-3: clamp(4.2358rem, 3.5298rem + 3.5298vw, 5.2948rem);
 
-  --spacing-xl: 3.236rem;
-  --spacing-lg: 2rem;
-  --spacing-md: 1.236rem;
-  --spacing-sm: 0.763rem;
-}
+    --font-size-xl: var(--step-3);
+    --font-size-lg: var(--step-2);
+    --font-size-md: var(--step-0);
+    --font-size-sm: var(--step--1);
+    --font-size-xs: var(--step--2);
 
-input[type="search" i] {
-  border: 1px solid black;
-  padding: var(--spacing-button);
+    --spacing-xxl: var(--step-3);
+    --spacing-xl: var(--step-2);
+    --spacing-lg: var(--step-1);
+    --spacing-md: var(--step-0);
+    --spacing-sm: var(--step--1);
+    --spacing-xs: var(--step--2);
+    --spacing-xxs: var(--step--3);
 }

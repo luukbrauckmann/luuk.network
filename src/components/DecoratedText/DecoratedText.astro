@@ -1,0 +1,28 @@
+---
+import type { HTMLTag, Polymorphic } from 'astro/types';
+
+type Props<Tag extends HTMLTag> = Polymorphic<{
+  as: Tag;
+}>;
+
+const { as: Tag = 'p', ...props } = Astro.props;
+---
+
+<div>
+  <Tag class:list={['decorated-text']} {...props}><slot /></Tag>
+</div>
+
+<style>
+  .decorated-text {
+    --offset-x: 0.2em;
+    --offset-y: 0.45em;
+    display: inline;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    background-image: linear-gradient(#415a77, #415a77);
+    background-position: calc(var(--offset-x) * -1) var(--offset-y);
+    background-repeat: no-repeat;
+    padding-left: var(--offset-x);
+    color: #e0e1dd;
+  }
+</style>

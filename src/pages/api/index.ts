@@ -1,7 +1,7 @@
-import type { APIRoute } from "astro";
+---
+import { Base } from '@layouts';
+---
 
-export const prerender = false;
-
-export const GET: APIRoute = async () => {
-  return new Response("I'm alive!");
-};
+<Base>
+    <h1>This is my awesome website</h1>
+</Base>

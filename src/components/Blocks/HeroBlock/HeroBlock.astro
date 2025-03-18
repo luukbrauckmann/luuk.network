@@ -1,37 +1,23 @@
 ---
-import Pill from "@components/Pill/Pill.astro";
-import { Image } from "@datocms/astro";
+import { Image } from '@datocms/astro';
+
+type Props = {
+  block: any;
+};
+
 const { block } = Astro.props;
 ---
 
 <div class="hero-block">
-  <div class="hero-block-visual">
+  <div class="hero-block__visual"></div>
+  <div class="hero-block-content">
     <Image
-      pictureClass="hero-block-visual__image"
+      pictureClass="hero-block-content__image"
       data={block.image.responsiveImage}
       priority={true}
-      srcSetCandidates={[0.05]}
+      srcSetCandidates={[0.5, 0.075]}
     />
-  </div>
-  <div class="hero-block-content">
     <h1>{block.title}</h1>
-
-    <ul class="github-statistics">
-      <li>
-        <Pill class="github-statistic--commits" icon="code-commit"
-          >1k+ Commits</Pill
-        >
-      </li>
-      <li>
-        <Pill class="github-statistic--pull-requests" icon="code-pull-request"
-          >472 Pull Requests</Pill
-        >
-      </li>
-      <li>
-        <Pill class="github-statistic--reviews" icon="check">283 Reviews</Pill>
-      </li>
-    </ul>
-
     <p>{block.description}</p>
   </div>
 </div>
@@ -39,58 +25,42 @@ const { block } = Astro.props;
 <style>
   .hero-block {
     --visual-size: 150px;
-    margin: 0px -1px -1px -1px;
+    margin: -1px;
     border: 1px solid #1b263b;
   }
 
-  .hero-block-visual {
-    position: relative;
+  @media (min-width: 600px) {
+    .hero-block {
+      --visual-size: 200px;
+    }
+  }
+
+  .hero-block__visual {
     height: var(--visual-size);
   }
 
-  :global(.hero-block-visual__image) {
+  .hero-block-content {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    background: #1b263b;
+    padding: calc(var(--spacing-lg) + (var(--visual-size) / 2))
+      var(--spacing-xl) var(--spacing-xxl);
+  }
+
+  :global(.hero-block-content__image) {
     position: absolute;
-    bottom: 0px;
-    left: var(--step-2);
-    transform: translateY(50%);
+    top: 0px;
+    left: var(--spacing-xl);
+    transform: translateY(-50%);
     width: var(--visual-size);
     height: var(--visual-size);
     object-fit: cover;
     object-position: center;
   }
 
-  .hero-block-content {
-    display: flex;
-    flex-direction: column;
-    background-color: #1b263b;
-    padding: calc((var(--visual-size) / 2) + var(--step-1)) var(--step-2)
-      var(--step-3);
-  }
-
-  .hero-block-content h1 {
-    margin-block-end: var(--step--2);
-    font-size: var(--step-2);
-  }
-
-  .github-statistics {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--step--2);
-    margin: 0px;
-    margin-block-end: var(--step-1);
-    padding: 0px;
-    list-style-type: "";
-  }
-
-  .github-statistic--commits :global(.icon) {
-    fill: #f5f5f2;
-  }
-
-  .github-statistic--pull-requests :global(.icon) {
-    fill: #009dff;
-  }
-
-  .github-statistic--reviews :global(.icon) {
-    fill: #1ea47d;
+  h1 {
+    font-size: var(--font-size-lg);
   }
 </style>

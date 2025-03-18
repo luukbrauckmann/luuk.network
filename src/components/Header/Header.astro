@@ -1,40 +1,36 @@
 ---
-import Logo from "@components/Logo/Logo.astro";
-import Button from "@components/Button/Button.astro";
-import LocaleSwitcher from "@components/LocaleSwitcher/LocaleSwitcher.astro";
+import { Logo, Menu } from '@components';
 
-const { localizedPaths } = Astro.props;
+const { locale } = Astro.params;
+const { menuItems } = Astro.props;
 ---
 
-<header class="header">
-  <a href="/">
+<header>
+  <a class="home-link" href={`/${locale}/`}>
+    <span class="sr-only">Luuk Brauckmann</span>
     <Logo />
-    <span class="sr-only">To home</span>
   </a>
 
-  <div>
-    <Button
-      as="a"
-      variant="transparent"
-      icon="github"
-      iconOnly={true}
-      href="https://github.com/luukbrauckmann/luuk.network"
-      target="_blank">GitHub</Button
-    >
-    <LocaleSwitcher {localizedPaths} />
-  </div>
+  <Menu items={menuItems} />
 </header>
 
 <style>
-  .header {
+  header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    z-index: 101;
     margin: -1px;
     border: 1px solid #1b263b;
+    background: #001523;
   }
 
-  .header > div {
-    display: flex;
+  .home-link {
+    border: 1px solid transparent;
+    padding: var(--spacing-sm) var(--spacing-lg);
+  }
+
+  .home-link:hover {
+    border: 1px solid #152b44;
+    background-color: #152b44;
   }
 </style>
