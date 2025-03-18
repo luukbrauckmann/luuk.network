@@ -22,4 +22,12 @@
     --spacing-sm: var(--step--1);
     --spacing-xs: var(--step--2);
     --spacing-xxs: var(--step--3);
+
+    --spacing-section-inline: var(--spacing-lg);
+    --spacing-section-block: var(--spacing-xxl);
+    --spacing-section: var(--spacing-section-block) var(--spacing-section-inline);
+
+    @media(min-width: 800px) {
+      --spacing-section-inline: var(--spacing-xl);
+    }
 }

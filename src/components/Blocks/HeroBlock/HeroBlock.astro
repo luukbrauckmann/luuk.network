@@ -45,14 +45,14 @@ const { block } = Astro.props;
     flex-direction: column;
     gap: var(--spacing-lg);
     background: #1b263b;
-    padding: calc(var(--spacing-lg) + (var(--visual-size) / 2))
-      var(--spacing-xl) var(--spacing-xxl);
+    padding: var(--spacing-section);
+    padding-block-start: calc(var(--spacing-lg) + (var(--visual-size) / 2));
   }
 
   :global(.hero-block-content__image) {
     position: absolute;
     top: 0px;
-    left: var(--spacing-xl);
+    left: var(--spacing-section-inline);
     transform: translateY(-50%);
     width: var(--visual-size);
     height: var(--visual-size);
