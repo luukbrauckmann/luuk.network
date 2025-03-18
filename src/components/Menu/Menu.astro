@@ -1,0 +1,242 @@
+---
+import { Button, Icon } from '@components';
+import type { IconName } from '@generated/icon-sprite';
+
+type Props = {
+  items: {
+    title: string;
+    page: {
+      path: string;
+    };
+    icon: {
+      name: IconName;
+    };
+  }[];
+};
+
+const { locale } = Astro.params;
+const { items } = Astro.props;
+
+function getLink(path: string) {
+  if (path.length > 0) {
+    return `/${locale}/${path}/`;
+  }
+  return `/${locale}/`;
+}
+---
+
+<enhanced-menu>
+  <button
+    id="toggle-button"
+    class="menu-toggle-button"
+    aria-haspopup="true"
+    aria-expanded="false"
+    aria-controls="menu"
+  >
+    <span class="menu-toggle-button__open">
+      <Icon name="bars" />
+      <span class="menu-toggle-button__label">Menu</span>
+    </span>
+    <span class="menu-toggle-button__close">
+      <Icon name="xmark" />
+      <span class="menu-toggle-button__label">Close</span>
+    </span>
+  </button>
+
+  <nav id="menu" class="menu" inert>
+    <header>
+      <h2 class="sr-only">Mainmenu</h2>
+    </header>
+
+    <ul class="menu-list">
+      {
+        items.map((item) => (
+          <li>
+            <Button
+              as="a"
+              href={getLink(item.page.path)}
+              class="menu-list-item-link"
+              variant="transparent"
+              icon={item.icon.name}
+            >
+              {item.title}
+            </Button>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</enhanced-menu>
+
+<style>
+  enhanced-menu {
+    position: relative;
+  }
+
+  .menu-toggle-button {
+    cursor: pointer;
+    border: 1px solid transparent;
+    background: transparent;
+    padding: var(--spacing-md) var(--spacing-lg);
+    color: currentColor;
+    line-height: 0;
+    text-decoration: none;
+  }
+
+  .menu-toggle-button:hover {
+    border: 1px solid #152b44;
+    background-color: #152b44;
+  }
+
+  .menu-toggle-button__open,
+  .menu-toggle-button__close {
+    display: inline-flex;
+    align-items: center;
+    gap: 1ch;
+  }
+
+  .menu-toggle-button[aria-expanded='false'] .menu-toggle-button__close,
+  .menu-toggle-button[aria-expanded='true'] .menu-toggle-button__open {
+    display: none;
+  }
+
+  .menu-toggle-button__label {
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .menu {
+    position: absolute;
+    right: -1px;
+    bottom: 0;
+    opacity: 0;
+    transition: opacity 0.15s;
+    pointer-events: none;
+  }
+
+  .menu--open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .menu-list {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    background: #1b263b;
+    padding: 0;
+    width: max-content;
+    list-style-type: '';
+  }
+
+  .menu-list-item-link {
+    width: 100%;
+  }
+</style>
+
+<script>
+
+import { hideBackdrop, showBackdrop } from "@lib/backdrop";
+
+  class EnhancedMenu extends HTMLElement {
+    expanded = false;
+    body = document.querySelector('body')!;
+    toggleButton = this.querySelector<HTMLButtonElement>('#toggle-button')!;
+    menu = this.querySelector('#menu')!;
+    focusableElements: HTMLElement[] = [];
+    firstFocusableElement: HTMLElement | null = null;
+    lastFocusableElement: HTMLElement | null = null;
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.toggleButton.addEventListener('click', this.toggleMenu.bind(this));
+
+      document.addEventListener('keydown', this.handleKeyDown.bind(this));
+    }
+
+    openMenu() {
+      this.expanded = true;
+      this.toggleButton.setAttribute('aria-expanded', 'true');
+      this.menu.removeAttribute('inert');
+      this.menu.classList.add('menu--open');
+      showBackdrop();
+
+      this.updateFocusableElements();
+      this.menu.querySelector('a')!.focus();
+    }
+
+    closeMenu() {
+      this.expanded = false;
+      this.toggleButton.setAttribute('aria-expanded', 'false');
+      this.toggleButton.focus();
+      this.menu.setAttribute('inert', '');
+      this.menu.classList.remove('menu--open');
+      hideBackdrop();
+    }
+
+    toggleMenu(event: Event) {
+      if (this.expanded) {
+        this.closeMenu();
+      } else {
+        this.openMenu();
+      }
+      event.preventDefault();
+    }
+
+    updateFocusableElements() {
+      const menuElements = Array.from(
+        this.menu.querySelectorAll<HTMLElement>('a[href]')
+      );
+
+      this.focusableElements = [this.toggleButton, ...menuElements];
+
+      this.firstFocusableElement = this.toggleButton;
+      this.lastFocusableElement =
+        this.focusableElements[this.focusableElements.length - 1] ||
+        this.toggleButton;
+    }
+
+    handleKeyDown(event: KeyboardEvent) {
+      if (!this.expanded) return;
+
+      if (event.key === 'Escape') {
+        this.closeMenu();
+        return;
+      }
+
+      if (event.key === 'Tab') {
+        const isActiveElementInside = this.contains(
+          document.activeElement as Node
+        );
+        if (!isActiveElementInside) {
+          event.preventDefault();
+          this.toggleButton.focus();
+          return;
+        }
+
+        if (this.focusableElements.length <= 1) {
+          event.preventDefault();
+          return;
+        }
+
+        if (event.shiftKey) {
+          if (document.activeElement === this.firstFocusableElement) {
+            event.preventDefault();
+            this.lastFocusableElement?.focus();
+          }
+        } else {
+          if (document.activeElement === this.lastFocusableElement) {
+            event.preventDefault();
+            this.firstFocusableElement?.focus();
+          }
+        }
+      }
+    }
+  }
+
+  customElements.define('enhanced-menu', EnhancedMenu);
+</script>

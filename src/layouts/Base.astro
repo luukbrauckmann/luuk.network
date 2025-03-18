@@ -1,0 +1,89 @@
+---
+import { Seo } from '@datocms/astro';
+import {
+  Backdrop,
+  CallToAction,
+  Footer,
+  Header,
+  IconSprite,
+  Main
+} from '@components';
+
+import '@css/a11y.css';
+import '@css/main.css';
+import '@css/reset.css';
+import '@css/typography.css';
+import '@css/variables.css';
+
+type Props = {
+  seo: any;
+  menuItems: Array<unknown>;
+  cta: any;
+};
+
+const { locale } = Astro.params;
+const { seo, menuItems, cta } = Astro.props;
+---
+
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <link rel="preconnect" href="https://www.datocms-assets.com" />
+
+    <link
+      rel="preload"
+      href="/fonts/Dash/DashCasualL-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href="/fonts/Nunito/Nunito-Regular.ttf"
+      as="font"
+      type="font/ttf"
+      crossorigin="anonymous"
+    />
+
+    <Seo data={seo} />
+  </head>
+  <body>
+    <div>
+      <Header locale={locale} menuItems={menuItems} />
+
+      <Main>
+        <slot />
+      </Main>
+
+      <CallToAction {...cta} />
+      <Footer />
+    </div>
+
+    <Backdrop />
+    <IconSprite />
+  </body>
+</html>
+
+<style>
+  body {
+    display: flex;
+    flex-direction: column;
+    margin-inline: auto;
+    padding: var(--spacing-md);
+    max-width: 800px;
+    min-height: 100dvh;
+  }
+
+  body > div {
+    display: flex;
+    position: relative;
+    flex: 1;
+    flex-direction: column;
+    border: 1px solid #1b263b;
+    height: 100%;
+  }
+</style>

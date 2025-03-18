@@ -1,0 +1,6 @@
+fragment StoryBlock on StoryBlockRecord {
+  title
+  content {
+    value
+  }
+}

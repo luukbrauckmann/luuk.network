@@ -1,0 +1,25 @@
+---
+import { DecoratedText, StructuredText } from '@components';
+
+const { block } = Astro.props;
+---
+
+<section class="story-block">
+  <header class="story-block__header">
+    <DecoratedText as="h1">{block.title}</DecoratedText>
+  </header>
+
+  <StructuredText data={block.content} />
+</section>
+
+<style>
+  .story-block {
+    margin: 0px -1px -1px -1px;
+    border: 1px solid #1b263b;
+    padding: var(--spacing-xxl) var(--spacing-xl);
+  }
+
+  .story-block__header {
+    margin-block-end: var(--spacing-xl);
+  }
+</style>

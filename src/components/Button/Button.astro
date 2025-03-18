@@ -1,18 +1,18 @@
 ---
-import Icon from "@components/Icon/Icon.astro";
-import type { IconName } from "@generated/icon-sprite";
-import type { Polymorphic } from "astro/types";
+import { Icon } from '@components';
+import type { IconName } from '@generated/icon-sprite';
+import type { Polymorphic } from 'astro/types';
 
-type Props<Tag extends "button" | "a"> = Polymorphic<{
+type Props<Tag extends 'button' | 'a'> = Polymorphic<{
   as: Tag;
-  variant?: "primary" | "secondary" | "transparent" | "link";
+  variant?: 'primary' | 'secondary' | 'transparent' | 'link';
   icon?: IconName;
   iconOnly?: boolean;
 }>;
 
 const {
-  as: Tag = "button",
-  variant = "primary",
+  as: Tag = 'button',
+  variant = 'primary',
   icon,
   iconOnly,
   ...props
@@ -21,14 +21,14 @@ const {
 
 <Tag
   class:list={[
-    "button",
+    'button',
     `button--${variant}`,
-    { "button--icon-only": iconOnly },
+    { 'button--icon-only': iconOnly }
   ]}
   {...props}
 >
   {icon && <Icon class="button__icon" name={icon} />}
-  <span class:list={["button__label", { "sr-only": iconOnly }]}><slot /></span>
+  <span class:list={['button__label', { 'sr-only': iconOnly }]}><slot /></span>
 </Tag>
 
 <style>
@@ -36,9 +36,10 @@ const {
     display: inline-flex;
     align-items: center;
     gap: 1ch;
-    transition: 200ms;
-    padding: 0.75em 1.25em;
+    cursor: pointer;
+    padding: var(--spacing-md) var(--spacing-lg);
     color: currentColor;
+    line-height: 1;
     text-decoration: none;
   }
 
@@ -69,10 +70,11 @@ const {
   }
 
   .button--icon-only {
-    padding: 0.75em;
+    padding: var(--step--1);
   }
 
   .button__label {
-    line-height: 1;
+    font-weight: 700;
+    white-space: nowrap;
   }
 </style>

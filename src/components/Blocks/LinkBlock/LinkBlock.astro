@@ -1,0 +1,14 @@
+---
+import { Button } from '@components';
+
+type Props = {
+  block: any;
+};
+
+const { locale } = Astro.params;
+const { block } = Astro.props;
+---
+
+<Button as="a" icon={block.icon.name} href={`/${locale}/${block.page.path}/`}
+  >{block.label}</Button
+>

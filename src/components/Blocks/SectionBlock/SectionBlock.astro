@@ -1,35 +1,47 @@
 ---
-import Blocks from "../Blocks.astro";
-import ActionGroupBlock from "../ActionGroupBlock/ActionGroupBlock.astro";
+import LinkBlock from '../LinkBlock/LinkBlock.astro';
+import { DecoratedText, StructuredText } from '@components';
+
+type Props = {
+  block: any;
+};
+
 const { block } = Astro.props;
 ---
 
 <section class="section-block">
-  <header class="section-block-header">
-    <h2>{block.title}</h2>
+  <header class="section-block__header">
+    <DecoratedText as="h2">{block.title}</DecoratedText>
   </header>
 
-  <Blocks blocks={block.body} />
+  <StructuredText data={block.content} />
 
   <footer class="section-block-footer">
-    <ActionGroupBlock block={block.actions} />
+    {block.links.map((link) => <LinkBlock block={link} />)}
   </footer>
 </section>
 
 <style>
   .section-block {
+    position: relative;
     margin: 0px -1px -1px -1px;
     border: 1px solid #1b263b;
-    padding-block: var(--step-3);
+    padding: var(--spacing-xxl) var(--spacing-xl);
   }
 
-  .section-block-header {
-    margin-block-end: var(--step-1);
-    padding-inline: var(--step-2);
+  .section-block .section-block {
+    padding: 0;
+  }
+
+  .section-block__header {
+    /* position: absolute;
+    top: 0px;
+    transform: translateY(-70%); */
+    margin-block-end: var(--spacing-xl);
   }
 
   .section-block-footer {
-    margin-block-start: var(--step-1);
-    padding-inline: var(--step-2);
+    display: flex;
+    margin-block-start: var(--spacing-xl);
   }
 </style>

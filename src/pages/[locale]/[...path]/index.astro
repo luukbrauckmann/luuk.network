@@ -1,43 +1,49 @@
 ---
-import { executeQuery } from "@lib/datocms";
-import { parse } from "graphql";
+import type { GetStaticPaths } from 'astro';
+import { executeQuery } from '@lib/datocms';
+import { Base } from '@layouts';
+import { Blocks } from '@components';
 
-import BaseLayout from "@layouts/BaseLayout.astro";
+import { parse } from 'graphql';
+import query from './_index.query.graphql';
 
-import query from "./_index.query.graphql";
-import Blocks from "@components/Blocks/Blocks.astro";
-
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const { allPages } = await executeQuery(
     parse(`
-      query AllPages {
+      query MyQuery {
         allPages {
           _allPathLocales {
             locale
             value
           }
+          id
         }
       }
     `)
   );
 
-  return allPages.flatMap(({ _allPathLocales }) =>
-    _allPathLocales.map(({ locale, value }) => ({
-      params: { locale, path: value },
-    }))
-  );
-}
+  return allPages
+    .map(({ _allPathLocales, id }) => {
+      return _allPathLocales.map(({ locale, value }) => {
+        if (value) {
+          return { params: { locale, path: value }, props: { id } };
+        }
+        return { params: { locale }, props: { id } };
+      });
+    })
+    .flat();
+}) satisfies GetStaticPaths;
 
-const { locale, path = "" } = Astro.params;
+const { locale } = Astro.params;
+const { id } = Astro.props;
 
-const { _site, callToAction, page } = await executeQuery(query, { locale, path });
+const { _site, menu, callToAction, page } = await executeQuery(query, { locale, id });
 ---
 
-<BaseLayout
-  locale={locale}
+<Base
   seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}
-  localizedPaths={page._allPathLocales}
-  callToAction={callToAction}
+  menuItems={menu.items}
+  cta={callToAction}
 >
   <Blocks blocks={page.body} />
-</BaseLayout>
+</Base>

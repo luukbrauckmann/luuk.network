@@ -1,0 +1,7 @@
+@font-face {
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/Dash/DashCasualL-Regular.woff2') format('woff2');
+    font-family: 'Dash';
+    font-display: swap;
+}
