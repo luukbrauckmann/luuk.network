@@ -1,6 +1,6 @@
 import { defineConfig } from "eslint/config";
 import js from "@eslint/js";
-import astro from 'eslint-plugin-astro';
+import astro from "eslint-plugin-astro";
 
 export default defineConfig([
   js.configs.recommended,

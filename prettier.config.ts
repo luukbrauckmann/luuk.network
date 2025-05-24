@@ -2,15 +2,15 @@ import { type Config } from "prettier";
 
 const config: Config = {
   trailingComma: "none",
-  plugins: ['prettier-plugin-astro', 'prettier-plugin-css-order'],
+  plugins: ["prettier-plugin-astro", "prettier-plugin-css-order"],
   overrides: [
     {
-      files: '*.astro',
+      files: "*.astro",
       options: {
-        parser: 'astro',
-      },
-    },
-  ],
+        parser: "astro"
+      }
+    }
+  ]
 };
 
 export default config;

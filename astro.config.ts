@@ -1,9 +1,9 @@
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField } from "astro/config";
 
 export default defineConfig({
   i18n: {
-    defaultLocale: 'en',
-    locales: ['en', 'nl'],
+    defaultLocale: "en",
+    locales: ["en", "nl"],
     routing: {
       prefixDefaultLocale: true
     }
