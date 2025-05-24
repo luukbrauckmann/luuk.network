@@ -6,7 +6,9 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
+    "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write"
   },
   "dependencies": {
     "@datocms/astro": "^0.6.2",
