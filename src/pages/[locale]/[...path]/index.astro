@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from "astro";
+import { Base } from "@layouts";
+
+export const getStaticPaths: GetStaticPaths = (() => [
+  { params: { locale: "en" } },
+  { params: { locale: "nl" } }
+]);
+
+const { locale } = Astro.params;
+---
+
+<Base locale={locale}>
+  <h1>Astro {locale}</h1>
+</Base>
