@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@datocms/*": ["./src/datocms/*"],
       "@layouts": ["./src/layouts"]
     }
   },

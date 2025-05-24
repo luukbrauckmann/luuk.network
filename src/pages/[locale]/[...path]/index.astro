@@ -1,15 +1,37 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { executeQuery } from "@datocms/execute-query";
 import { Base } from "@layouts";
+import { parse } from "graphql/language/parser";
 
-export const getStaticPaths: GetStaticPaths = () => [
-  { params: { locale: "en" } },
-  { params: { locale: "nl" } }
-];
+export const getStaticPaths: GetStaticPaths = async () => {
+  const { allPages } = await executeQuery(
+    parse(`
+      query {
+        allPages {
+          _allPathLocales {
+            locale
+            value
+          }
+        }
+      }
+    `),
+    {}
+  );
 
-const { locale } = Astro.params;
+  return allPages.flatMap((item) =>
+    item._allPathLocales.map(({ locale, value }) => ({
+      params: {
+        locale,
+        ...(value && { path: value })
+      }
+    }))
+  );
+};
+
+const { locale, path } = Astro.params;
 ---
 
 <Base locale={locale}>
-  <h1>Astro {locale}</h1>
+    <h1>Astro /{locale}/{path}</h1>
 </Base>
