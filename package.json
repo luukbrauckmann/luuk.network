@@ -9,6 +9,8 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@datocms/astro": "^0.6.2",
+    "@datocms/cda-client": "^0.2.7",
     "astro": "^5.8.0"
   },
   "devDependencies": {

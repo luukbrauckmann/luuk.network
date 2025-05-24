@@ -1,4 +1,4 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 
 export default defineConfig({
   i18n: {
@@ -8,4 +8,9 @@ export default defineConfig({
       prefixDefaultLocale: true
     }
   },
+  env: {
+    schema: {
+      DATOCMS_TOKEN: envField.string({ context: "server", access: "secret" })
+    }
+  }
 });
