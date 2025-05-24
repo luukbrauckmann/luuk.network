@@ -12,5 +12,8 @@ export default defineConfig({
     schema: {
       DATOCMS_TOKEN: envField.string({ context: "server", access: "secret" })
     }
+  },
+  devToolbar: {
+    enabled: false
   }
 });
