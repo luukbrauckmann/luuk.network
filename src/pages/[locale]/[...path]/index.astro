@@ -5,7 +5,7 @@ import { Base } from "@layouts";
 import { parse } from "graphql/language/parser";
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const { allPages } = await executeQuery(
+  const { allPages } = await executeQuery<any, any>(
     parse(`
       query {
         allPages {
@@ -19,8 +19,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
     {}
   );
 
-  return allPages.flatMap((item) =>
-    item._allPathLocales.map(({ locale, value }) => ({
+  return allPages.flatMap((item: any) =>
+    item._allPathLocales.map(({ locale, value }: any) => ({
       params: {
         locale,
         ...(value && { path: value })
@@ -30,8 +30,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const { locale, path } = Astro.params;
+
+const { page } = await executeQuery<any, any>(
+  parse(`
+    query Page($path: String = "", $locale: SiteLocale!) {
+      page(filter: {path: {eq: $path}}, locale: $locale) {
+        title
+      }
+    }
+  `),
+  { path, locale }
+);
 ---
 
-<Base locale={locale}>
+<Base locale={locale as "en" | "nl"}>
     <h1>Astro /{locale}/{path}</h1>
+
+    <pre>{JSON.stringify(page, null, 2)}</pre>
 </Base>
