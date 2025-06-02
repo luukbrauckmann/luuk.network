@@ -2,8 +2,9 @@
 import { SiteLocale, type PageQuery, type PageQueryVariables, type PathsQuery, type PathsQueryVariables } from "@datocms/types";
 import { executeQuery } from "@datocms/execute-query";
 import pathsQuery from "@datocms/paths.query.graphql";
-import pageQuery from "./index.query.graphql";
+import pageQuery from "@datocms/page.query.graphql";
 import { Base } from "@layouts";
+import { Blocks } from "src/components";
 
 export const getStaticPaths = (async () => {
   const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(pathsQuery);
@@ -24,9 +25,12 @@ export const getStaticPaths = (async () => {
 
 const { locale, path } = Astro.params;
 const { page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, { path, locale });
+
+if (!page) {
+  return new Response('', { status: 404 });
+}
 ---
 
 <Base locale={locale}>
-    <h1>Astro /{locale}/{path}</h1>
-    <pre>{JSON.stringify(page, null, 2)}</pre>
+    <Blocks blocks={page.body} />
 </Base>

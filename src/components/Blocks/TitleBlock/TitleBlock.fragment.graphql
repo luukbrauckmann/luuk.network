@@ -1,0 +1,3 @@
+fragment TitleBlock on TitleBlockRecord {
+    title
+}

@@ -1,0 +1,3 @@
+fragment HeroBlock on HeroBlockRecord {
+    title
+}

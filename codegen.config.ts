@@ -20,6 +20,7 @@ const config: CodegenConfig = {
         'typed-document-node'
       ],
       config: {
+        dedupeFragments: true,
         strictScalars: true,
         scalars: {
           BooleanType: 'boolean',

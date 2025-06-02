@@ -1,0 +1,3 @@
+fragment LinkBlock on LinkBlockRecord {
+    label
+}
