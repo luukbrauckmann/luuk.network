@@ -1,36 +1,45 @@
 ---
-import { SiteLocale, type PageQuery, type PageQueryVariables, type PathsQuery, type PathsQueryVariables } from "@datocms/types";
+import {
+  SiteLocale,
+  type PageQuery,
+  type PageQueryVariables,
+  type PathsQuery,
+  type PathsQueryVariables
+} from "@datocms/types";
 import { executeQuery } from "@datocms/execute-query";
 import pathsQuery from "@datocms/paths.query.graphql";
 import pageQuery from "@datocms/page.query.graphql";
 import { Base } from "@layouts";
-import { Blocks } from "src/components";
+import { Blocks } from "@components";
 
-export const getStaticPaths = (async () => {
-  const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(pathsQuery);
+export const getStaticPaths = async () => {
+  const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(
+    pathsQuery
+  );
 
   return allPages.flatMap((item) => {
     if (!item._allPathLocales) return [];
 
-    return item._allPathLocales
-      .map(({ locale, value }) => ({
-        params: {
-          locale: locale as SiteLocale,
-          ...(value && { path: value })
-        }
-      }));
+    return item._allPathLocales.map(({ locale, value }) => ({
+      params: {
+        locale: locale as SiteLocale,
+        ...(value && { path: value })
+      }
+    }));
   });
-});
-
+};
 
 const { locale, path } = Astro.params;
-const { page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, { path, locale });
+const { page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, {
+  path,
+  locale
+});
 
 if (!page) {
-  return new Response('', { status: 404 });
+  return new Response("", { status: 404 });
 }
 ---
 
 <Base locale={locale}>
-    <Blocks blocks={page.body} />
+  <Blocks blocks={page.body} />
 </Base>
