@@ -1,50 +1,32 @@
 ---
-import type { GetStaticPaths } from "astro";
+import { SiteLocale, type PageQuery, type PageQueryVariables, type PathsQuery, type PathsQueryVariables } from "@datocms/types";
 import { executeQuery } from "@datocms/execute-query";
+import pathsQuery from "@datocms/paths.query.graphql";
+import pageQuery from "./index.query.graphql";
 import { Base } from "@layouts";
-import { parse } from "graphql/language/parser";
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const { allPages } = await executeQuery<any, any>(
-    parse(`
-      query {
-        allPages {
-          _allPathLocales {
-            locale
-            value
-          }
+export const getStaticPaths = (async () => {
+  const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(pathsQuery);
+
+  return allPages.flatMap((item) => {
+    if (!item._allPathLocales) return [];
+
+    return item._allPathLocales
+      .map(({ locale, value }) => ({
+        params: {
+          locale: locale as SiteLocale,
+          ...(value && { path: value })
         }
-      }
-    `),
-    {}
-  );
+      }));
+  });
+});
 
-  return allPages.flatMap((item: any) =>
-    item._allPathLocales.map(({ locale, value }: any) => ({
-      params: {
-        locale,
-        ...(value && { path: value })
-      }
-    }))
-  );
-};
 
 const { locale, path } = Astro.params;
-
-const { page } = await executeQuery<any, any>(
-  parse(`
-    query Page($path: String = "", $locale: SiteLocale!) {
-      page(filter: {path: {eq: $path}}, locale: $locale) {
-        title
-      }
-    }
-  `),
-  { path, locale }
-);
+const { page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, { path, locale });
 ---
 
-<Base locale={locale as "en" | "nl"}>
+<Base locale={locale}>
     <h1>Astro /{locale}/{path}</h1>
-
     <pre>{JSON.stringify(page, null, 2)}</pre>
 </Base>

@@ -1,0 +1,5 @@
+query Page($path: String = "", $locale: SiteLocale!) {
+  page(filter: {path: {eq: $path}}, locale: $locale) {
+    title
+  }
+}

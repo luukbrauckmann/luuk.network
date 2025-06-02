@@ -4,9 +4,9 @@ import {
 } from "@datocms/cda-client";
 import { DATOCMS_TOKEN } from "astro:env/server";
 
-export async function executeQuery<Result, Variables>(
+export async function executeQuery<Result, Variables = {}>(
   query: TypedDocumentNode<Result, Variables>,
-  variables: Variables
+  variables: Variables = {} as Variables
 ) {
   return await libExecuteQuery<Result, Variables>(query, {
     token: DATOCMS_TOKEN,

@@ -8,15 +8,23 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
-    "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write"
+    "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write",
+    "codegen": "graphql-codegen --config codegen.config.ts"
   },
   "dependencies": {
     "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
+    "@graphql-codegen/typed-document-node": "^5.1.1",
+    "@graphql-codegen/typescript": "^4.1.6",
+    "@graphql-codegen/typescript-operations": "^4.6.1",
+    "@graphql-typed-document-node/core": "^3.2.0",
     "astro": "^5.8.0",
     "graphql": "^16.11.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.6",
+    "@parcel/watcher": "^2.5.1",
+    "@rollup/plugin-graphql": "^2.0.5",
     "@typescript-eslint/parser": "^8.32.1",
     "eslint": "^9.27.0",
     "eslint-plugin-astro": "^1.3.1",
@@ -24,6 +32,7 @@
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-css-order": "^2.1.2",
+    "typescript": "^5.8.3",
     "typescript-eslint": "^8.32.1"
   }
 }

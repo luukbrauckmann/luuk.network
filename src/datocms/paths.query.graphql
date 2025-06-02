@@ -1,0 +1,8 @@
+query Paths {
+  allPages {
+    _allPathLocales {
+      locale
+      value
+    }
+  }
+}
