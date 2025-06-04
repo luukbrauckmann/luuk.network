@@ -6,12 +6,14 @@ import "@styles/a11y.css";
 import "@styles/reset.css";
 import "@styles/theme.css";
 import "@styles/typography.css";
+import { Seo, type SeoOrFaviconTag } from "@datocms/astro";
 
 type Props = {
   locale: SiteLocale;
+  seo: SeoOrFaviconTag[];
 };
 
-const { locale } = Astro.props;
+const { locale, seo } = Astro.props;
 ---
 
 <html lang={locale}>
@@ -19,6 +21,8 @@ const { locale } = Astro.props;
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+
+    <Seo data={seo} />
   </head>
   <body>
       <div class="content-wrapper">

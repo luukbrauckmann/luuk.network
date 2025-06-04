@@ -3,13 +3,25 @@
 #import '@components/Blocks/StoryBlock/StoryBlock.fragment.graphql'
 
 query Page($path: String = "", $locale: SiteLocale!) {
-  page(filter: { path: { eq: $path } }, locale: $locale) {
-    title
-    body {
-      __typename
-      ...HeroBlock
-      ...SectionBlock
-      ...StoryBlock
+    _site {
+        faviconMetaTags {
+            attributes
+            content
+            tag
+        }
     }
-  }
+    page(filter: { path: { eq: $path } }, locale: $locale) {
+        _seoMetaTags {
+            attributes
+            content
+            tag
+        }
+        title
+        body {
+            __typename
+            ...HeroBlock
+            ...SectionBlock
+            ...StoryBlock
+        }
+    }
 }

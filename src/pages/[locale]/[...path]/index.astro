@@ -30,7 +30,7 @@ export const getStaticPaths = async () => {
 };
 
 const { locale, path } = Astro.params;
-const { page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, {
+const { _site, page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, {
   path,
   locale
 });
@@ -40,6 +40,6 @@ if (!page) {
 }
 ---
 
-<Base locale={locale}>
+<Base locale={locale} seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}>
   <Blocks blocks={page.body} />
 </Base>
