@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@datocms/types";
-import { IconsSprite, LocaleSelector } from "@components";
+import { DyslexicSwitch, IconsSprite, LocaleSelector } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -23,6 +23,7 @@ const { locale } = Astro.props;
   <body>
       <div class="content-wrapper">
         <header>
+            <DyslexicSwitch />
             <LocaleSelector />
         </header>
 
@@ -52,5 +53,6 @@ const { locale } = Astro.props;
     header {
         display: flex;
         justify-content: end;
+        align-items: center;
     }
 </style>

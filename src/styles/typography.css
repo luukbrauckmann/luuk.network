@@ -245,3 +245,13 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dash', 'Nunito', system-ui, sans-serif;
 }
+
+body:has(input#dyslexic-toggle:checked),
+body:has(input#dyslexic-toggle:checked) h1,
+body:has(input#dyslexic-toggle:checked) h2,
+body:has(input#dyslexic-toggle:checked) h3,
+body:has(input#dyslexic-toggle:checked) h4,
+body:has(input#dyslexic-toggle:checked) h5,
+body:has(input#dyslexic-toggle:checked) h6 {
+    font-family: 'OpenDyslexic', system-ui, sans-serif;
+}
