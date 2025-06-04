@@ -1,5 +1,6 @@
 ---
 import type { SiteLocale } from "@datocms/types";
+import { IconsSprite } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -21,5 +22,7 @@ const { locale } = Astro.props;
   </head>
   <body>
     <slot />
+
+    <IconsSprite />
   </body>
 </html>

@@ -13,7 +13,7 @@ const config: CodegenConfig = {
   },
   documents: ["**/*.graphql"],
   generates: {
-    "src/datocms/types.ts": {
+    ".generated/datocms-types.ts": {
       plugins: ["typescript", "typescript-operations", "typed-document-node"],
       config: {
         dedupeFragments: true,

@@ -1,8 +1,9 @@
 ---
 import type { HTMLAttributes } from "astro/types";
+import type { iconName } from "@generated/icons-sprite";
 
 type Props = {
-  name: string;
+  name: iconName;
   title?: string;
 } & HTMLAttributes<"svg">;
 

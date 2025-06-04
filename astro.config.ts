@@ -1,7 +1,9 @@
 import { defineConfig, envField } from "astro/config";
 import graphql from "@rollup/plugin-graphql";
+import iconsSprite from "./integrations/icons-sprite";
 
 export default defineConfig({
+  integrations: [iconsSprite()],
   vite: {
     plugins: [graphql()]
   },

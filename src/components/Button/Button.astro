@@ -1,11 +1,12 @@
 ---
 import type { Polymorphic } from "astro/types";
+import type { iconName } from "@generated/icons-sprite";
 import { Icon } from "@components";
 
 type Props<Tag extends "button" | "a"> = Polymorphic<{
   as: Tag;
   variant?: "primary" | "secondary" | "transparent" | "link";
-  icon?: string;
+  icon?: iconName;
   iconOnly?: boolean;
 }>;
 
