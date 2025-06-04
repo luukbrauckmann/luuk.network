@@ -28,5 +28,45 @@ const {
   {...props}
 >
   {icon && <Icon class="button__icon" name={icon} />}
-  <span class:list={["button__label", { "sr-only": iconOnly }]}><slot /></span>
+  <span class:list={["button__label", { "sr-only": iconOnly }]}>
+      <slot />
+  </span>
 </Tag>
+
+<style>
+    .button {
+        padding: 12px 19px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+    }
+
+    .button--icon-only {
+        padding: 12px;
+    }
+
+    .button--icon-only .button__icon {
+        padding: 4px;
+        width: 24px;
+        height: 24px;
+    }
+
+    .button--primary {
+        background-color: oklch(0.680 0.179 247);
+        border: 1px solid oklch(0.680 0.179 247);
+        color: #000000;
+    }
+
+    .button--secondary {
+        background-color: oklch(0.937 0.015 270);
+        border: 1px solid oklch(0.937 0.015 270);
+        color: #000000;
+    }
+
+    .button--transparent {
+        background-color: transparent;
+        border: 1px solid transparent;
+        color: #ffffff;
+    }
+</style>

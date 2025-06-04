@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@datocms/types";
-import { IconsSprite } from "@components";
+import { IconsSprite, LocaleSelector } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -21,8 +21,19 @@ const { locale } = Astro.props;
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <header>
+        <LocaleSelector />
+    </header>
+
     <slot />
 
     <IconsSprite />
   </body>
 </html>
+
+<style>
+    header {
+        display: flex;
+        justify-content: end;
+    }
+</style>

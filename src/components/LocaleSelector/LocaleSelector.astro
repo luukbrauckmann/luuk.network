@@ -1,0 +1,27 @@
+---
+import { Button } from "@components";
+
+const locales = ['en', 'nl'];
+
+const { locale: localeParam } = Astro.params;
+---
+
+
+<ul class="locale-selector">
+    { locales
+      .filter((locale) => locale !== localeParam)
+      .map((locale) => (
+        <li>
+            <Button as="a" href={`/${locale}/`} variant="transparent" icon={locale} iconOnly={true}>{locale}</Button>
+        </li>
+    ))}
+</ul>
+
+<style>
+    .locale-selector {
+        list-style-type: "";
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+    }
+</style>
