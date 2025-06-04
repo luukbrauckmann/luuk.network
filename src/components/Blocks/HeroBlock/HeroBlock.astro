@@ -8,4 +8,14 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<h1>{ block.title }</h1>
+<section class="hero-block">
+    <h1>{ block.title }</h1>
+</section>
+
+<style>
+    .hero-block {
+        padding: 82px 31px;
+        border: 1px solid oklch(0.46 0.056 253);
+        margin: -1px;
+    }
+</style>

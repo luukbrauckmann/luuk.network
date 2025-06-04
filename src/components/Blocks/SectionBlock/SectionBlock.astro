@@ -8,4 +8,16 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<p>Section Block</p>
+<section class="section-block">
+    <h2>{ block.title }</h2>
+
+    <p>Section Block</p>
+</section>
+
+<style>
+    .section-block {
+        padding: 82px 31px;
+        border: 1px solid oklch(0.46 0.056 253);
+        margin: -1px;
+    }
+</style>

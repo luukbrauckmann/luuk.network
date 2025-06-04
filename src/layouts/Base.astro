@@ -21,17 +21,34 @@ const { locale } = Astro.props;
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-    <header>
-        <LocaleSelector />
-    </header>
+      <div class="content-wrapper">
+        <header>
+            <LocaleSelector />
+        </header>
 
-    <slot />
+        <main>
+            <slot />
+        </main>
+      </div>
 
     <IconsSprite />
   </body>
 </html>
 
 <style>
+    body {
+        padding: 12px;
+        min-height: 100dvh;
+        display: flex;
+    }
+
+    .content-wrapper {
+        max-width: 75ch;
+        margin-inline: auto;
+        border: 1px solid oklch(0.46 0.056 253);
+        flex: 1;
+    }
+
     header {
         display: flex;
         justify-content: end;
