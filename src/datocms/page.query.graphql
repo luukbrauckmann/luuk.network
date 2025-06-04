@@ -1,8 +1,15 @@
+#import '@components/Blocks/HeroBlock/HeroBlock.fragment.graphql'
+#import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
+#import '@components/Blocks/StoryBlock/StoryBlock.fragment.graphql'
+
 query Page($path: String = "", $locale: SiteLocale!) {
   page(filter: { path: { eq: $path } }, locale: $locale) {
     title
     body {
       __typename
+      ...HeroBlock
+      ...SectionBlock
+      ...StoryBlock
     }
   }
 }
