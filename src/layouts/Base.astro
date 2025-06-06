@@ -37,6 +37,10 @@ const { locale, seo } = Astro.props;
         <main>
             <slot />
         </main>
+
+        <footer>
+            Footer
+        </footer>
       </div>
 
     <IconsSprite />
@@ -47,19 +51,34 @@ const { locale, seo } = Astro.props;
     body {
         padding: 12px;
         min-height: 100dvh;
-        display: flex;
+        display: grid;
+        grid-template-columns:
+          [full-start] 1fr [main-start] minmax(0px, 600px)
+          [main-end] 1fr [full-end];
     }
 
     .content-wrapper {
-        max-width: 75ch;
-        margin-inline: auto;
+        grid-column: main;
         border: 1px solid oklch(0.46 0.056 253);
-        flex: 1;
+        display: grid;
+        grid-template-rows:
+            [header] auto
+            [content] 1fr
+            [footer] auto;
     }
 
     header {
         display: flex;
         justify-content: end;
         align-items: center;
+        grid-row: header;
+    }
+
+    main {
+        grid-row: content;
+    }
+
+    footer {
+        grid-row: footer;
     }
 </style>
