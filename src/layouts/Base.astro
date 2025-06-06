@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@generated/datocms-types";
-import { DyslexicSwitch, IconsSprite, LocaleSelector } from "@components";
+import { DyslexicSwitch, Footer, IconsSprite, LocaleSelector } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -38,9 +38,7 @@ const { locale, seo } = Astro.props;
             <slot />
         </main>
 
-        <footer>
-            Footer
-        </footer>
+        <Footer />
       </div>
 
     <IconsSprite />

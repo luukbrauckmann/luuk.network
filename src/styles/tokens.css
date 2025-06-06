@@ -23,4 +23,12 @@
 
     --button-info-background-default: var(--color-semantic-info-default);
     --button-info-border-color-default: var(--color-semantic-info-default);
+
+    --spacing-xss: 5px;
+    --spacing-xs: 7px;
+    --spacing-sm: 12px;
+    --spacing-md: 19px;
+    --spacing-lg: 31px;
+    --spacing-xl: 51px;
+    --spacing-xxl: 82px;
 }
