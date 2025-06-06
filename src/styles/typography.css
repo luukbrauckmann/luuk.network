@@ -255,3 +255,27 @@ body:has(input#dyslexic-toggle:checked) h5,
 body:has(input#dyslexic-toggle:checked) h6 {
     font-family: 'OpenDyslexic', system-ui, sans-serif;
 }
+
+h1 {
+    font-size: 68px;
+}
+
+h2 {
+    font-size: 51px;
+}
+
+h3 {
+    font-size: 38px;
+}
+
+h4 {
+    font-size: 28px;
+}
+
+h5 {
+    font-size: 21px;
+}
+
+h6 {
+    font-size: 16px;
+}

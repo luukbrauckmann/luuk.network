@@ -1,5 +1,6 @@
 ---
 import type { HeroBlockFragment } from "@generated/datocms-types";
+import { Image } from "@datocms/astro"
 
 type Props = {
   block: HeroBlockFragment;
@@ -9,13 +10,44 @@ const { block } = Astro.props;
 ---
 
 <section class="hero-block">
-    <h1>{ block.title }</h1>
+    <div class="hero-block__visual"></div>
+    <div class="hero-block__details">
+        <Image pictureClass="hero-block__picture" data={block.image?.responsiveImage} />
+        <h1>{ block.title }</h1>
+        <p>{ block.description }</p>
+    </div>
 </section>
 
 <style>
     .hero-block {
-        padding: 82px 31px;
-        border: 1px solid oklch(0.46 0.056 253);
+        --visual-size: 200px;
+        border: 1px solid oklch(0.269 0.042 263);
         margin: -1px;
+    }
+
+    .hero-block__visual {
+        height: var(--visual-size);
+    }
+
+    .hero-block__details {
+        padding: calc(var(--spacing-lg) + var(--visual-size) / 2) var(--spacing-lg) var(--spacing-xxl) var(--spacing-lg);
+        background-color: oklch(0.269 0.042 263);
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    :global(.hero-block__picture) {
+        inline-size: var(--visual-size);
+        block-size: var(--visual-size);
+        object-fit: cover;
+        position: absolute;
+        top: 0px;
+        transform: translateY(calc((var(--visual-size) / 2) * -1));
+    }
+
+    h1 {
+        font-size: 51px;
     }
 </style>
