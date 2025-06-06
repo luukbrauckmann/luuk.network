@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@generated/datocms-types";
-import { DyslexicSwitch, Footer, IconsSprite, LocaleSelector } from "@components";
+import { Footer, Header, IconsSprite } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -29,16 +29,13 @@ const { locale, seo } = Astro.props;
   </head>
   <body>
       <div class="content-wrapper">
-        <header>
-            <DyslexicSwitch />
-            <LocaleSelector />
-        </header>
+        <Header class="header" />
 
         <main>
             <slot />
         </main>
 
-        <Footer />
+        <Footer class="footer" />
       </div>
 
     <IconsSprite />
@@ -59,24 +56,6 @@ const { locale, seo } = Astro.props;
         grid-column: main;
         border: 1px solid oklch(0.46 0.056 253);
         display: grid;
-        grid-template-rows:
-            [header] auto
-            [content] 1fr
-            [footer] auto;
-    }
-
-    header {
-        display: flex;
-        justify-content: end;
-        align-items: center;
-        grid-row: header;
-    }
-
-    main {
-        grid-row: content;
-    }
-
-    footer {
-        grid-row: footer;
+        grid-template-rows: auto 1fr auto;
     }
 </style>

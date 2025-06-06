@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { DyslexicSwitch, LocaleSelector, Logo } from "@components";
+
+type Props = HTMLAttributes<'header'>;
+
+const { ...props } = Astro.props;
+---
+
+<header { ...props }>
+    <a class="home-link" href="/">
+        <Logo/>
+        <span class="sr-only">Luuk Brauckmann</span>
+    </a>
+    <div class="header__config">
+        <DyslexicSwitch />
+        <LocaleSelector />
+    </div>
+</header>
+
+<style>
+    header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .home-link {
+        padding: var(--spacing-xs);
+        display: inline-block;
+    }
+
+    .header__config {
+        display: flex;
+        align-items: center;
+    }
+</style>
