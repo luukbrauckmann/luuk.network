@@ -8,9 +8,7 @@ fragment HeroBlock on HeroBlockRecord {
             height
             sizes
             src
-            srcSet
             title
-            webpSrcSet
             width
         }
     }

@@ -12,7 +12,12 @@ const { block } = Astro.props;
 <section class="hero-block">
     <div class="hero-block__visual"></div>
     <div class="hero-block__details">
-        <Image pictureClass="hero-block__picture" data={block.image?.responsiveImage} />
+        <Image
+        pictureClass="hero-block__picture"
+        data={block.image?.responsiveImage}
+        priority={true}
+        srcSetCandidates={[0.06]}
+        />
         <h1>{ block.title }</h1>
         <p>{ block.description }</p>
     </div>
