@@ -24,13 +24,13 @@
     --button-info-background-default: var(--color-semantic-info-default);
     --button-info-border-color-default: var(--color-semantic-info-default);
 
-    --size-xxs: clamp(0.2361rem, 0.1967rem + 0.1967vw, 0.2951rem);
-    --size-xs: clamp(0.382rem, 0.3183rem + 0.3183vw, 0.4775rem);
-    --size-sm: clamp(0.618rem, 0.515rem + 0.515vw, 0.7726rem);
+    --size-xxs:clamp(0.2951rem, 0.5069rem + -0.4236vw, 0.4222rem);
+    --size-xs:  clamp(0.4775rem, 0.6197rem + -0.2843vw, 0.5628rem);
+    --size-sm: clamp(0.7502rem, 0.7353rem + 0.0746vw, 0.7726rem);
     --size-md: clamp(1rem, 0.8333rem + 0.8333vw, 1.25rem);
-    --size-lg: clamp(1.618rem, 1.3483rem + 1.3483vw, 2.0225rem);
-    --size-xl: clamp(2.6179rem, 2.1816rem + 2.1816vw, 3.2724rem);
-    --size-xxl: clamp(4.2358rem, 3.5298rem + 3.5298vw, 5.2948rem);
+    --size-lg: clamp(1.333rem, 0.8733rem + 2.2983vw, 2.0225rem);
+    --size-xl: clamp(1.7769rem, 0.7799rem + 4.9851vw, 3.2724rem);
+    --size-xxl: clamp(2.3686rem, 0.4178rem + 9.7539vw, 5.2948rem);
 
     --font-size-xs: var(--size-xs);
     --font-size-sm: var(--size-sm);

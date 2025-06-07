@@ -1,5 +1,6 @@
 ---
 import type { SectionBlockFragment } from "@generated/datocms-types";
+import { DecoratedText } from "@components";
 
 type Props = {
   block: SectionBlockFragment;
@@ -9,7 +10,7 @@ const { block } = Astro.props;
 ---
 
 <section class="section-block">
-    <h2>{ block.title }</h2>
+    <DecoratedText as="h2" class="section-block__title">{ block.title }</DecoratedText>
 
     <p>Section Block</p>
 </section>
@@ -19,5 +20,12 @@ const { block } = Astro.props;
         padding: var(--spacing-xxl) var(--spacing-lg);
         border: 1px solid oklch(0.269 0.042 263);
         margin: -1px;
+        position: relative;
+    }
+
+    :global(.section-block__title) {
+        position: absolute;
+        top: 0px;
+        transform: translateY(-65%);
     }
 </style>

@@ -1,6 +1,7 @@
 ---
 import type { HeroBlockFragment } from "@generated/datocms-types";
 import { Image } from "@datocms/astro"
+import { DecoratedText } from "@components";
 
 type Props = {
   block: HeroBlockFragment;
@@ -9,46 +10,61 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<section class="hero-block">
-    <div class="hero-block__visual"></div>
-    <div class="hero-block__details">
+<div class="hero-block-container">
+    <section class="hero-block">
         <Image
         pictureClass="hero-block__picture"
+        imgClass="hero-block__img"
+        imgStyle={{
+            width: 'auto',
+            height: '100%',
+        }}
         data={block.image?.responsiveImage}
         priority={true}
-        srcSetCandidates={[0.1]}
+        srcSetCandidates={[0.05, 0.1, 0.15, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4]}
         />
-        <h1>{ block.title }</h1>
-        <p>{ block.description }</p>
-    </div>
-</section>
+        <div class="hero-block__content">
+            <DecoratedText as="h1">{ block.title }</DecoratedText>
+            <DecoratedText as="p">{ block.description }</DecoratedText>
+        </div>
+    </section>
+</div>
 
 <style>
+    .hero-block-container {
+        padding-block-start: 50px;
+        margin-block-start: -50px;
+        height: 90dvh;
+        display: flex;
+        pointer-events: none;
+    }
+
     .hero-block {
-        --visual-size: 200px;
         border: 1px solid oklch(0.269 0.042 263);
         margin: -1px;
-    }
-
-    .hero-block__visual {
-        height: var(--visual-size);
-    }
-
-    .hero-block__details {
-        padding: calc(var(--spacing-lg) + var(--visual-size) / 2) var(--spacing-lg) var(--spacing-xxl) var(--spacing-lg);
-        background-color: oklch(0.269 0.042 263);
+        padding: var(--spacing-xxl) var(--spacing-lg);
         position: relative;
+        overflow: hidden;
+        flex-grow: 1;
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-md);
+        justify-content: center;
     }
 
     :global(.hero-block__picture) {
-        inline-size: var(--visual-size);
-        block-size: var(--visual-size);
-        object-fit: cover;
         position: absolute;
-        top: 0px;
-        transform: translateY(calc((var(--visual-size) / 2) * -1));
+        bottom: 0px;
+        right: 0px;
+        transform: translateX(50%);
+        z-index: -1;
+        width: auto;
+        height: 80%;
+        mix-blend-mode: overlay;
+    }
+
+    .hero-block__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
     }
 </style>

@@ -4,9 +4,7 @@ fragment HeroBlock on HeroBlockRecord {
             alt
             aspectRatio
             base64
-            bgColor
             height
-            sizes
             src
             title
             width
