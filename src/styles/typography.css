@@ -238,6 +238,10 @@
   font-display: swap;
 }
 
+html {
+    font-size: var(--font-size-md);
+}
+
 body {
   font-family: 'Nunito', system-ui, sans-serif;
 }
@@ -257,25 +261,25 @@ body:has(input#dyslexic-toggle:checked) h6 {
 }
 
 h1 {
-    font-size: 68px;
+    font-size: var(--font-size-3xl);
 }
 
 h2 {
-    font-size: 51px;
+    font-size: var(--font-size-2xl);
 }
 
 h3 {
-    font-size: 38px;
+    font-size: var(--font-size-xl);
 }
 
 h4 {
-    font-size: 28px;
+    font-size: var(--font-size-lg);
 }
 
 h5 {
-    font-size: 21px;
+    font-size: var(--font-size-md);
 }
 
 h6 {
-    font-size: 16px;
+    font-size: var(--font-size-md);
 }

@@ -24,11 +24,27 @@
     --button-info-background-default: var(--color-semantic-info-default);
     --button-info-border-color-default: var(--color-semantic-info-default);
 
-    --spacing-xss: 5px;
-    --spacing-xs: 7px;
-    --spacing-sm: 12px;
-    --spacing-md: 19px;
-    --spacing-lg: 31px;
-    --spacing-xl: 51px;
-    --spacing-xxl: 82px;
+    --size-xxs: clamp(0.2361rem, 0.1967rem + 0.1967vw, 0.2951rem);
+    --size-xs: clamp(0.382rem, 0.3183rem + 0.3183vw, 0.4775rem);
+    --size-sm: clamp(0.618rem, 0.515rem + 0.515vw, 0.7726rem);
+    --size-md: clamp(1rem, 0.8333rem + 0.8333vw, 1.25rem);
+    --size-lg: clamp(1.618rem, 1.3483rem + 1.3483vw, 2.0225rem);
+    --size-xl: clamp(2.6179rem, 2.1816rem + 2.1816vw, 3.2724rem);
+    --size-xxl: clamp(4.2358rem, 3.5298rem + 3.5298vw, 5.2948rem);
+
+    --font-size-xs: var(--size-xs);
+    --font-size-sm: var(--size-sm);
+    --font-size-md: var(--size-md);
+    --font-size-lg: var(--size-lg);
+    --font-size-xl: var(--size-xl);
+    --font-size-2xl: var(--size-xl);
+    --font-size-3xl: var(--size-xxl);
+
+    --spacing-xss: calc(var(--size-xxs) * 1.618);
+    --spacing-xs: calc(var(--size-xs) * 1.618);
+    --spacing-sm: calc(var(--size-sm) * 1.618);
+    --spacing-md: calc(var(--size-md) * 1.618);
+    --spacing-lg: calc(var(--size-lg) * 1.618);
+    --spacing-xl: calc(var(--size-xl) * 1.618);
+    --spacing-xxl: calc(var(--size-xxl) * 1.618);
 }
