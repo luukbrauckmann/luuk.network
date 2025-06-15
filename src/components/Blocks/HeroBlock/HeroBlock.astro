@@ -14,7 +14,6 @@ const { block } = Astro.props;
     <section class="hero-block">
         <Image
         pictureClass="hero-block__picture"
-        imgClass="hero-block__img"
         imgStyle={{
             width: 'auto',
             height: '100%',
@@ -42,7 +41,7 @@ const { block } = Astro.props;
     .hero-block {
         border: 1px solid oklch(0.269 0.042 263);
         margin: -1px;
-        padding: var(--spacing-xxl) var(--spacing-lg);
+        padding: var(--spacing-xxl) var(--spacing-md);
         position: relative;
         overflow: hidden;
         flex-grow: 1;

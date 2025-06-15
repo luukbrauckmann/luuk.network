@@ -1,3 +1,9 @@
 fragment LinkBlock on LinkBlockRecord {
-  label
+    label
+    icon {
+        name
+    }
+    page {
+        path
+    }
 }

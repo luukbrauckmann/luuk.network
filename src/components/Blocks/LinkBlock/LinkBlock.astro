@@ -1,5 +1,6 @@
 ---
 import type { LinkBlockFragment } from "@generated/datocms-types";
+import { Button } from "@components";
 
 type Props = {
   block: LinkBlockFragment;
@@ -8,4 +9,4 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<p>Link Block</p>
+<Button as="a" icon={block.icon.name} href={block.page.path}>{block.label}</Button>

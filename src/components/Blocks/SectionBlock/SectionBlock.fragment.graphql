@@ -1,3 +1,14 @@
+#import '@components/Blocks/LinkBlock/LinkBlock.fragment.graphql'
+
 fragment SectionBlock on SectionBlockRecord {
   title
+  content {
+    blocks
+    inlineBlocks
+    links
+    value
+  }
+  links {
+      ...LinkBlock
+  }
 }
