@@ -63,38 +63,6 @@
 }
 
 @font-face {
-  font-family: 'OpenDyslexic';
-  src: url('/fonts/Open Dyslexic/OpenDyslexic-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('/fonts/Open Dyslexic/OpenDyslexic-Bold.woff2') format('woff2');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('/fonts/Open Dyslexic/OpenDyslexic-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'OpenDyslexic';
-  src: url('/fonts/Open Dyslexic/OpenDyslexic-Bold-Italic.woff2') format('woff2');
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Dash';
   src: url('/fonts/Dash/DashCasualL-Hairline.woff2') format('woff2');
   font-weight: 100;
@@ -249,16 +217,6 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Dash', 'Nunito', system-ui, sans-serif;
   font-weight: 500;
-}
-
-body:has(input#dyslexic-toggle:checked),
-body:has(input#dyslexic-toggle:checked) h1,
-body:has(input#dyslexic-toggle:checked) h2,
-body:has(input#dyslexic-toggle:checked) h3,
-body:has(input#dyslexic-toggle:checked) h4,
-body:has(input#dyslexic-toggle:checked) h5,
-body:has(input#dyslexic-toggle:checked) h6 {
-    font-family: 'OpenDyslexic', system-ui, sans-serif;
 }
 
 h1 {

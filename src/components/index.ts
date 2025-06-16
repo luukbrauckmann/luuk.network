@@ -1,7 +1,6 @@
 export { default as Blocks } from "./Blocks/Blocks.astro";
 export { default as Button } from "./Button/Button.astro";
 export { default as DecoratedText } from "./DecoratedText/DecoratedText.astro";
-export { default as DyslexicSwitch } from "./DyslexicSwitch/DyslexicSwitch.astro";
 export { default as Footer } from "./Footer/Footer.astro";
 export { default as Header } from "./Header/Header.astro";
 export { default as Icon } from "./Icon/Icon.astro";
