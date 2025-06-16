@@ -239,7 +239,7 @@
 }
 
 html {
-    font-size: var(--font-size-md);
+    font-size: var(--text-size-md);
 }
 
 body {
@@ -262,25 +262,25 @@ body:has(input#dyslexic-toggle:checked) h6 {
 }
 
 h1 {
-    font-size: var(--font-size-3xl);
+    font-size: var(--text-size-4xl);
 }
 
 h2 {
-    font-size: var(--font-size-2xl);
+    font-size: var(--text-size-3xl);
 }
 
 h3 {
-    font-size: var(--font-size-xl);
+    font-size: var(--text-size-2xl);
 }
 
 h4 {
-    font-size: var(--font-size-lg);
+    font-size: var(--text-size-xl);
 }
 
 h5 {
-    font-size: var(--font-size-md);
+    font-size: var(--text-size-lg);
 }
 
 h6 {
-    font-size: var(--font-size-md);
+    font-size: var(--text-size-md);
 }
