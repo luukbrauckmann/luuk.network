@@ -1,6 +1,7 @@
 import { defineConfig, envField } from "astro/config";
 import cloudflare from "@astrojs/cloudflare";
 import graphql from "@rollup/plugin-graphql";
+import datocms from "./integrations/datocms";
 import iconsSprite from "./integrations/icons-sprite";
 
 export default defineConfig({
@@ -10,16 +11,12 @@ export default defineConfig({
       enabled: false
     }
   }),
-  integrations: [iconsSprite()],
+  integrations: [
+    datocms(),
+    iconsSprite()
+  ],
   vite: {
     plugins: [graphql()]
-  },
-  i18n: {
-    defaultLocale: "en",
-    locales: ["en", "nl"],
-    routing: {
-      prefixDefaultLocale: true
-    }
   },
   env: {
     schema: {
