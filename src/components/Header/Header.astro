@@ -12,24 +12,18 @@ const { ...props } = Astro.props;
         <Logo/>
         <span class="sr-only">Luuk Brauckmann</span>
     </a>
-    <div class="header__config">
-        <LocaleSelector />
-    </div>
 </header>
 
 <style>
     header {
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
+        border: 1px solid oklch(0.269 0.042 263);
+        margin: -1px -1px 0px -1px;
     }
 
     .home-link {
         padding: var(--spacing-xs);
         display: inline-block;
-    }
-
-    .header__config {
-        display: flex;
-        align-items: center;
     }
 </style>

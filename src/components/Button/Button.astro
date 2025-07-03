@@ -8,13 +8,15 @@ type Props<Tag extends "button" | "a"> = Polymorphic<{
   variant?: "primary" | "secondary" | "transparent" | "link";
   icon?: IconName;
   iconOnly?: boolean;
+  round?: boolean;
 }>;
 
 const {
   as: Tag = "button",
-  variant = "primary",
+  variant,
   icon,
   iconOnly,
+  round,
   ...props
 } = Astro.props;
 ---
@@ -23,7 +25,8 @@ const {
   class:list={[
     "button",
     `button--${variant}`,
-    { "button--icon-only": iconOnly }
+    { "button--icon-only": iconOnly },
+    { "button--round": round }
   ]}
   {...props}
 >
@@ -41,6 +44,9 @@ const {
         align-items: center;
         gap: var(--spacing-xs);
         font-weight: bold;
+        border: 1px solid;
+        transition: all 0.1618s;
+        cursor: pointer;
     }
 
     .button--icon-only {
@@ -53,21 +59,46 @@ const {
         height: 24px;
     }
 
+    .button--round {
+        border-radius: 50%;
+    }
+
+    .button,
     .button--primary {
         background-color: oklch(0.680 0.179 247);
-        border: 1px solid oklch(0.680 0.179 247);
+        border-color: oklch(0.680 0.179 247);
         color: #000000;
     }
 
+    .button:hover,
+    .button--primary:hover {
+        background-color: #007ACC;
+        border-color: #007ACC;
+        color: #ffffff;
+    }
+
+
     .button--secondary {
         background-color: oklch(0.937 0.015 270);
-        border: 1px solid oklch(0.937 0.015 270);
+        border-color: oklch(0.937 0.015 270);
+        color: #000000;
+    }
+
+    .button--secondary:hover {
+        background-color: oklch(0.937 0.015 270);
+        border-color: oklch(0.937 0.015 270);
         color: #000000;
     }
 
     .button--transparent {
         background-color: transparent;
-        border: 1px solid transparent;
+        border-color: transparent;
+        color: #ffffff;
+    }
+
+    .button--transparent:hover {
+        background-color: oklch(0.269 0.042 263);
+        border-color: oklch(0.269 0.042 263);
         color: #ffffff;
     }
 </style>

@@ -24,19 +24,19 @@
     --button-info-background-default: var(--color-semantic-info-default);
     --button-info-border-color-default: var(--color-semantic-info-default);
 
-    --text-size-sm: clamp(0.7956rem, 0.8029rem + -0.0146vw, 0.8rem);
-    --text-size-md: clamp(1rem, 0.9167rem + 0.4167vw, 1.125rem);
-    --text-size-lg: clamp(1.25rem, 1.0228rem + 1.1358vw, 1.5908rem);
-    --text-size-xl: clamp(1.5625rem, 1.1046rem + 2.2894vw, 2.2493rem);
-    --text-size-2xl: clamp(1.9531rem, 1.1348rem + 4.0914vw, 3.1805rem);
-    --text-size-3xl: clamp(2.4414rem, 1.0708rem + 6.8529vw, 4.4973rem);
-    --text-size-4xl:  clamp(3.0518rem, 0.8468rem + 11.0247vw, 6.3592rem);
+    --text-size-sm: 12px;
+    --text-size-md: 16px;
+    --text-size-lg: 21px;
+    --text-size-xl: 28px;
+    --text-size-2xl: 38px;
+    --text-size-3xl: 51px;
+    --text-size-4xl:  67px;
 
-    --spacing-xss: clamp(0.2865rem, 0.2228rem + 0.3183vw, 0.382rem);
-    --spacing-xs: clamp(0.4635rem, 0.3605rem + 0.515vw, 0.618rem);
-    --spacing-sm: clamp(0.75rem, 0.5833rem + 0.8333vw, 1rem);
-    --spacing-md: clamp(1.2135rem, 0.9438rem + 1.3483vw, 1.618rem);
-    --spacing-lg: clamp(1.9634rem, 1.5271rem + 2.1816vw, 2.6179rem);
-    --spacing-xl: clamp(3.1769rem, 2.4709rem + 3.5298vw, 4.2358rem);
-    --spacing-xxl: clamp(5.1401rem, 3.9979rem + 5.7113vw, 6.8535rem);
+    --spacing-xss: 5px;
+    --spacing-xs: 7px;
+    --spacing-sm: 12px;
+    --spacing-md: 19px;
+    --spacing-lg: 31px;
+    --spacing-xl: 51px;
+    --spacing-xxl: 82px;
 }

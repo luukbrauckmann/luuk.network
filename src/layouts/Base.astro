@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@generated/datocms-types";
-import { Footer, Header, IconsSprite } from "@components";
+import { Footer, Header, IconsSprite, Menu } from "@components";
 
 import "@styles/a11y.css";
 import "@styles/reset.css";
@@ -32,6 +32,7 @@ const { locale, seo } = Astro.props;
   <body>
       <div class="content-wrapper">
         <Header class="header" />
+        <Menu />
 
         <main>
             <slot />
@@ -46,7 +47,6 @@ const { locale, seo } = Astro.props;
 
 <style>
     body {
-        padding: var(--spacing-xs);
         min-height: 100dvh;
         display: grid;
         grid-template-columns:
@@ -54,10 +54,17 @@ const { locale, seo } = Astro.props;
           [main-end] 1fr [full-end];
     }
 
+    @media screen and (min-width: 500px) {
+        body {
+            padding: var(--spacing-sm);
+        }
+    }
+
     .content-wrapper {
         grid-column: main;
         border: 1px solid oklch(0.269 0.042 263);
         display: grid;
         grid-template-rows: auto 1fr auto;
+        position: relative;
     }
 </style>

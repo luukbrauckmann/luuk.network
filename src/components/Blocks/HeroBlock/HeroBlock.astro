@@ -1,7 +1,7 @@
 ---
 import type { HeroBlockFragment } from "@generated/datocms-types";
 import { Image } from "@datocms/astro"
-import { DecoratedText } from "@components";
+import { Button } from "@components";
 
 type Props = {
   block: HeroBlockFragment;
@@ -10,60 +10,68 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<div class="hero-block-container">
-    <section class="hero-block">
-        <Image
-        pictureClass="hero-block__picture"
-        imgStyle={{
-            width: 'auto',
-            height: '100%',
-        }}
-        data={block.image?.responsiveImage}
-        priority={true}
-        srcSetCandidates={[0.05, 0.1, 0.15, 0.2, 0.25, 0.33, 0.5, 0.67, 0.75, 1, 1.25, 1.5, 2, 2.5, 3, 4]}
-        />
-        <div class="hero-block__content">
-            <DecoratedText as="h1">{ block.title }</DecoratedText>
-            <DecoratedText as="p">{ block.description }</DecoratedText>
+<section class="hero-block">
+    <div class="hero-block__visual"></div>
+    <div class="hero-block__content">
+        <div class="hero-block-actions">
+            <Image
+            pictureClass="hero-block-picture"
+            data={block.image?.responsiveImage}
+            priority={true}
+            srcSetCandidates={[0.05, 0.1]}
+            />
+
+            <Button
+            as="a"
+            icon="github"
+            variant="secondary"
+            iconOnly
+            round
+            href="https://github.com/luukbrauckmann"
+            >See my GitHub profile</Button>
         </div>
-    </section>
-</div>
+        <h1>{ block.title }</h1>
+        <p>{ block.description }</p>
+    </div>
+</section>
 
 <style>
-    .hero-block-container {
-        padding-block-start: 50px;
-        margin-block-start: -50px;
-        height: 90dvh;
-        display: flex;
-        pointer-events: none;
-    }
-
     .hero-block {
+        --image-size: 150px;
         border: 1px solid oklch(0.269 0.042 263);
-        margin: -1px;
-        padding: var(--spacing-xxl) var(--spacing-md);
-        position: relative;
-        overflow: hidden;
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        margin: -1px -1px 0px -1px;
     }
 
-    :global(.hero-block__picture) {
+    .hero-block__visual {
+      height: var(--image-size);
+    }
+
+    :global(.hero-block-picture) {
+        width: var(--image-size);
+        height: var(--image-size);
+        object-fit: cover;
         position: absolute;
         bottom: 0px;
-        right: 0px;
-        transform: translateX(50%);
-        z-index: -1;
-        width: auto;
-        height: 80%;
-        mix-blend-mode: overlay;
+        left: 0px;
     }
 
     .hero-block__content {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-md);
+        background-color: oklch(0.269 0.042 263);
+        padding:  var(--spacing-lg)  var(--spacing-lg) var(--spacing-xxl) var(--spacing-lg);
+    }
+
+    .hero-block-actions {
+        display: flex;
+        justify-content: flex-end;
+        position: relative;
+        padding-inline-start: calc(var(--image-size) + var(--spacing-lg));
+
+    }
+
+    .hero-block__content h1 {
+        font-size: var(--text-size-3xl);
     }
 </style>

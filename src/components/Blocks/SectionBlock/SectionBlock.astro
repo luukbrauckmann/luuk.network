@@ -11,7 +11,7 @@ const { block } = Astro.props;
 ---
 
 <section class="section-block">
-    <DecoratedText as="h2" class="section-block__title">{ block.title }</DecoratedText>
+    <h2 class="section-block__title">{ block.title }</h2>
 
     <StructuredText data={block.content}></StructuredText>
 
@@ -22,15 +22,8 @@ const { block } = Astro.props;
 
 <style>
     .section-block {
-        padding:  var(--spacing-xl) var(--spacing-md) var(--spacing-xxl) var(--spacing-md);
+        padding:  var(--spacing-xxl) var(--spacing-lg);
         border: 1px solid oklch(0.269 0.042 263);
-        margin: 0px -1px -1px -1px;
-        position: relative;
-    }
-
-    :global(.section-block__title) {
-        position: absolute;
-        top: 0px;
-        transform: translateY(-65%);
+        margin: -1px;
     }
 </style>
