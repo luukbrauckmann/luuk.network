@@ -8,7 +8,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
 const { DATOCMS_TOKEN } = loadEnv(
-  process.env.NODE_ENV || "development",
+  process.env.NODE_ENV!,
   process.cwd(),
   ""
 );
@@ -48,7 +48,7 @@ export default function iconsSprite(): AstroIntegration {
         );
         await writeFile(
           join(outputDir, "icons-sprite.ts"),
-          `export type iconName = ${allIcons.map(({ name }) => `'${name}'`).join(" | ")}`
+          `export type IconName = ${allIcons.map(({ name }) => `'${name}'`).join(" | ")}`
         );
 
         logger.info("Generated");
