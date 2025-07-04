@@ -4,6 +4,7 @@ import graphql from "@rollup/plugin-graphql";
 import codegen from "./integrations/codegen";
 import datocms from "./integrations/datocms";
 import iconsSprite from "./integrations/icons-sprite";
+import config from "./codegen.config";
 
 export default defineConfig({
   adapter: cloudflare({
@@ -13,7 +14,7 @@ export default defineConfig({
     }
   }),
   integrations: [
-    codegen(),
+    codegen(config),
     datocms(),
     iconsSprite()
   ],

@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import type { IconsQuery, IconsQueryVariables } from "@generated/datocms-types";
+import type { IconsQuery, IconsQueryVariables } from "@generated/datocms";
 import { loadEnv } from "vite";
 import { executeQuery } from "@datocms/cda-client";
 import query from "./icons.query.graphql?raw";
