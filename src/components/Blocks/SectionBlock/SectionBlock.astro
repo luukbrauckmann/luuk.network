@@ -1,6 +1,6 @@
 ---
 import type { SectionBlockFragment } from "@generated/datocms";
-import { DecoratedText, StructuredText } from "@components";
+import { StructuredText } from "@components";
 import LinkBlock from "@components/Blocks/LinkBlock/LinkBlock.astro";
 
 type Props = {
@@ -15,9 +15,11 @@ const { block } = Astro.props;
 
     <StructuredText data={block.content}></StructuredText>
 
-    { block.links.map((link) => (
-        <LinkBlock block={link} />
-    ))}
+    <div>
+      { block.links.map((link) => (
+          <LinkBlock block={link} />
+      ))}
+    </div>
 </section>
 
 <style>
@@ -25,5 +27,8 @@ const { block } = Astro.props;
         padding:  var(--spacing-xxl) var(--spacing-lg);
         border: 1px solid oklch(0.269 0.042 263);
         margin: -1px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
     }
 </style>

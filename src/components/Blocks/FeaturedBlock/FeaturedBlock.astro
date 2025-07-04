@@ -1,0 +1,41 @@
+---
+import type { FeaturedBlockFragment } from "@generated/datocms";
+import LinkBlock from "../LinkBlock/LinkBlock.astro";
+
+type Props = {
+  block: FeaturedBlockFragment;
+};
+
+const { block } = Astro.props;
+---
+
+<section class="featured-block">
+    <h2>{ block.title }</h2>
+
+    <ul class="featured-block-list">
+        { block.pages.map((page) => (
+            <li>{page.title}</li>
+        ))}
+    </ul>
+
+    <div>
+        <LinkBlock block={block.link} />
+    </div>
+</section>
+
+<style>
+    .featured-block {
+        padding:  var(--spacing-xxl) var(--spacing-lg);
+        border: 1px solid oklch(0.269 0.042 263);
+        margin: -1px;
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+
+    .featured-block-list {
+        list-style-type: "";
+        padding: 0;
+        margin: 0;
+    }
+</style>

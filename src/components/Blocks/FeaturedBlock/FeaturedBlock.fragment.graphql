@@ -1,0 +1,13 @@
+#import '@components/Blocks/LinkBlock/LinkBlock.fragment.graphql'
+#
+fragment FeaturedBlock on FeaturedBlockRecord {
+    title
+    pages {
+        path
+        title
+        description
+    }
+    link {
+        ...LinkBlock
+    }
+}
