@@ -9,8 +9,7 @@
     "astro": "astro",
     "deploy": "wrangler deploy",
     "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
-    "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write",
-    "codegen": "graphql-codegen --config codegen.config.ts"
+    "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.3",
