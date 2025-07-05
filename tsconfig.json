@@ -8,7 +8,9 @@
       "@datocms/*": ["./src/datocms/*"],
       "@generated/*": ["./.generated/*"],
       "@layouts": ["./src/layouts"],
-      "@styles/*": ["./src/styles/*"]
+      "@layouts/*": ["./src/layouts/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@utils/*": ["src/utils/*"]
     }
   },
   "include": [".astro/types.d.ts", "**/*"],

@@ -1,0 +1,27 @@
+#import '@layouts/BlogPost/BlogPost.fragment.graphql'
+#import '@layouts/ProjectPage/ProjectPage.fragment.graphql'
+#import '@layouts/RegularPage/RegularPage.fragment.graphql'
+
+query Page($path: String = "", $locale: SiteLocale!) {
+    _site {
+        faviconMetaTags {
+            attributes
+            content
+            tag
+        }
+    }
+    page(filter: { path: { eq: $path } }, locale: $locale) {
+        _seoMetaTags {
+            attributes
+            content
+            tag
+        }
+        title
+        content {
+            __typename
+            ...BlogPost
+            ...ProjectPage
+            ...RegularPage
+        }
+    }
+}

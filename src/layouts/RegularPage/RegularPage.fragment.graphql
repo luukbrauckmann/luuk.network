@@ -1,0 +1,12 @@
+#import '@components/Blocks/FeaturedBlock/FeaturedBlock.fragment.graphql'
+#import '@components/Blocks/HeroBlock/HeroBlock.fragment.graphql'
+#import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
+
+fragment RegularPage on RegularPageRecord {
+    blocks {
+        __typename
+        ...FeaturedBlock
+        ...HeroBlock
+        ...SectionBlock
+    }
+}

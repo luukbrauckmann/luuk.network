@@ -1,0 +1,17 @@
+---
+import type { ComponentProps } from 'astro/types';
+import type { Page } from '@utils/page';
+import { Base } from '@layouts';
+import { Blocks } from '@components';
+
+type Props = {
+  page: Page<'RegularPageRecord'>;
+} & ComponentProps<typeof Base>;
+
+
+const { page, ...props } = Astro.props;
+---
+
+<Base {...props}>
+    <Blocks blocks={page.content.blocks} />
+</Base>

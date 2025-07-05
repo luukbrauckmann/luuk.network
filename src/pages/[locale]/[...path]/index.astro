@@ -8,9 +8,8 @@ import {
 } from "@generated/datocms";
 import { executeQuery } from "@datocms/execute-query";
 import pathsQuery from "@datocms/paths.query.graphql";
-import pageQuery from "@datocms/page.query.graphql";
-import { Base } from "@layouts";
-import { Blocks } from "@components";
+import pageQuery from "./_index.query.graphql";
+import { BlogPost, ProjectPage, RegularPage } from "@layouts";
 
 export const getStaticPaths = async () => {
   const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(
@@ -38,8 +37,18 @@ const { _site, page } = await executeQuery<PageQuery, PageQueryVariables>(pageQu
 if (!page) {
   return new Response("", { status: 404 });
 }
+
+const layoutsByTypename = {
+  BlogPostRecord: BlogPost,
+  ProjectPageRecord: ProjectPage,
+  RegularPageRecord: RegularPage
+};
+const typename = page.content?.__typename as keyof typeof layoutsByTypename;
+const Layout = layoutsByTypename[typename];
 ---
 
-<Base locale={locale} seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}>
-  <Blocks blocks={page.body} />
-</Base>
+<Layout
+    locale={locale}
+    seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}
+    page={page}
+/>
