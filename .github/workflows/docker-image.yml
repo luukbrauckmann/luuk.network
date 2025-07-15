@@ -7,11 +7,18 @@ on:
 jobs:
  build:
    runs-on: ubuntu-latest
+   permissions:
+     contents: read
+     packages: write
    steps:
    - uses: actions/checkout@v4
-   - name: Build the Docker image
+   - name: Log in to GitHub Container Registry
+     run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+   - name: Build and push Docker image
      run: |
+       IMAGE_NAME=ghcr.io/${{ github.repository_owner }}/luuknetwork:$(date +%s)
        docker build . \
          --file Dockerfile \
          --build-arg DATOCMS_TOKEN=${{ secrets.DATOCMS_TOKEN }} \
-         --tag luuknetwork:$(date +%s)
+         --tag $IMAGE_NAME
+       docker push $IMAGE_NAME
