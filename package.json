@@ -12,7 +12,7 @@
     "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^12.5.3",
+    "@astrojs/node": "^9.3.0",
     "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
     "@datocms/cma-client-node": "^4.0.2",
@@ -39,7 +39,6 @@
     "prettier-plugin-css-order": "^2.1.2",
     "svg-sprite": "^2.0.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.1",
-    "wrangler": "^4.19.1"
+    "typescript-eslint": "^8.32.1"
   }
 }

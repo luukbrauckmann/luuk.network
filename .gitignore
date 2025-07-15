@@ -3,7 +3,6 @@ dist/
 # generated types
 .astro/
 .generated/
-src/datocms/types.ts
 
 # dependencies
 node_modules/

@@ -9,7 +9,7 @@ import {
 import { executeQuery } from "@datocms/execute-query";
 import pathsQuery from "@datocms/paths.query.graphql";
 import pageQuery from "./_index.query.graphql";
-import { BlogPost, ProjectPage, RegularPage } from "@layouts";
+import { BlogPost, OverviewPage, ProjectPage, RegularPage } from "@layouts";
 
 export const getStaticPaths = async () => {
   const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(
@@ -40,6 +40,7 @@ if (!page) {
 
 const layoutsByTypename = {
   BlogPostRecord: BlogPost,
+  OverviewPageRecord: OverviewPage,
   ProjectPageRecord: ProjectPage,
   RegularPageRecord: RegularPage
 };

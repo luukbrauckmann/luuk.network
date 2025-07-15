@@ -1,5 +1,5 @@
 import { defineConfig, envField } from "astro/config";
-import cloudflare from "@astrojs/cloudflare";
+import node from '@astrojs/node';
 import graphql from "@rollup/plugin-graphql";
 import codegen from "./integrations/codegen";
 import datocms from "./integrations/datocms";
@@ -7,11 +7,9 @@ import iconsSprite from "./integrations/icons-sprite";
 import config from "./codegen.config";
 
 export default defineConfig({
-  adapter: cloudflare({
-    imageService: 'passthrough',
-    platformProxy: {
-      enabled: false
-    }
+  site: 'https://luuk.network',
+  adapter: node({
+    mode: 'standalone'
   }),
   integrations: [
     codegen(config),
