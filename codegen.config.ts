@@ -1,7 +1,7 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnv } from "vite";
 
-const { DATOCMS_TOKEN, NODE_ENV } = loadEnv(
+const { DATOCMS_TOKEN } = loadEnv(
   process.env.NODE_ENV!,
   process.cwd(),
   ""
