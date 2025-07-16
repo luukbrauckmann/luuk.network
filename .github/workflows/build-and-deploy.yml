@@ -1,36 +1,36 @@
-name: Build & Deploy
+name: CI
 
 on:
   push:
-    branches:
-      - 'main'
+    branches: [ "main" ]
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - name: docker login
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+    - name: docker login
+      uses: docker/login-action@v3
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: docker build and push
-        uses: docker/build-push-action@v5
-        with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
-          build-args: |
-            DATOCMS_TOKEN=${{ secrets.DATOCMS_TOKEN }}
+    - name: docker build and push
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+        secrets: |
+          datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
-      - name: update container image on Magic Containers
-        uses: BunnyWay/actions/container-update-image@main
-        with:
-          app_id: ${{ secrets.APP_ID }}
-          api_key: ${{ secrets.BUNNYNET_API_KEY }}
-          container: Website
-          image_tag: "${{ github.sha }}"
+    - name: update container image on Magic Containers
+      uses: BunnyWay/actions/container-update-image@main
+      with:
+        app_id: ${{ vars.APP_ID }}
+        api_key: ${{ secrets.BUNNYNET_API_KEY }}
+        container: app
+        image_tag: "${{ github.sha }}"
