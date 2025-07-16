@@ -26,6 +26,7 @@ jobs:
           tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
           build-args: |
             DATOCMS_TOKEN=${{ secrets.DATOCMS_TOKEN }}
+          provenance: false
 
       - name: update container image on Magic Containers
         uses: BunnyWay/actions/container-update-image@main
