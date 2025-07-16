@@ -6,7 +6,7 @@ RUN npm install
 
 COPY . .
 RUN --mount=type=secret,id=datocms_token \
-    DATOCMS_TOKEN=/run/secrets/datocms_token \
+    DATOCMS_TOKEN=$(cat /run/secrets/datocms_token) \
     npm run build
 
 FROM node:lts AS runtime
