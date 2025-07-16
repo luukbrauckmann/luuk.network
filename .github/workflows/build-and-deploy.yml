@@ -30,7 +30,7 @@ jobs:
     - name: update container image on Magic Containers
       uses: BunnyWay/actions/container-update-image@main
       with:
-        app_id: ${{ vars.APP_ID }}
+        app_id: ${{ secrets.APP_ID }}
         api_key: ${{ secrets.BUNNYNET_API_KEY }}
-        container: app
+        container: Website
         image_tag: "${{ github.sha }}"
