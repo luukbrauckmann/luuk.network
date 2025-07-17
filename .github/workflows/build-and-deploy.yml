@@ -27,38 +27,38 @@ jobs:
         secrets: |
           datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
-    - name: Check if container exists in Bunny
+    - name: Check if container exists
       id: check_container
-      env:
-        API_KEY: ${{ secrets.BUNNYNET_API_KEY }}
-        APP_ID: ${{ secrets.APP_ID }}
-        CONTAINER_NAME: ${{ github.ref_name }}
       run: |
-        set -e
-
-        # Get token
+        echo "🔐 Exchanging API key for token..."
         TOKEN=$(curl -s -X POST https://api.bunny.net/apikey/exchange \
           -H "Content-Type: application/json" \
-          -H "AccessKey: $API_KEY" \
-          -d "{\"AccessKey\":\"$API_KEY\"}" | jq -r '.Token')
+          -H "AccessKey: ${{ secrets.BUNNYNET_API_KEY }}" \
+          -d '{"AccessKey": "${{ secrets.BUNNYNET_API_KEY }}"}' | jq -r '.Token')
 
         if [ "$TOKEN" == "null" ] || [ -z "$TOKEN" ]; then
-          echo "Failed to retrieve token"
+          echo "❌ Failed to get token"
           exit 1
         fi
 
-        # Get app configuration
-        CONFIG=$(curl -s -H "Authorization: $TOKEN" \
-          "https://api-mc.opsbunny.net/v1/namespaces/default/applications/$APP_ID/configuration")
+        echo "📥 Fetching app configuration..."
+        APP_CONFIG=$(curl -s -X GET \
+          -H "Accept: application/json" \
+          -H "Authorization: $TOKEN" \
+          https://api-mc.opsbunny.net/v1/namespaces/default/applications/${{ secrets.APP_ID }}/configuration)
 
-        # Check if container name exists
-        EXISTS=$(echo "$CONFIG" | jq -r \
-          --arg name "$CONTAINER_NAME" \
-          '.containerTemplates[]?.name == $name' | grep -c true)
+        echo "📦 Available containers:"
+        echo "$APP_CONFIG" | jq -r '.containerTemplates[].name'
 
-        if [ "$EXISTS" -gt 0 ]; then
+        CONTAINER_NAME=${{ github.ref_name }}
+
+        MATCH=$(echo "$APP_CONFIG" | jq -r --arg NAME "$CONTAINER_NAME" '.containerTemplates[] | select(.name == $NAME) | .name')
+
+        if [ "$MATCH" == "$CONTAINER_NAME" ]; then
+          echo "✅ Found container '$CONTAINER_NAME'"
           echo "exists=true" >> $GITHUB_OUTPUT
         else
+          echo "❌ Container '$CONTAINER_NAME' not found in app."
           echo "exists=false" >> $GITHUB_OUTPUT
         fi
 
