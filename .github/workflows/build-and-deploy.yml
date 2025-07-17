@@ -23,7 +23,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/${{ github.repository }}:${{ github.sha }}
+        tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ github.sha }}
         secrets: |
           datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
@@ -32,5 +32,5 @@ jobs:
       with:
         app_id: ${{ secrets.APP_ID }}
         api_key: ${{ secrets.BUNNYNET_API_KEY }}
-        container: main
-        image_tag: "${{ github.sha }}"
+        container: ${{ github.ref_name }}
+        image_tag: "${{ github.ref_name }}-${{ github.sha }}"
