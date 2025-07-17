@@ -32,5 +32,5 @@ jobs:
       with:
         app_id: ${{ secrets.APP_ID }}
         api_key: ${{ secrets.BUNNYNET_API_KEY }}
-        container: Website
+        container: main
         image_tag: "${{ github.sha }}"
