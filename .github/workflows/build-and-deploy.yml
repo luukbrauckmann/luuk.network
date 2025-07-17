@@ -27,7 +27,24 @@ jobs:
         secrets: |
           datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
+    - name: Check if container exists
+      id: check_container
+      run: |
+        CONTAINER_NAME=${{ github.ref_name }}
+        RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" \
+          -H "AccessKey: ${{ secrets.BUNNYNET_API_KEY }}" \
+          "https://container.bunny.net/apps/byname/$CONTAINER_NAME")
+
+        echo "HTTP status: $RESPONSE"
+
+        if [ "$RESPONSE" -eq 200 ]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+
     - name: update container image on Magic Containers
+      if: steps.check_container.outputs.exists == 'true'
       uses: BunnyWay/actions/container-update-image@main
       with:
         app_id: ${{ secrets.APP_ID }}
