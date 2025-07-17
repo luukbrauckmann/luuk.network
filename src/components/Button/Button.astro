@@ -9,7 +9,7 @@ type Props<Tag extends "button" | "a"> = Polymorphic<{
   icon?: IconName;
   iconOnly?: boolean;
   round?: boolean;
-}>;
+}> & (Tag extends "a" ? { prefetch?: boolean } : {});
 
 const {
   as: Tag = "button",
@@ -17,6 +17,7 @@ const {
   icon,
   iconOnly,
   round,
+  prefetch = true,
   ...props
 } = Astro.props;
 ---
@@ -28,6 +29,7 @@ const {
     { "button--icon-only": iconOnly },
     { "button--round": round }
   ]}
+  data-astro-prefetch={Tag === 'a' && prefetch}
   {...props}
 >
   {icon && <Icon class="button__icon" name={icon} />}
