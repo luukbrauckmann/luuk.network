@@ -40,7 +40,7 @@ jobs:
        secrets: |
          datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
-   - name: create or update container on Magic Containers
+   - name: create or update container
      uses: ./.github/actions/upsert-container
      with:
        app_id: ${{ secrets.APP_ID }}

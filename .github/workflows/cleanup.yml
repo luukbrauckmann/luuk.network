@@ -8,9 +8,9 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
-    - name: create or update container on Magic Containers
+    - name: delete container
       uses: ./.github/actions/delete-container
       with:
         app_id: ${{ secrets.APP_ID }}
         api_key: ${{ secrets.BUNNYNET_API_KEY }}
-        container_name: ${{ github.event.ref_name }}
+        container_name: ${{ github.event.ref }}
