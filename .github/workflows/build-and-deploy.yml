@@ -47,6 +47,6 @@ jobs:
        api_key: ${{ secrets.BUNNYNET_API_KEY }}
        container_name: ${{ github.ref_name }}
        image_tag: "${{ github.ref_name }}-${{ github.sha }}"
-       container_port: ${{ steps.port.outputs.port }}
+       port: ${{ steps.port.outputs.port }}
        environment_variables: |
          DATOCMS_TOKEN=${{ secrets.DATOCMS_TOKEN }}
