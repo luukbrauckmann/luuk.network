@@ -41,7 +41,7 @@ jobs:
          datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
    - name: create or update container on Magic Containers
-     uses: ../actions/bunny/.lib-action
+     uses: ./.github/actions/.lib-action
      with:
        app_id: ${{ secrets.APP_ID }}
        api_key: ${{ secrets.BUNNYNET_API_KEY }}
