@@ -1,0 +1,16 @@
+name: Cleanup
+on:
+ delete:
+   branches: [ "*" ]
+jobs:
+  delete-container:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: create or update container on Magic Containers
+      uses: ./.github/actions/delete-container
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        api_key: ${{ secrets.BUNNYNET_API_KEY }}
+        container_name: ${{ github.ref_name }}

@@ -1,10 +1,11 @@
 import { getInput, setFailed } from '@actions/core';
-import { exchangeApiKeyForToken } from './exchangeApiKeyForToken';
-import { getAppConfiguration } from './getAppConfiguration';
-import { saveAppConfiguration } from './saveAppConfiguration';
-import { getNewContainerTemplate } from './getNewContainerTemplate';
-import { parseEnvironmentVariables } from './parseEnvironmentVariables';
-
+import {
+  exchangeApiKeyForToken,
+  getAppConfiguration,
+  saveAppConfiguration,
+  getNewContainerTemplate,
+  parseEnvironmentVariables
+} from '@local/shared';
 
 const apiKey = getInput("api_key", { required: true });
 const appId = getInput("app_id", { required: true });

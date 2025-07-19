@@ -9,7 +9,7 @@ export function parseEnvironmentVariables(envString: string) {
     .map(line => {
       const [name, ...valueParts] = line.split('=');
       return {
-        name: name.trim(),
+        name: name?.trim() ?? '',
         value: valueParts.join('=').trim()
       };
     });

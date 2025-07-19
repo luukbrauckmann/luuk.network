@@ -1,4 +1,4 @@
-import { AppConfiguration } from "./types";
+import type { AppConfiguration } from "../types";
 
 export async function saveAppConfiguration(token: string, appId: string, appConfig: AppConfiguration): Promise<void> {
   return new Promise((resolve, reject) => {

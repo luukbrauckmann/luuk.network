@@ -1,9 +1,6 @@
-name: Update container image
-author: Bunny Devs
-description: Use this action to create or update the image in a Container
-
-permissions:
-  contents: read
+name: Upsert Container
+author: Luuk Brauckmann
+description: Use this action to create or update a Container
 
 inputs:
   api_key:
@@ -36,4 +33,4 @@ runs:
 
 branding:
   color: 'orange'
-  icon: 'upload-cloud'
+  icon: upload-cloud
