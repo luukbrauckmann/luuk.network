@@ -1,4 +1,4 @@
-name: CI
+name: Build and Deploy
 on:
  push:
    branches: [ "*" ]
@@ -41,7 +41,7 @@ jobs:
          datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
    - name: create or update container on Magic Containers
-     uses: ./.github/actions/bunny
+     uses: ./.github/actions/upsert-container
      with:
        app_id: ${{ secrets.APP_ID }}
        api_key: ${{ secrets.BUNNYNET_API_KEY }}

@@ -1,4 +1,4 @@
-import { AppConfiguration } from "./types";
+import type { AppConfiguration } from "../types";
 
 export async function getAppConfiguration(token: string, appId: string): Promise<AppConfiguration> {
   return new Promise((resolve, reject) => {

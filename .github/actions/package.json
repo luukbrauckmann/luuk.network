@@ -1,0 +1,8 @@
+{
+  "private": true,
+  "workspaces": [
+    "delete-container",
+    "shared",
+    "upsert-container"
+  ]
+}

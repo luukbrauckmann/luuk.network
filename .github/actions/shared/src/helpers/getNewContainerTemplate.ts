@@ -1,4 +1,4 @@
-import { ContainerTemplate } from "./types";
+import type { ContainerTemplate } from "../types";
 import { context } from '@actions/github';
 
 export function getNewContainerTemplate({
