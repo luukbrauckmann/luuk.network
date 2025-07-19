@@ -1,6 +1,6 @@
 name: Upsert Container
 author: Luuk Brauckmann
-description: Use this action to upsert a Container
+description: Use this action to create or update a Container
 
 inputs:
   api_key:

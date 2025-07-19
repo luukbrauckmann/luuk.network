@@ -1,6 +1,6 @@
-name: Upsert Container
+name: Delete Container
 author: Luuk Brauckmann
-description: Use this action to create or update a Container
+description: Use this action to delete a Container
 
 inputs:
   api_key:
