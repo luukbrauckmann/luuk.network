@@ -1,76 +1,52 @@
 name: CI
-
 on:
-  push:
-    branches: [ "main" ]
-
+ push:
+   branches: [ "main" ]
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+ build-and-deploy:
+   runs-on: ubuntu-latest
+   steps:
+   - uses: actions/checkout@v4
 
-    steps:
-    - uses: actions/checkout@v4
+   - name: Calculate port for branch
+     id: port
+     run: |
+       BRANCH_NAME="${{ github.ref_name }}"
+       if [ "$BRANCH_NAME" = "main" ]; then
+         PORT=4321
+       else
+         # Generate unique port for branch (4322-4999)
+         HASH=$(echo -n "$BRANCH_NAME" | md5sum | cut -c1-8)
+         PORT=$((4322 + 0x$HASH % 678))
+       fi
+       echo "port=$PORT" >> $GITHUB_OUTPUT
+       echo "Using port $PORT for branch $BRANCH_NAME"
 
-    - uses: ./.github/actions/my-action
-      with:
-        example: 'world'
+   - name: docker login
+     uses: docker/login-action@v3
+     with:
+       registry: ghcr.io
+       username: ${{ github.actor }}
+       password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: docker login
-      uses: docker/login-action@v3
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+   - name: docker build and push
+     uses: docker/build-push-action@v5
+     with:
+       context: .
+       push: true
+       tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ github.sha }}
+       build-args: |
+         PORT=${{ steps.port.outputs.port }}
+       secrets: |
+         datocms_token=${{ secrets.DATOCMS_TOKEN }}
 
-    - name: docker build and push
-      uses: docker/build-push-action@v5
-      with:
-        context: .
-        push: true
-        tags: ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ github.sha }}
-        secrets: |
-          datocms_token=${{ secrets.DATOCMS_TOKEN }}
-
-    - name: Check if container exists
-      id: check_container
-      run: |
-        echo "🔐 Exchanging API key for token..."
-        TOKEN=$(curl -s -X POST https://api.bunny.net/apikey/exchange \
-          -H "Content-Type: application/json" \
-          -H "AccessKey: ${{ secrets.BUNNYNET_API_KEY }}" \
-          -d '{"AccessKey": "${{ secrets.BUNNYNET_API_KEY }}"}' | jq -r '.Token')
-
-        if [ "$TOKEN" == "null" ] || [ -z "$TOKEN" ]; then
-          echo "❌ Failed to get token"
-          exit 1
-        fi
-
-        echo "📥 Fetching app configuration..."
-        APP_CONFIG=$(curl -s -X GET \
-          -H "Accept: application/json" \
-          -H "Authorization: $TOKEN" \
-          https://api-mc.opsbunny.net/v1/namespaces/default/applications/${{ secrets.APP_ID }}/configuration)
-
-        echo "📦 Available containers:"
-        echo "$APP_CONFIG" | jq -r '.containerTemplates[].name'
-
-        CONTAINER_NAME=${{ github.ref_name }}
-
-        MATCH=$(echo "$APP_CONFIG" | jq -r --arg NAME "$CONTAINER_NAME" '.containerTemplates[] | select(.name == $NAME) | .name')
-
-        if [ "$MATCH" == "$CONTAINER_NAME" ]; then
-          echo "✅ Found container '$CONTAINER_NAME'"
-          echo "exists=true" >> $GITHUB_OUTPUT
-        else
-          echo "❌ Container '$CONTAINER_NAME' not found in app."
-          echo "exists=false" >> $GITHUB_OUTPUT
-        fi
-
-    - name: update container image on Magic Containers
-      if: steps.check_container.outputs.exists == 'true'
-      uses: BunnyWay/actions/container-update-image@main
-      with:
-        app_id: ${{ secrets.APP_ID }}
-        api_key: ${{ secrets.BUNNYNET_API_KEY }}
-        container: ${{ github.ref_name }}
-        image_tag: "${{ github.ref_name }}-${{ github.sha }}"
+   - name: create or update container on Magic Containers
+     uses: ../actions/bunny/.lib-action
+     with:
+       app_id: ${{ secrets.APP_ID }}
+       api_key: ${{ secrets.BUNNYNET_API_KEY }}
+       container_name: ${{ github.ref_name }}
+       image_tag: "${{ github.ref_name }}-${{ github.sha }}"
+       container_port: ${{ steps.port.outputs.port }}
+       environment_variables: |
+         DATOCMS_TOKEN=${{ secrets.DATOCMS_TOKEN }}

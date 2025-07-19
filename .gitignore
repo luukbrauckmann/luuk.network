@@ -1,7 +1,5 @@
 # build output
 dist/
-# Exception for GitHub Actions
-!.github/actions/**/dist/
 # generated types
 .astro/
 .generated/
