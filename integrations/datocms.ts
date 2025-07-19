@@ -25,7 +25,7 @@ export default function datocms(): AstroIntegration {
             routing: {
               prefixDefaultLocale: true,
               redirectToDefaultLocale: true,
-              fallbackType: 'redirect'
+              fallbackType: 'rewrite'
             }
           }
         });

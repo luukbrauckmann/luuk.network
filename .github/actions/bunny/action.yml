@@ -2,9 +2,6 @@ name: Update container image
 author: Bunny Devs
 description: Use this action to create or update the image in a Container
 
-permissions:
-  contents: read
-
 inputs:
   api_key:
     description: The API key for your Bunny account
