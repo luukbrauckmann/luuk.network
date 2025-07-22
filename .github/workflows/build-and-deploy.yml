@@ -1,7 +1,13 @@
 name: Build and Deploy
+
 on:
  push:
    branches: [ "*" ]
+
+concurrency:
+  group: bunny-magic-containers
+  cancel-in-progress: false
+
 jobs:
  build-and-deploy:
    runs-on: ubuntu-latest

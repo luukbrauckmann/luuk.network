@@ -2,6 +2,11 @@ name: Cleanup
 on:
  delete:
    branches: [ "*" ]
+
+concurrency:
+  group: bunny-magic-containers
+  cancel-in-progress: false
+
 jobs:
   delete-container:
     runs-on: ubuntu-latest
