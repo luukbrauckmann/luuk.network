@@ -30068,21 +30068,31 @@ __nccwpck_require__.r(__webpack_exports__);
 
 const apiKey = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("api_key", { required: true });
 const appId = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("app_id", { required: true });
+const containerName = (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.getInput)("container_name", { required: true });
 try {
     const token = await (0,_local_shared__WEBPACK_IMPORTED_MODULE_1__/* .exchangeApiKeyForToken */ .BR)(apiKey);
     const appConfig = await (0,_local_shared__WEBPACK_IMPORTED_MODULE_1__/* .getAppConfiguration */ .w$)(token, appId);
-    let highestPort = 4321;
-    appConfig.containerTemplates?.forEach(container => {
-        container.endpoints?.forEach(endpoint => {
-            endpoint.cdn?.portMappings?.forEach(portMapping => {
-                if (portMapping.containerPort && portMapping.containerPort > highestPort) {
-                    highestPort = portMapping.containerPort;
-                }
+    const container = appConfig.containerTemplates.find(({ name }) => name === containerName);
+    if (containerName === 'main') {
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('port', 4321);
+    }
+    else if (container) {
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('port', container.endpoints[0].cdn.portMappings[0].containerPort);
+    }
+    else {
+        let highestPort = 4321;
+        appConfig.containerTemplates?.forEach(container => {
+            container.endpoints?.forEach(endpoint => {
+                endpoint.cdn?.portMappings?.forEach(portMapping => {
+                    if (portMapping.containerPort && portMapping.containerPort > highestPort) {
+                        highestPort = portMapping.containerPort;
+                    }
+                });
             });
         });
-    });
-    const nextAvailablePort = highestPort + 1;
-    (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('port', nextAvailablePort);
+        const nextAvailablePort = highestPort + 1;
+        (0,_actions_core__WEBPACK_IMPORTED_MODULE_0__.setOutput)('port', nextAvailablePort);
+    }
 }
 catch (e) {
     if (typeof e === 'string' || e instanceof Error) {

@@ -11,6 +11,10 @@ inputs:
     description: The Container Application ID.
     required: true
 
+  container_name:
+    description: The Container name.
+    required: true
+
 runs:
   using: node20
   main: .lib-action/index.js
