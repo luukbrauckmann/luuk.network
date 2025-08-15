@@ -1,6 +1,7 @@
 ---
 import type { FeaturedBlockFragment } from "@generated/datocms";
 import LinkBlock from "../LinkBlock/LinkBlock.astro";
+import { Icon } from "@components"
 
 type Props = {
   block: FeaturedBlockFragment;
@@ -14,7 +15,16 @@ const { block } = Astro.props;
 
     <ul class="featured-block-list">
         { block.pages.map((page) => (
-            <li>{page.title}</li>
+            <li class="featured-block-list-item">
+                <a class="featured-block-list-item-link" href={page.path} data-astro-prefetch>
+                    <Icon class="featured-block-list-item-link__image-icon" name="square-arrow-up-right" />
+                    <img class="featured-block-list-item-link__image" src="" alt="">
+                    <div class="featured-block-list-item-link__details">
+                        <h3>{page.title}</h3>
+                        <p>{page.description}</p>
+                    </div>
+                </a>
+            </li>
         ))}
     </ul>
 
@@ -37,5 +47,45 @@ const { block } = Astro.props;
         list-style-type: "";
         padding: 0;
         margin: 0;
+        display: flex;
+        width: calc(var(--spacing-lg) * 2 + 100%);
+        overflow-x: auto;
+        box-sizing: border-box;
+        margin-inline: calc(var(--spacing-lg) * -1);
+        gap: var(--spacing-md);
+        padding-inline: var(--spacing-lg);
+        scroll-snap-type: x mandatory;
+    }
+
+    .featured-block-list-item {
+        width: 100%;
+        flex-shrink: 0;
+        scroll-snap-align: center;
+    }
+
+    .featured-block-list-item-link {
+        color: white;
+        text-decoration: none;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .featured-block-list-item-link__image-icon {
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+    }
+
+    .featured-block-list-item-link__image {
+        height: 150px;
+        width: 100%;
+    }
+
+    .featured-block-list-item-link__details {
+        background-color: #415A77;
+        padding: var(--spacing-lg) var(--spacing-md);
+        flex-grow: 1;
     }
 </style>

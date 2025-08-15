@@ -1,9 +1,0 @@
-{
-  "private": true,
-  "workspaces": [
-    "delete-container",
-    "get-available-port",
-    "shared",
-    "upsert-container"
-  ]
-}
