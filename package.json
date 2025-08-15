@@ -5,12 +5,14 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "deploy": "wrangler deploy",
+    "preview": "wrangler dev",
     "astro": "astro",
     "lint": "npx --node-options='--experimental-strip-types' eslint --flag unstable_native_nodejs_ts_config",
     "format": "node --experimental-strip-types node_modules/prettier/bin/prettier.cjs . --write"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^12.6.4",
     "@astrojs/node": "^9.3.0",
     "@datocms/astro": "^0.6.2",
     "@datocms/cda-client": "^0.2.7",
@@ -39,6 +41,7 @@
     "prettier-plugin-css-order": "^2.1.2",
     "svg-sprite": "^2.0.4",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.32.1"
+    "typescript-eslint": "^8.32.1",
+    "wrangler": "^4.30.0"
   }
 }
