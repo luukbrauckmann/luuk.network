@@ -50,6 +50,6 @@ const Layout = layoutsByTypename[typename];
 
 <Layout
     locale={locale}
-    seo={[..._site.faviconMetaTags, ...page._seoMetaTags]}
+    seo={[...page._seoMetaTags, ..._site.faviconMetaTags]}
     page={page}
 />

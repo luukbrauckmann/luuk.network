@@ -7,7 +7,7 @@ import "@styles/reset.css";
 import "@styles/theme.css";
 import "@styles/tokens.css";
 import "@styles/typography.css";
-import { Seo, type SeoOrFaviconTag } from "@datocms/astro";
+import { Seo, type SeoTitleTag, type SeoOrFaviconTag } from "@datocms/astro";
 
 type Props = {
   locale: SiteLocale;
@@ -15,19 +15,33 @@ type Props = {
 };
 
 const { locale, seo } = Astro.props;
+const title = seo.shift() as SeoTitleTag;
 ---
 
 <html lang={locale}>
   <head>
+    <!-- Character encoding -->
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-
-    <Seo data={seo} />
-
+    <!-- Viewport meta tag -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- CSP headers -->
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <!-- Page title -->
+    <title>{title.content}</title>
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://www.datocms-assets.com" />
+    <!-- Asynchronous JS -->
+    <!-- CSS that includes @import -->
+    <!-- Synchronous JS -->
+    <!-- Synchronous CSS -->
+    <!-- Preloads -->
     <link rel="preload" href="/fonts/Nunito/Nunito-Regular.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Nunito/Nunito-Bold.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/Dash/DashCasualL-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Prefetch & Prerender -->
+    <!-- Everything else (meta tags, icons, open graphs, etc.) -->
+    <Seo data={seo} />
+    <meta name="generator" content={Astro.generator} />
   </head>
   <body>
       <div class="content-wrapper">
