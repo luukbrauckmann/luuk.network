@@ -9,7 +9,7 @@ type Page = AllPagesQuery['allPages'][0] & { locale: SiteLocale };
 async function loadData(locales: SiteLocale[]) {
   return (await Promise.all(locales.map(async (locale) => {
     const { _site, allPages } = await executeQuery<AllPagesQuery, AllPagesQueryVariables>(query, { locale });
-    return allPages.map((page) => ({ ...page, locale, _seoMetaTags: [..._site.faviconMetaTags, ...page._seoMetaTags] }));
+    return allPages.map((page) => ({ ...page, locale, _seoMetaTags: [...page._seoMetaTags, ..._site.faviconMetaTags] }));
   }))).flat();
 }
 
