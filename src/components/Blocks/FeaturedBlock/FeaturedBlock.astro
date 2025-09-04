@@ -18,7 +18,7 @@ const { block } = Astro.props;
             <li class="featured-block-list-item">
                 <img class="featured-block-list-item__image" src="" alt="">
                 <div class="featured-block-list-item__details">
-                    <h3>{page.title}</h3>
+                    <h3 class="featured-block-list-item__title">{page.title}</h3>
                     <!-- <p class="featured-block-list-item__description">{page.description}</p> -->
 
                     <div>
@@ -59,9 +59,9 @@ const { block } = Astro.props;
         margin-inline: calc(var(--spacing-lg) * -1);
         display: flex;
         gap: var(--spacing-md);
-        overflow-y: auto;
+        overflow-x: auto;
         scroll-snap-type: x mandatory;
-        overscroll-behavior: contain;
+        overscroll-behavior-x: contain;
     }
 
     .featured-block-list-item {
@@ -84,6 +84,10 @@ const { block } = Astro.props;
         flex-direction: column;
         gap: var(--spacing-md);
         justify-content: space-between;
+    }
+
+    .featured-block-list-item__title {
+        text-wrap: initial;
     }
 
     .featured-block-list-item__description {
