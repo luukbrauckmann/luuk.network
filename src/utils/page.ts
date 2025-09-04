@@ -1,7 +1,6 @@
-import type { PageQuery } from "@generated/datocms"
-import { isNonNullChain } from "typescript"
+import type { AllPagesQuery } from "@generated/datocms"
 
-type NonNullablePage = NonNullable<PageQuery['page']>
+type NonNullablePage = NonNullable<AllPagesQuery['allPages'][0]>
 type NonNullableContent = NonNullable<NonNullablePage['content']>
 type ContentTypes = NonNullableContent['__typename']
 

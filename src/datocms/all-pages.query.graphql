@@ -2,7 +2,7 @@
 #import '@layouts/ProjectPage/ProjectPage.fragment.graphql'
 #import '@layouts/RegularPage/RegularPage.fragment.graphql'
 
-query Page($path: String = "", $locale: SiteLocale!) {
+query AllPages($locale: SiteLocale) {
     _site {
         faviconMetaTags {
             attributes
@@ -10,12 +10,13 @@ query Page($path: String = "", $locale: SiteLocale!) {
             tag
         }
     }
-    page(filter: { path: { eq: $path } }, locale: $locale) {
+    allPages(locale: $locale) {
         _seoMetaTags {
             attributes
             content
             tag
         }
+        path
         title
         content {
             __typename

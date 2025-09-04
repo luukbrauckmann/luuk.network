@@ -1,42 +1,21 @@
 ---
-import {
-  SiteLocale,
-  type PageQuery,
-  type PageQueryVariables,
-  type PathsQuery,
-  type PathsQueryVariables
-} from "@generated/datocms";
-import { executeQuery } from "@datocms/execute-query";
-import pathsQuery from "@datocms/paths.query.graphql";
-import pageQuery from "./_index.query.graphql";
-import { BlogPost, OverviewPage, ProjectPage, RegularPage } from "@layouts";
+import { getCollection } from 'astro:content';
+import { BlogPost, OverviewPage, ProjectPage, RegularPage } from '@layouts';
 
-export const getStaticPaths = async () => {
-  const { allPages } = await executeQuery<PathsQuery, PathsQueryVariables>(
-    pathsQuery
-  );
+export async function getStaticPaths() {
+  const pages = await getCollection('pages');
 
-  return allPages.flatMap((item) => {
-    if (!item._allPathLocales) return [];
-
-    return item._allPathLocales.map(({ locale, value }) => ({
-      params: {
-        locale: locale as SiteLocale,
-        ...(value && { path: value })
-      }
-    }));
+  return pages.map((page) => {
+    const [locale, ...path] = page.id.split('/');
+    const stringPath = path.join('/');
+    return {
+      params: { locale, path: stringPath.length > 0 ? stringPath : undefined },
+      props: { page: page.data }
+    };
   });
-};
-
-const { locale, path } = Astro.params;
-const { _site, page } = await executeQuery<PageQuery, PageQueryVariables>(pageQuery, {
-  path,
-  locale
-});
-
-if (!page) {
-  return new Response("", { status: 404 });
 }
+
+const { page } = Astro.props;
 
 const layoutsByTypename = {
   BlogPostRecord: BlogPost,
@@ -44,12 +23,12 @@ const layoutsByTypename = {
   ProjectPageRecord: ProjectPage,
   RegularPageRecord: RegularPage
 };
-const typename = page.content?.__typename as keyof typeof layoutsByTypename;
-const Layout = layoutsByTypename[typename];
+
+const Layout = layoutsByTypename[page.content.__typename];
 ---
 
 <Layout
-    locale={locale}
-    seo={[...page._seoMetaTags, ..._site.faviconMetaTags]}
+    locale={page.locale}
+    seo={page._seoMetaTags}
     page={page}
 />
