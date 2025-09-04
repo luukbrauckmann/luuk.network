@@ -63,10 +63,8 @@ const title = seo.shift() as SeoTitleTag;
 <style>
     body {
         min-height: 100dvh;
-        display: grid;
-        grid-template-columns:
-          [full-start] 1fr [main-start] minmax(0px, 600px)
-          [main-end] 1fr [full-end];
+        display: flex;
+        flex-direction: column;
     }
 
     @media screen and (min-width: 500px) {
@@ -76,10 +74,16 @@ const title = seo.shift() as SeoTitleTag;
     }
 
     .content-wrapper {
-        grid-column: main;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
         border: 1px solid oklch(0.269 0.042 263);
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        position: relative;
+        inline-size: 100%;
+        max-inline-size: 600px;
+        margin-inline: auto;
+    }
+
+    main {
+        flex: 1;
     }
 </style>
