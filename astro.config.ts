@@ -4,6 +4,7 @@ import graphql from "@rollup/plugin-graphql";
 import codegen from "./integrations/codegen";
 import datocms from "./integrations/datocms";
 import iconsSprite from "./integrations/icons-sprite";
+import designTokens from "./integrations/design-tokens";
 import config from "./codegen.config";
 
 export default defineConfig({
@@ -15,7 +16,8 @@ export default defineConfig({
   integrations: [
     codegen(config),
     datocms(),
-    iconsSprite()
+    iconsSprite(),
+    designTokens()
   ],
   vite: {
     plugins: [graphql()]
