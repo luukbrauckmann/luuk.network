@@ -13,7 +13,9 @@ RUN npm install
 
 FROM build-deps AS build
 COPY . .
-RUN npm run build
+RUN --mount=type=secret,id=datocms_token \
+    DATOCMS_TOKEN=$(cat /run/secrets/datocms_token) \
+    npm run build
 
 FROM base AS runtime
 COPY --from=prod-deps /app/node_modules ./node_modules
