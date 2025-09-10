@@ -1,0 +1,21 @@
+name: Cleanup
+on:
+ delete:
+   branches: [ "*" ]
+
+concurrency:
+  group: bunny-magic-containers
+  cancel-in-progress: false
+
+jobs:
+  delete-container:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: delete container
+      uses: ./.github/actions/delete-container
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        api_key: ${{ secrets.BUNNYNET_API_KEY }}
+        container_name: ${{ github.event.ref }}

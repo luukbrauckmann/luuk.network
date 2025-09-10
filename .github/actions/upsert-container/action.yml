@@ -1,0 +1,36 @@
+name: Upsert Container
+author: Luuk Brauckmann
+description: Use this action to create or update a Container
+
+inputs:
+  api_key:
+    description: The API key for your Bunny account
+    required: true
+
+  app_id:
+    description: The Container Application ID.
+    required: true
+
+  container_name:
+    description: The Container name.
+    required: true
+
+  image_tag:
+    description: The new image.
+    required: true
+
+  port:
+    description: The port number of the container.
+    required: true
+
+  environment_variables:
+    description: The environment variables to set in the container.
+    required: false
+
+runs:
+  using: 'node20'
+  main: '.lib-action/index.js'
+
+branding:
+  color: 'orange'
+  icon: upload-cloud
