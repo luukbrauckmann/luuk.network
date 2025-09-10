@@ -1,26 +1,23 @@
-FROM node:lts AS base
+FROM node:lts AS builder
+
 WORKDIR /app
-
-COPY package.json package-lock.json ./
-
-FROM base AS prod-deps
-RUN npm install --omit=dev
-
-FROM base AS build-deps
+COPY package*.json ./
 RUN npm install
 
-FROM build-deps AS build
 COPY . .
 RUN --mount=type=secret,id=datocms_token \
     DATOCMS_TOKEN=$(cat /run/secrets/datocms_token) \
     npm run build
 
-FROM base AS runtime
-COPY --from=prod-deps /app/node_modules ./node_modules
-COPY --from=build /app/dist ./dist
+FROM node:lts AS runtime
+
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/node_modules ./node_modules
+COPY package*.json ./
 
 ENV HOST=0.0.0.0
 ARG PORT=4321
 ENV PORT=${PORT}
 EXPOSE ${PORT}
-CMD node ./dist/server/entry.mjs
+CMD ["node", "./dist/server/entry.mjs"]
