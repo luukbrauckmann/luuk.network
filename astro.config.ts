@@ -7,6 +7,7 @@ import iconsSprite from "./integrations/icons-sprite";
 import designTokens from "./integrations/design-tokens";
 import config from "./codegen.config";
 
+
 export default defineConfig({
   site: 'https://luuk.network',
   adapter: node({
