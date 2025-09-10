@@ -30014,14 +30014,15 @@ var github = __nccwpck_require__(2146);
 function getNewContainerTemplate(mainContainer, { containerName, imageTag, port, environmentVariables }) {
     const imageNamespace = context.repo.owner;
     const imageName = context.repo.repo;
-    delete mainContainer.imageDigest;
     return {
-        ...mainContainer,
+        "packageId": mainContainer.packageId,
         "name": containerName,
         "imageName": imageName,
         "imageNamespace": imageNamespace,
         "imageTag": imageTag,
         "environmentVariables": environmentVariables,
+        "imageRegistryId": mainContainer.imageRegistryId,
+        "imagePullPolicy": mainContainer.imagePullPolicy,
         "endpoints": [
             {
                 "displayName": containerName,
