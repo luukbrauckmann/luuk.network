@@ -9,6 +9,7 @@ import "@styles/reset.css";
 import "@styles/theme.css";
 import "@styles/typography.css";
 import { Seo, type SeoTitleTag, type SeoOrFaviconTag } from "@datocms/astro";
+import { Font } from "astro:assets";
 
 type Props = {
   locale: SiteLocale;
@@ -36,9 +37,8 @@ const title = seo.shift() as SeoTitleTag;
     <!-- Synchronous JS -->
     <!-- Synchronous CSS -->
     <!-- Preloads -->
-    <link rel="preload" href="/fonts/Nunito/Nunito-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Nunito/Nunito-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Dash/DashCasualL-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <Font cssVariable='--font-nunito' preload />
+    <Font cssVariable='--font-dash' preload />
     <!-- Prefetch & Prerender -->
     <!-- Everything else (meta tags, icons, open graphs, etc.) -->
     <Seo data={seo} />
