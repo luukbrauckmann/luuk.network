@@ -1,0 +1,57 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<link-area class:list={["link-area", className]} {...props}>
+    <slot />
+</link-area>
+
+<script>
+  class LinkArea extends HTMLElement {
+    allAnchors: NodeListOf<HTMLAnchorElement> | null = null;
+    anchor: HTMLAnchorElement | null = null;
+
+    constructor() {
+      super();
+    }
+
+    handleClick() {
+      if (this.anchor) {
+        const noTextSelected = !window.getSelection()?.toString();
+        if (noTextSelected) {
+          this.anchor.click();
+        }
+      }
+    }
+
+    connectedCallback() {
+      this.allAnchors = this.querySelectorAll('a');
+
+      if(this.allAnchors.length === 1) {
+        this.anchor = this.allAnchors[0];
+        this.classList.add('link-area--is-linked');
+        this.addEventListener('click', this.handleClick);
+      }
+    }
+
+    disconnectedCallback() {
+      this.removeEventListener('click', this.handleClick);
+    }
+  }
+
+  customElements.define('link-area', LinkArea);
+</script>
+
+<style>
+    .link-area {
+        display: contents;
+    }
+
+    .link-area--is-linked {
+        cursor: pointer;
+    }
+</style>

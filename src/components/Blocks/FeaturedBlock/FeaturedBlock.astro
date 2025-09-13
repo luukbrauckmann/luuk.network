@@ -1,7 +1,7 @@
 ---
 import type { FeaturedBlockFragment } from "@generated/datocms";
 import LinkBlock from "../LinkBlock/LinkBlock.astro";
-import { Button } from "@components";
+import { Button, LinkArea } from "@components";
 
 type Props = {
   block: FeaturedBlockFragment;
@@ -16,21 +16,23 @@ const { block } = Astro.props;
     <ul class="featured-block-list">
         { block.pages.map((page) => (
             <li class="featured-block-list-item">
-                <img class="featured-block-list-item__image" src="" alt="">
-                <div class="featured-block-list-item__details">
-                    <h3 class="featured-block-list-item__title">{page.title}</h3>
-                    <!-- <p class="featured-block-list-item__description">{page.description}</p> -->
+                <LinkArea>
+                    <img class="featured-block-list-item__image" src="" alt="">
+                    <div class="featured-block-list-item__details">
+                        <h3 class="featured-block-list-item__title">{page.title}</h3>
+                        <!-- <p class="featured-block-list-item__description">{page.description}</p> -->
 
-                    <div>
-                        <Button
-                            as="a"
-                            href={page.path}
-                            data-astro-prefetch
-                            icon="arrow-right"
-                            variant="transparent"
-                        >Read more <span class="sr-only">about {page.title}</span></Button>
+                        <div>
+                            <Button
+                                as="a"
+                                href={page.path}
+                                data-astro-prefetch
+                                icon="arrow-right"
+                                variant="transparent"
+                            >Read more <span class="sr-only">about {page.title}</span></Button>
+                        </div>
                     </div>
-                </div>
+                </LinkArea>
             </li>
         ))}
     </ul>
