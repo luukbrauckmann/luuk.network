@@ -1,0 +1,113 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Button } from "@components";
+
+type Props = HTMLAttributes<'dialog'>;
+
+const { class: className, ...props } = Astro.props;
+---
+<enhanced-dialog>
+    <slot name="trigger" />
+
+    <dialog class:list={["modal", className]} {...props}>
+        <header class="modal__header">
+            <slot name="header" />
+
+            <form method="dialog">
+                <Button icon="xmark" iconOnly variant="transparent">Close</Button>
+            </form>
+        </header>
+
+        <div class="modal__body">
+            <slot />
+        </div>
+    </dialog>
+</enhanced-dialog>
+
+<script>
+  class EnhancedDialog extends HTMLElement {
+    dialog: HTMLDialogElement | null = null;
+    trigger: HTMLButtonElement | null = null;
+
+    constructor() {
+      super();
+    }
+
+    connectedCallback() {
+      this.dialog = this.querySelector('dialog');
+      this.trigger =  this.querySelector(`button`);
+
+      this.trigger?.addEventListener('click', () => {
+        this.dialog?.showModal();
+      });
+    }
+
+    disconnectedCallback() {
+      this.trigger?.removeEventListener('click', () => {
+        this.dialog?.showModal();
+      });
+    }
+  }
+
+  customElements.define('enhanced-dialog', EnhancedDialog);
+</script>
+
+<style>
+    .modal {
+        position: fixed;
+        inset: 0;
+        margin: auto;
+        border: 1px solid oklch(0.269 0.042 263);
+        background: oklch(0.269 0.042 263);
+        max-inline-size: 600px;
+        width: 100%;
+        padding: var(--spacing-lg);
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+        opacity: 0;
+        transform: scale(0);
+        transition:
+            opacity 0.15s ease-out,
+            transform 0.15s ease-out,
+            overlay 0.15s ease-out allow-discrete,
+            display 0.15s ease-out allow-discrete;
+    }
+
+    .modal:open {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    @starting-style {
+        .modal:open {
+            opacity: 0;
+            transform: scale(0);
+        }
+    }
+
+    .modal::backdrop {
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        transition:
+            display 0.15s allow-discrete,
+            overlay 0.15s allow-discrete,
+            background-color 0.15s;
+    }
+
+    @starting-style {
+      .modal:open::backdrop {
+        background: transparent;
+      }
+    }
+
+    .modal__header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .modal__body {
+
+    }
+</style>

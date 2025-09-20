@@ -10,7 +10,7 @@ import config from "./codegen.config";
 export default defineConfig({
   site: 'https://luuk.network',
   adapter: node({
-    mode: 'standalone',
+    mode: 'standalone'
   }),
   prefetch: true,
   integrations: [
