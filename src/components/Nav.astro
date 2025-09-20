@@ -11,13 +11,24 @@ type Props = {
 }
 
 const { items } = Astro.props;
+const { pathname } = Astro.url;
+const { locale } = Astro.params;
+
+function getHref(page: Props['items'][0]['page']) {
+  return `/${locale}/${page.path}${page.path && '/'}`;
+}
 ---
 
 <nav>
     <ul>
         {items.map(({ title, page }) => (
             <li>
-                <Button as="a" href={page.path} variant="transparent">{title}</Button>
+                <Button
+                as="a"
+                href={getHref(page)}
+                aria-current={(pathname === getHref(page)) && 'page'}
+                variant="transparent"
+                >{title}</Button>
             </li>
         ))}
     </ul>
