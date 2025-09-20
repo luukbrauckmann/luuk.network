@@ -1,13 +1,155 @@
+/* Nunito Font Family */
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  src: url('/fonts/Nunito/Nunito-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1;
+}
+
+/* Dash Font Family */
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Hairline.woff2') format('woff2');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Thin.woff2') format('woff2');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Extralight.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Light.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Regular.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
+@font-face {
+  font-family: 'Dash';
+  src: url('/fonts/Dash/DashCasualL-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0020-007F, U+00A0-00FF;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'clig' 1, 'locl' 1;
+}
+
 html {
     font-size: var(--text-size-md);
 }
 
 body {
-  font-family: var(--font-nunito);
+  font-family: 'Nunito', system-ui, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-dash);
+  font-family: 'Dash', system-ui, sans-serif;
   font-weight: 500;
 }
 
