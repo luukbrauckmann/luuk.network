@@ -4,21 +4,54 @@ import { Nav } from "@components";
 
 type Props = HTMLAttributes<'header'> & { menu: { items: any[] } };
 
-const { menu, ...props } = Astro.props;
+const { menu, class: className, ...props } = Astro.props;
 ---
 
-<header { ...props }>
-    <Nav items={menu.items} />
-</header>
+<enhanced-header>
+    <header class:list={['header', className]} { ...props }>
+        <Nav items={menu.items} />
+    </header>
+</enhanced-header>
 
 <style>
-    header {
+    enhanced-header {
+        position: sticky;
+        inset-block-start: 0px;
+        z-index: 999;
+        display: block;
+    }
+
+    .header {
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #001523;
         border: 1px solid oklch(0.269 0.042 263);
         border-block-end-color: transparent;
         margin: -1px -1px 0px -1px;
+        transition: 0.3s;
+        position: relative;
+    }
+
+    .header::after {
+        content: '';
+        position: absolute;
+        inset-inline: 0px;
+        inset-block-end: 0px;
+        transform: translateY(100%);
+        height: var(--spacing-lg);
+        background: linear-gradient(to bottom, oklch(0.269 0.042 263), transparent);
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .header--scrolled {
+        border-block-end-color: oklch(0.269 0.042 263);
+    }
+
+    .header--scrolled::after {
+        opacity: 1;
     }
 
     .home-link {
@@ -26,3 +59,44 @@ const { menu, ...props } = Astro.props;
         display: inline-block;
     }
 </style>
+
+<script>
+  class EnhancedHeader extends HTMLElement {
+    header: HTMLHeadElement | null = null;
+    observer: IntersectionObserver | null = null;
+
+    constructor() {
+        super();
+    }
+
+    connectedCallback() {
+      this.header = this.querySelector('header');
+
+      if (this.header) {
+          this.observer = new IntersectionObserver((entries) => {
+              entries.forEach((entry) => {
+                  if (entry.intersectionRatio < 1) {
+                      this.header?.classList.add('header--scrolled');
+                  } else {
+                      this.header?.classList.remove('header--scrolled');
+                  }
+              });
+          }, {
+              root: null,
+              rootMargin: '0px',
+              threshold: [0, 1]
+          });
+
+          this.observer.observe(this.header);
+      }
+    }
+
+    disconnectedCallback() {
+        if (this.observer) {
+            this.observer.disconnect();
+        }
+    }
+  }
+
+  customElements.define('enhanced-header', EnhancedHeader);
+</script>

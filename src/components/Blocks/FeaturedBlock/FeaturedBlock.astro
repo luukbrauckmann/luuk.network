@@ -10,10 +10,12 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<section class="featured-block">
-    <h2>{ block.title }</h2>
+<enhanced-featured-block>
+    <section class="featured-block">
+        <h2>{ block.title }</h2>
 
-    <ul class="featured-block-list">
+        <div class="featured-block-list-container">
+            <ul class="featured-block-list">
         { block.pages.map((page) => (
             <li class="featured-block-list-item">
                 <LinkArea>
@@ -35,12 +37,14 @@ const { block } = Astro.props;
                 </LinkArea>
             </li>
         ))}
-    </ul>
+            </ul>
+        </div>
 
-    <div>
-        <LinkBlock block={block.link} />
-    </div>
-</section>
+        <div>
+            <LinkBlock block={block.link} />
+        </div>
+    </section>
+</enhanced-featured-block>
 
 <style>
     .featured-block {
@@ -52,18 +56,55 @@ const { block } = Astro.props;
         gap: var(--spacing-xl);
     }
 
-    .featured-block-list {
+    .featured-block-list-container {
         position: relative;
+        margin-inline: calc(var(--spacing-lg) * -1);
+    }
+
+    .featured-block-list {
         list-style-type: "";
         padding: 0;
         padding-inline: var(--spacing-lg);
         margin: 0;
-        margin-inline: calc(var(--spacing-lg) * -1);
         display: flex;
         gap: var(--spacing-md);
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         overscroll-behavior-x: contain;
+    }
+
+    .featured-block-list-container::before {
+        content: '';
+        position: absolute;
+        inset-block: 0px;
+        inset-inline-start: 0px;
+        background: linear-gradient(to right, oklch(0.269 0.042 263), transparent);
+        width: var(--spacing-lg);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .featured-block-list-container::after {
+        content: '';
+        position: absolute;
+        inset-block: 0px;
+        inset-inline-end: 0px;
+        background: linear-gradient(to left, oklch(0.269 0.042 263), transparent);
+        width: var(--spacing-lg);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .featured-block-list-container--left-overflow::before {
+        opacity: 1;
+    }
+
+    .featured-block-list-container--right-overflow::after {
+        opacity: 1;
     }
 
     .featured-block-list-item {
@@ -96,3 +137,50 @@ const { block } = Astro.props;
         flex: 1;
     }
 </style>
+
+<script>
+    class EnhancedFeaturedBlock extends HTMLElement {
+        list: HTMLElement | null = null;
+        container: HTMLElement | null = null;
+
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            this.list = this.querySelector('.featured-block-list');
+            this.container = this.querySelector('.featured-block-list-container');
+
+            if (this.list && this.container) {
+                this.checkOverflow();
+                this.list.addEventListener('scroll', () => this.checkOverflow());
+                window.addEventListener('resize', () => this.checkOverflow());
+            }
+        }
+
+        disconnectedCallback() {
+            if (this.list) {
+                this.list.removeEventListener('scroll', () => this.checkOverflow());
+                window.removeEventListener('resize', () => this.checkOverflow());
+            }
+        }
+
+        checkOverflow() {
+            if (!this.list || !this.container) return;
+
+            const { scrollLeft, scrollWidth, clientWidth } = this.list;
+
+            // Check if there's content to the left (scrolled right)
+            const hasLeftOverflow = scrollLeft > 0;
+
+            // Check if there's content to the right (can scroll right)
+            const hasRightOverflow = scrollLeft < (scrollWidth - clientWidth);
+
+            // Apply classes based on overflow state
+            this.container.classList.toggle('featured-block-list-container--left-overflow', hasLeftOverflow);
+            this.container.classList.toggle('featured-block-list-container--right-overflow', hasRightOverflow);
+        }
+    }
+
+    customElements.define('enhanced-featured-block', EnhancedFeaturedBlock);
+</script>
