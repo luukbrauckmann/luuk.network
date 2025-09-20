@@ -1,0 +1,33 @@
+---
+import { Button } from "@components";
+
+type Props = {
+  items: Array<{
+    title: string,
+    page: {
+      path: string
+    }
+  }>
+}
+
+const { items } = Astro.props;
+---
+
+<nav>
+    <ul>
+        {items.map(({ title, page }) => (
+            <li>
+                <Button as="a" href={page.path} variant="transparent">{title}</Button>
+            </li>
+        ))}
+    </ul>
+</nav>
+
+<style>
+    ul {
+        list-style-type: "";
+        padding: 0px;
+        margin: 0px;
+        display: flex;
+    }
+</style>

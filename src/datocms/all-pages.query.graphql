@@ -10,6 +10,14 @@ query AllPages($locale: SiteLocale) {
             tag
         }
     }
+    menu(locale: $locale) {
+        items {
+            title
+            page {
+                path
+            }
+        }
+    }
     allPages(locale: $locale) {
         _seoMetaTags {
             attributes

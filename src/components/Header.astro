@@ -1,24 +1,23 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { LocaleSelector, Logo } from "@components";
+import { Nav } from "@components";
 
-type Props = HTMLAttributes<'header'>;
+type Props = HTMLAttributes<'header'> & { menu: { items: any[] } };
 
-const { ...props } = Astro.props;
+const { menu, ...props } = Astro.props;
 ---
 
 <header { ...props }>
-    <a class="home-link" href="/" data-astro-prefetch>
-        <Logo/>
-        <span class="sr-only">Luuk Brauckmann</span>
-    </a>
+    <Nav items={menu.items} />
 </header>
 
 <style>
     header {
         display: flex;
         justify-content: center;
+        align-items: center;
         border: 1px solid oklch(0.269 0.042 263);
+        border-block-end-color: transparent;
         margin: -1px -1px 0px -1px;
     }
 

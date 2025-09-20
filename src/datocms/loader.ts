@@ -4,12 +4,12 @@ import { z } from 'astro:content';
 import { executeQuery } from '@datocms/execute-query';
 import query from "@datocms/all-pages.query.graphql";
 
-type Page = AllPagesQuery['allPages'][0] & { locale: SiteLocale };
+type Page = AllPagesQuery['allPages'][0] & { locale: SiteLocale, menu: AllPagesQuery['menu'] };
 
 async function loadData(locales: SiteLocale[]) {
   return (await Promise.all(locales.map(async (locale) => {
-    const { _site, allPages } = await executeQuery<AllPagesQuery, AllPagesQueryVariables>(query, { locale });
-    return allPages.map((page) => ({ ...page, locale, _seoMetaTags: [...page._seoMetaTags, ..._site.faviconMetaTags] }));
+    const { _site, menu, allPages } = await executeQuery<AllPagesQuery, AllPagesQueryVariables>(query, { locale });
+    return allPages.map((page) => ({ ...page, locale, menu, _seoMetaTags: [...page._seoMetaTags, ..._site.faviconMetaTags] }));
   }))).flat();
 }
 

@@ -14,9 +14,17 @@ import { Font } from "astro:assets";
 type Props = {
   locale: SiteLocale;
   seo: SeoOrFaviconTag[];
+  menu: {
+    items: Array<{
+      title: string,
+      page: {
+        path: string
+      }
+    }>
+  }
 };
 
-const { locale, seo } = Astro.props;
+const { locale, seo, menu } = Astro.props;
 const title = seo.shift() as SeoTitleTag;
 ---
 
@@ -46,8 +54,7 @@ const title = seo.shift() as SeoTitleTag;
   </head>
   <body>
       <div class="content-wrapper">
-        <Header class="header" />
-        <!-- <Menu /> -->
+        <Header class="header" menu={menu} />
 
         <main>
             <slot />
