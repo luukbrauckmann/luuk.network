@@ -8,19 +8,19 @@ const { ...props } = Astro.props;
 ---
 
 <div class="structured-text">
-    <DatocmsStructuredText {...props}></DatocmsStructuredText>
+  <DatocmsStructuredText {...props} />
 </div>
 
 <style>
-    .structured-text :global(p) {
-        margin-block: var(--spacing-md);
-    }
+  .structured-text :global(p) {
+    margin-block: var(--spacing-md);
+  }
 
-    .structured-text :global(p:first-child) {
-        margin-block-start: 0px;
-    }
+  .structured-text :global(p:first-child) {
+    margin-block-start: 0px;
+  }
 
-    .structured-text :global(p:last-child) {
-        margin-block-end: 0px;
-    }
+  .structured-text :global(p:last-child) {
+    margin-block-end: 0px;
+  }
 </style>

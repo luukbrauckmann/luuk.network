@@ -1,13 +1,13 @@
 ---
-import type { HTMLAttributes } from 'astro/types';
+import type { HTMLAttributes } from "astro/types";
 
-type Props = HTMLAttributes<'div'>;
+type Props = HTMLAttributes<"div">;
 
 const { class: className, ...props } = Astro.props;
 ---
 
 <link-area class:list={["link-area", className]} {...props}>
-    <slot />
+  <slot />
 </link-area>
 
 <script>
@@ -29,29 +29,29 @@ const { class: className, ...props } = Astro.props;
     }
 
     connectedCallback() {
-      this.allAnchors = this.querySelectorAll('a');
+      this.allAnchors = this.querySelectorAll("a");
 
-      if(this.allAnchors.length === 1) {
+      if (this.allAnchors.length === 1) {
         this.anchor = this.allAnchors[0];
-        this.classList.add('link-area--is-linked');
-        this.addEventListener('click', this.handleClick);
+        this.classList.add("link-area--is-linked");
+        this.addEventListener("click", this.handleClick);
       }
     }
 
     disconnectedCallback() {
-      this.removeEventListener('click', this.handleClick);
+      this.removeEventListener("click", this.handleClick);
     }
   }
 
-  customElements.define('link-area', LinkArea);
+  customElements.define("link-area", LinkArea);
 </script>
 
 <style>
-    .link-area {
-        display: contents;
-    }
+  .link-area {
+    display: contents;
+  }
 
-    .link-area--is-linked {
-        cursor: pointer;
-    }
+  .link-area--is-linked {
+    cursor: pointer;
+  }
 </style>

@@ -1,6 +1,4 @@
-import { type Config } from "prettier";
-
-const config: Config = {
+const config = {
   trailingComma: "none",
   plugins: ["prettier-plugin-astro", "prettier-plugin-css-order"],
   overrides: [

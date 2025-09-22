@@ -10,4 +10,6 @@ type Props = {
 const { block } = Astro.props;
 ---
 
-<Button as="a" icon={block?.icon?.name as IconName} href={block?.page?.path}>{block?.label}</Button>
+<Button as="a" icon={block?.icon?.name as IconName} href={block?.page?.path}
+  >{block?.label}</Button
+>

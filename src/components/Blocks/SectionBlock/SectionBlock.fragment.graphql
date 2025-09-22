@@ -9,6 +9,6 @@ fragment SectionBlock on SectionBlockRecord {
     value
   }
   links {
-      ...LinkBlock
+    ...LinkBlock
   }
 }

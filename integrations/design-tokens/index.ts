@@ -7,27 +7,27 @@ export default function designTokens(): AstroIntegration {
     name: "design-tokens",
     hooks: {
       "astro:config:setup": async ({ logger }) => {
-        const sb = new StyleDictionary({
-          source: [
-            "src/tokens.json",
-            "src/tokens/**/*.json"
-          ],
-          platforms: {
-            css: {
-              transformGroup: "css",
-              transforms: ['color/oklch'],
-              buildPath: '.generated',
-              files: [
-                {
-                  "destination": "tokens.css",
-                  "format": "css/variables"
-                }
-              ]
+        const sb = new StyleDictionary(
+          {
+            source: ["src/tokens.json", "src/tokens/**/*.json"],
+            platforms: {
+              css: {
+                transformGroup: "css",
+                transforms: ["color/oklch"],
+                buildPath: ".generated",
+                files: [
+                  {
+                    destination: "tokens.css",
+                    format: "css/variables"
+                  }
+                ]
+              }
             }
+          },
+          {
+            verbosity: "silent"
           }
-        },{
-          verbosity: "silent",
-        });
+        );
 
         sb.registerTransform(colorOklch);
 

@@ -1,5 +1,5 @@
 import { defineConfig, envField } from "astro/config";
-import node from '@astrojs/node';
+import node from "@astrojs/node";
 import graphql from "@rollup/plugin-graphql";
 import codegen from "./integrations/codegen";
 import datocms from "./integrations/datocms";
@@ -8,17 +8,12 @@ import designTokens from "./integrations/design-tokens";
 import config from "./codegen.config";
 
 export default defineConfig({
-  site: 'https://luuk.network',
+  site: "https://luuk.network",
   adapter: node({
-    mode: 'standalone'
+    mode: "standalone"
   }),
   prefetch: true,
-  integrations: [
-    codegen(config),
-    datocms(),
-    iconsSprite(),
-    designTokens()
-  ],
+  integrations: [codegen(config), datocms(), iconsSprite(), designTokens()],
   vite: {
     plugins: [graphql()]
   },
@@ -29,5 +24,5 @@ export default defineConfig({
   },
   devToolbar: {
     enabled: false
-  },
+  }
 });

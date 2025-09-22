@@ -9,7 +9,8 @@ type Props<Tag extends "button" | "a"> = Polymorphic<{
   icon?: IconName;
   iconOnly?: boolean;
   round?: boolean;
-}> & (Tag extends "a" ? { prefetch?: boolean } : {});
+}> &
+  (Tag extends "a" ? { prefetch?: boolean } : {});
 
 const {
   as: Tag = "button",
@@ -29,78 +30,77 @@ const {
     { "button--icon-only": iconOnly },
     { "button--round": round }
   ]}
-  data-astro-prefetch={Tag === 'a' && prefetch}
+  data-astro-prefetch={Tag === "a" && prefetch}
   {...props}
 >
   {icon && <Icon class="button__icon" name={icon} />}
   <span class:list={["button__label", { "sr-only": iconOnly }]}>
-      <slot />
+    <slot />
   </span>
 </Tag>
 
 <style>
-    .button {
-        padding: var(--spacing-sm) var(--spacing-md);
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: var(--spacing-xs);
-        font-weight: bold;
-        border: 1px solid;
-        transition: all 0.1618s;
-        cursor: pointer;
-    }
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    transition: all 0.1618s;
+    cursor: pointer;
+    border: 1px solid;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-weight: bold;
+    text-decoration: none;
+  }
 
-    .button--icon-only {
-        padding: var(--spacing-sm);
-    }
+  .button--icon-only {
+    padding: var(--spacing-sm);
+  }
 
-    .button--icon-only .button__icon {
-        padding: 4px;
-        width: 24px;
-        height: 24px;
-    }
+  .button--icon-only .button__icon {
+    padding: 4px;
+    width: 24px;
+    height: 24px;
+  }
 
-    .button--round {
-        border-radius: 50%;
-    }
+  .button--round {
+    border-radius: 50%;
+  }
 
-    .button,
-    .button--primary {
-        background-color: oklch(0.680 0.179 247);
-        border-color: oklch(0.680 0.179 247);
-        color: #000000;
-    }
+  .button,
+  .button--primary {
+    border-color: oklch(0.68 0.179 247);
+    background-color: oklch(0.68 0.179 247);
+    color: #000000;
+  }
 
-    .button:hover,
-    .button--primary:hover {
-        background-color: #007ACC;
-        border-color: #007ACC;
-        color: #ffffff;
-    }
+  .button:hover,
+  .button--primary:hover {
+    border-color: #007acc;
+    background-color: #007acc;
+    color: #ffffff;
+  }
 
+  .button--secondary {
+    border-color: oklch(0.937 0.015 270);
+    background-color: oklch(0.937 0.015 270);
+    color: #000000;
+  }
 
-    .button--secondary {
-        background-color: oklch(0.937 0.015 270);
-        border-color: oklch(0.937 0.015 270);
-        color: #000000;
-    }
+  .button--secondary:hover {
+    border-color: oklch(0.937 0.015 270);
+    background-color: oklch(0.937 0.015 270);
+    color: #000000;
+  }
 
-    .button--secondary:hover {
-        background-color: oklch(0.937 0.015 270);
-        border-color: oklch(0.937 0.015 270);
-        color: #000000;
-    }
+  .button--transparent {
+    border-color: transparent;
+    background-color: transparent;
+    color: #ffffff;
+  }
 
-    .button--transparent {
-        background-color: transparent;
-        border-color: transparent;
-        color: #ffffff;
-    }
-
-    .button--transparent:hover {
-        background-color: oklch(0.269 0.042 263);
-        border-color: oklch(0.269 0.042 263);
-        color: #ffffff;
-    }
+  .button--transparent:hover {
+    border-color: oklch(0.269 0.042 263);
+    background-color: oklch(0.269 0.042 263);
+    color: #ffffff;
+  }
 </style>

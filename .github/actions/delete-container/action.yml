@@ -16,9 +16,9 @@ inputs:
     required: true
 
 runs:
-  using: 'node20'
-  main: '.lib-action/index.js'
+  using: "node20"
+  main: ".lib-action/index.js"
 
 branding:
-  color: 'orange'
-  icon: 'delete'
+  color: "orange"
+  icon: "delete"

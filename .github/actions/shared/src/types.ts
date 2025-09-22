@@ -1,7 +1,7 @@
 export type AppConfiguration = {
   id: string;
   containerTemplates: Array<ContainerTemplate>;
-}
+};
 
 export type ContainerTemplate = {
   id?: string;

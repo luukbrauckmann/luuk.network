@@ -2,62 +2,62 @@
 import type { HTMLAttributes } from "astro/types";
 import { Nav } from "@components";
 
-type Props = HTMLAttributes<'header'> & { menu: { items: any[] } };
+type Props = HTMLAttributes<"header"> & { menu: { items: any[] } };
 
 const { menu, class: className, ...props } = Astro.props;
 ---
 
 <enhanced-header>
-    <header class:list={['header', className]} { ...props }>
-        <Nav items={menu.items} />
-    </header>
+  <header class:list={["header", className]} {...props}>
+    <Nav items={menu.items} />
+  </header>
 </enhanced-header>
 
 <style>
-    enhanced-header {
-        position: sticky;
-        inset-block-start: 0px;
-        z-index: 999;
-        display: block;
-    }
+  enhanced-header {
+    display: block;
+    position: sticky;
+    z-index: 999;
+    inset-block-start: 0px;
+  }
 
-    .header {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #001523;
-        border: 1px solid oklch(0.269 0.042 263);
-        border-block-end-color: transparent;
-        margin: -1px -1px 0px -1px;
-        transition: 0.3s;
-        position: relative;
-    }
+  .header {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+    margin: -1px -1px 0px -1px;
+    border: 1px solid oklch(0.269 0.042 263);
+    border-block-end-color: transparent;
+    background-color: #001523;
+  }
 
-    .header::after {
-        content: '';
-        position: absolute;
-        inset-inline: 0px;
-        inset-block-end: 0px;
-        transform: translateY(100%);
-        height: var(--spacing-lg);
-        background: linear-gradient(to bottom, oklch(0.269 0.042 263), transparent);
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-    }
+  .header::after {
+    position: absolute;
+    transform: translateY(100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    inset-block-end: 0px;
+    inset-inline: 0px;
+    background: linear-gradient(to bottom, oklch(0.269 0.042 263), transparent);
+    height: var(--spacing-lg);
+    pointer-events: none;
+    content: "";
+  }
 
-    .header--scrolled {
-        border-block-end-color: oklch(0.269 0.042 263);
-    }
+  .header--scrolled {
+    border-block-end-color: oklch(0.269 0.042 263);
+  }
 
-    .header--scrolled::after {
-        opacity: 1;
-    }
+  .header--scrolled::after {
+    opacity: 1;
+  }
 
-    .home-link {
-        padding: var(--spacing-xs);
-        display: inline-block;
-    }
+  .home-link {
+    display: inline-block;
+    padding: var(--spacing-xs);
+  }
 </style>
 
 <script>
@@ -66,37 +66,40 @@ const { menu, class: className, ...props } = Astro.props;
     observer: IntersectionObserver | null = null;
 
     constructor() {
-        super();
+      super();
     }
 
     connectedCallback() {
-      this.header = this.querySelector('header');
+      this.header = this.querySelector("header");
 
       if (this.header) {
-          this.observer = new IntersectionObserver((entries) => {
-              entries.forEach((entry) => {
-                  if (entry.intersectionRatio < 1) {
-                      this.header?.classList.add('header--scrolled');
-                  } else {
-                      this.header?.classList.remove('header--scrolled');
-                  }
-              });
-          }, {
-              root: null,
-              rootMargin: '0px',
-              threshold: [0, 1]
-          });
+        this.observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.intersectionRatio < 1) {
+                this.header?.classList.add("header--scrolled");
+              } else {
+                this.header?.classList.remove("header--scrolled");
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px",
+            threshold: [0, 1]
+          }
+        );
 
-          this.observer.observe(this.header);
+        this.observer.observe(this.header);
       }
     }
 
     disconnectedCallback() {
-        if (this.observer) {
-            this.observer.disconnect();
-        }
+      if (this.observer) {
+        this.observer.disconnect();
+      }
     }
   }
 
-  customElements.define('enhanced-header', EnhancedHeader);
+  customElements.define("enhanced-header", EnhancedHeader);
 </script>

@@ -15,12 +15,12 @@ type Props = {
   seo: SeoOrFaviconTag[];
   menu: {
     items: Array<{
-      title: string,
+      title: string;
       page: {
-        path: string
-      }
-    }>
-  }
+        path: string;
+      };
+    }>;
+  };
 };
 
 const { locale, seo, menu } = Astro.props;
@@ -34,7 +34,10 @@ const title = seo.shift() as SeoTitleTag;
     <!-- Viewport meta tag -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- CSP headers -->
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="upgrade-insecure-requests"
+    />
     <!-- Page title -->
     <title>{title.content}</title>
     <!-- Preconnect -->
@@ -44,53 +47,71 @@ const title = seo.shift() as SeoTitleTag;
     <!-- Synchronous JS -->
     <!-- Synchronous CSS -->
     <!-- Preloads -->
-    <link rel="preload" href="/fonts/Nunito/Nunito-Regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Nunito/Nunito-Bold.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/Dash/DashCasualL-Regular.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/Nunito/Nunito-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Nunito/Nunito-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/Dash/DashCasualL-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <!-- Prefetch & Prerender -->
     <!-- Everything else (meta tags, icons, open graphs, etc.) -->
     <Seo data={seo} />
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
-      <div class="content-wrapper">
-        <Header class="header" menu={menu} />
+    <div class="content-wrapper">
+      <Header class="header" menu={menu} />
 
-        <main>
-            <slot />
-        </main>
+      <main>
+        <slot />
+      </main>
 
-        <Footer class="footer" />
-      </div>
+      <Footer class="footer" />
+    </div>
 
     <IconsSprite />
   </body>
 </html>
 
 <style>
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  @media screen and (min-width: 500px) {
     body {
-        min-height: 100dvh;
-        display: flex;
-        flex-direction: column;
+      padding: var(--spacing-sm);
     }
+  }
 
-    @media screen and (min-width: 500px) {
-        body {
-            padding: var(--spacing-sm);
-        }
-    }
+  .content-wrapper {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    margin-inline: auto;
+    border: 1px solid oklch(0.269 0.042 263);
+    inline-size: 100%;
+    max-inline-size: 600px;
+  }
 
-    .content-wrapper {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        border: 1px solid oklch(0.269 0.042 263);
-        inline-size: 100%;
-        max-inline-size: 600px;
-        margin-inline: auto;
-    }
-
-    main {
-        flex: 1;
-    }
+  main {
+    flex: 1;
+  }
 </style>

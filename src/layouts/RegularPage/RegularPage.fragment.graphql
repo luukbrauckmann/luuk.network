@@ -3,10 +3,10 @@
 #import '@components/Blocks/SectionBlock/SectionBlock.fragment.graphql'
 
 fragment RegularPage on RegularPageRecord {
-    blocks {
-        __typename
-        ...FeaturedBlock
-        ...HeroBlock
-        ...SectionBlock
-    }
+  blocks {
+    __typename
+    ...FeaturedBlock
+    ...HeroBlock
+    ...SectionBlock
+  }
 }

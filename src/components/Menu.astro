@@ -1,13 +1,123 @@
 ---
-import { Button } from "@components"
+import { Button } from "@components";
+
+type Props = {
+  items: Array<{
+    title: string;
+    page: {
+      path: string;
+    };
+  }>;
+};
+
+const { items } = Astro.props;
+const { pathname } = Astro.url;
+const { locale } = Astro.params;
+
+function getHref(page: Props["items"][0]["page"]) {
+  return `/${locale}/${page.path}${page.path && "/"}`;
+}
 ---
 
-<Button class="menu-open-button" icon="bars">Menu</Button>
+<enhanced-menu>
+  <Button class="menu-open-button" icon="bars">Menu</Button>
+
+  <dialog class="menu">
+    <Button class="menu-close-button" icon="xmark">Close</Button>
+    <nav>
+      <ul class="nav-list">
+        {
+          items.map(({ title, page }) => (
+            <li>
+              <Button
+                as="a"
+                href={getHref(page)}
+                aria-current={pathname === getHref(page) && "page"}
+                variant="transparent"
+              >
+                {title}
+              </Button>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </dialog>
+</enhanced-menu>
+
+<script>
+  class EnhancedMenu extends HTMLElement {
+    openButton = this.querySelector<HTMLButtonElement>(".menu-open-button");
+    closeButton = this.querySelector<HTMLButtonElement>(".menu-close-button");
+    dialog = this.querySelector<HTMLDialogElement>("dialog");
+
+    constructor() {
+      super();
+    }
+
+    open = () => {
+      this.dialog.showModal();
+    };
+
+    close = () => {
+      this.dialog.close();
+    };
+
+    connectedCallback() {
+      this.openButton.addEventListener("click", this.open);
+      this.closeButton.addEventListener("click", this.close);
+    }
+
+    disconnectedCallback() {
+      this.openButton.removeEventListener("click", this.open);
+      this.closeButton.removeEventListener("click", this.close);
+    }
+  }
+
+  customElements.define("enhanced-menu", EnhancedMenu);
+</script>
 
 <style>
-    .menu-open-button {
-        position: fixed;
-        right: var(--spacing-lg);
-        bottom: var(--spacing-lg);
+  .menu-open-button,
+  .menu-close-button {
+    position: fixed;
+    right: var(--spacing-lg);
+    bottom: var(--spacing-lg);
+    z-index: 999;
+  }
+
+  .menu {
+    position: fixed;
+    transform-origin: calc(100% - var(--spacing-lg))
+      calc(100% - var(--spacing-lg));
+    transition:
+      opacity 0.05s ease-out 0.15s,
+      transform 0.2s ease-out;
+    margin: 0px;
+    inset: 0px;
+    border: 1px solid #0a2a3e;
+    border: none;
+    background-color: #0a2a3e;
+    padding: 0px;
+    inline-size: 100dvw;
+    max-inline-size: none;
+    block-size: 100dvh;
+    max-block-size: none;
+  }
+
+  .menu:open {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+      transform: scale(0);
+      opacity: 0;
     }
+  }
+
+  .nav-list {
+    margin: 0px;
+    padding: 0px;
+    list-style-type: "";
+  }
 </style>

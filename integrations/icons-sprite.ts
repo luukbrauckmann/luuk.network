@@ -7,11 +7,7 @@ import SVGSpriter from "svg-sprite";
 import { mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 
-const { DATOCMS_TOKEN } = loadEnv(
-  process.env.NODE_ENV!,
-  process.cwd(),
-  ""
-);
+const { DATOCMS_TOKEN } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
 export default function iconsSprite(): AstroIntegration {
   return {

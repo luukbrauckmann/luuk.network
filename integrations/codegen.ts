@@ -1,5 +1,5 @@
 import type { AstroIntegration } from "astro";
-import { generate, type CodegenConfig } from '@graphql-codegen/cli'
+import { generate, type CodegenConfig } from "@graphql-codegen/cli";
 
 export default function codegen(config: CodegenConfig): AstroIntegration {
   return {

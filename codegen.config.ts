@@ -1,11 +1,7 @@
 import type { CodegenConfig } from "@graphql-codegen/cli";
 import { loadEnv } from "vite";
 
-const { DATOCMS_TOKEN } = loadEnv(
-  process.env.NODE_ENV!,
-  process.cwd(),
-  ""
-);
+const { DATOCMS_TOKEN } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
 const config: CodegenConfig = {
   schema: {
@@ -17,12 +13,8 @@ const config: CodegenConfig = {
   },
   documents: [`**/*.graphql`],
   generates: {
-    '.generated/datocms.ts': {
-      plugins: [
-        "typescript",
-        "typescript-operations",
-        "typed-document-node"
-      ],
+    ".generated/datocms.ts": {
+      plugins: ["typescript", "typescript-operations", "typed-document-node"],
       config: {
         dedupeFragments: true,
         strictScalars: true,

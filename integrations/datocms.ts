@@ -4,11 +4,7 @@ import { buildClient } from "@datocms/cma-client-node";
 import { join } from "node:path";
 import { mkdir, writeFile } from "node:fs/promises";
 
-const { DATOCMS_TOKEN } = loadEnv(
-  process.env.NODE_ENV!,
-  process.cwd(),
-  ""
-);
+const { DATOCMS_TOKEN } = loadEnv(process.env.NODE_ENV!, process.cwd(), "");
 
 export default function datocms(): AstroIntegration {
   return {
@@ -25,17 +21,14 @@ export default function datocms(): AstroIntegration {
             routing: {
               prefixDefaultLocale: true,
               redirectToDefaultLocale: true,
-              fallbackType: 'redirect'
+              fallbackType: "redirect"
             }
           }
         });
 
         const outputDir = join(config.root.pathname, ".generated");
         await mkdir(outputDir, { recursive: true });
-        await writeFile(
-          join(outputDir, "datocms.json"),
-          JSON.stringify(site)
-        );
+        await writeFile(join(outputDir, "datocms.json"), JSON.stringify(site));
         logger.info("Generated");
       }
     }

@@ -3,42 +3,46 @@ import { Button } from "@components";
 
 type Props = {
   items: Array<{
-    title: string,
+    title: string;
     page: {
-      path: string
-    }
-  }>
-}
+      path: string;
+    };
+  }>;
+};
 
 const { items } = Astro.props;
 const { pathname } = Astro.url;
 const { locale } = Astro.params;
 
-function getHref(page: Props['items'][0]['page']) {
-  return `/${locale}/${page.path}${page.path && '/'}`;
+function getHref(page: Props["items"][0]["page"]) {
+  return `/${locale}/${page.path}${page.path && "/"}`;
 }
 ---
 
 <nav>
-    <ul>
-        {items.map(({ title, page }) => (
-            <li>
-                <Button
-                as="a"
-                href={getHref(page)}
-                aria-current={(pathname === getHref(page)) && 'page'}
-                variant="transparent"
-                >{title}</Button>
-            </li>
-        ))}
-    </ul>
+  <ul>
+    {
+      items.map(({ title, page }) => (
+        <li>
+          <Button
+            as="a"
+            href={getHref(page)}
+            aria-current={pathname === getHref(page) && "page"}
+            variant="transparent"
+          >
+            {title}
+          </Button>
+        </li>
+      ))
+    }
+  </ul>
 </nav>
 
 <style>
-    ul {
-        list-style-type: "";
-        padding: 0px;
-        margin: 0px;
-        display: flex;
-    }
+  ul {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    list-style-type: "";
+  }
 </style>

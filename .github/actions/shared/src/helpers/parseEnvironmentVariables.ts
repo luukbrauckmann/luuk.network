@@ -4,13 +4,13 @@ export function parseEnvironmentVariables(envString: string) {
   }
 
   return envString
-    .split('\n')
-    .filter(line => line.trim() && line.includes('='))
-    .map(line => {
-      const [name, ...valueParts] = line.split('=');
+    .split("\n")
+    .filter((line) => line.trim() && line.includes("="))
+    .map((line) => {
+      const [name, ...valueParts] = line.split("=");
       return {
-        name: name?.trim() ?? '',
-        value: valueParts.join('=').trim()
+        name: name?.trim() ?? "",
+        value: valueParts.join("=").trim()
       };
     });
 }

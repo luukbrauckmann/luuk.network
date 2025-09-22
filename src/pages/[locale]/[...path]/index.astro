@@ -1,13 +1,13 @@
 ---
-import { getCollection } from 'astro:content';
-import { BlogPost, OverviewPage, ProjectPage, RegularPage } from '@layouts';
+import { getCollection } from "astro:content";
+import { BlogPost, OverviewPage, ProjectPage, RegularPage } from "@layouts";
 
 export async function getStaticPaths() {
-  const pages = await getCollection('pages');
+  const pages = await getCollection("pages");
 
   return pages.map((page) => {
-    const [locale, ...path] = page.id.split('/');
-    const stringPath = path.join('/');
+    const [locale, ...path] = page.id.split("/");
+    const stringPath = path.join("/");
     return {
       params: { locale, path: stringPath.length > 0 ? stringPath : undefined },
       props: { page: page.data }
@@ -26,9 +26,10 @@ const layoutsByTypename = {
 
 const Layout = layoutsByTypename[page.content.__typename];
 ---
+
 <Layout
-    locale={page.locale}
-    seo={page._seoMetaTags}
-    menu={page.menu}
-    page={page}
+  locale={page.locale}
+  seo={page._seoMetaTags}
+  menu={page.menu}
+  page={page}
 />

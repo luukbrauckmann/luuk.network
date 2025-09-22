@@ -1,42 +1,42 @@
 :root {
-    --color-brand-primary-default: oklch(0.680 0.179 247);
-    --color-brand-secondary-default: oklch(0.937 0.015 270);
-    --color-semantic-danger-default: oklch(0.689 0.200 25);
-    --color-semantic-warning-default: oklch(0.828 0.152 76);
-    --color-semantic-success-default: oklch(0.641 0.124 167);
-    --color-semantic-info-default: oklch(0.638 0.197 359);
+  --color-brand-primary-default: oklch(0.68 0.179 247);
+  --color-brand-secondary-default: oklch(0.937 0.015 270);
+  --color-semantic-danger-default: oklch(0.689 0.2 25);
+  --color-semantic-warning-default: oklch(0.828 0.152 76);
+  --color-semantic-success-default: oklch(0.641 0.124 167);
+  --color-semantic-info-default: oklch(0.638 0.197 359);
 
-    --button-primary-background-default: var(--color-brand-primary-default);
-    --button-primary-border-color-default: var(--color-brand-primary-default);
+  --button-primary-background-default: var(--color-brand-primary-default);
+  --button-primary-border-color-default: var(--color-brand-primary-default);
 
-    --button-secondary-background-default: var(--color-brand-secondary-default);
-    --button-secondary-border-color-default: var(--color-brand-secondary-default);
+  --button-secondary-background-default: var(--color-brand-secondary-default);
+  --button-secondary-border-color-default: var(--color-brand-secondary-default);
 
-    --button-success-background-default: var(--color-semantic-success-default);
-    --button-success-border-color-default: var(--color-semantic-success-default);
+  --button-success-background-default: var(--color-semantic-success-default);
+  --button-success-border-color-default: var(--color-semantic-success-default);
 
-    --button-danger-background-default: var(--color-semantic-danger-default);
-    --button-danger-border-color-default: var(--color-semantic-danger-default);
+  --button-danger-background-default: var(--color-semantic-danger-default);
+  --button-danger-border-color-default: var(--color-semantic-danger-default);
 
-    --button-warning-background-default: var(--color-semantic-warning-default);
-    --button-warning-border-color-default: var(--color-semantic-warning-default);
+  --button-warning-background-default: var(--color-semantic-warning-default);
+  --button-warning-border-color-default: var(--color-semantic-warning-default);
 
-    --button-info-background-default: var(--color-semantic-info-default);
-    --button-info-border-color-default: var(--color-semantic-info-default);
+  --button-info-background-default: var(--color-semantic-info-default);
+  --button-info-border-color-default: var(--color-semantic-info-default);
 
-    --text-size-sm: 12px;
-    --text-size-md: 16px;
-    --text-size-lg: 21px;
-    --text-size-xl: 28px;
-    --text-size-2xl: 38px;
-    --text-size-3xl: 51px;
-    --text-size-4xl:  67px;
+  --text-size-sm: 12px;
+  --text-size-md: 16px;
+  --text-size-lg: 21px;
+  --text-size-xl: 28px;
+  --text-size-2xl: 38px;
+  --text-size-3xl: 51px;
+  --text-size-4xl: 67px;
 
-    --spacing-xss: 5px;
-    --spacing-xs: 7px;
-    --spacing-sm: 12px;
-    --spacing-md: 19px;
-    --spacing-lg: 31px;
-    --spacing-xl: 51px;
-    --spacing-xxl: 82px;
+  --spacing-xss: 5px;
+  --spacing-xs: 7px;
+  --spacing-sm: 12px;
+  --spacing-md: 19px;
+  --spacing-lg: 31px;
+  --spacing-xl: 51px;
+  --spacing-xxl: 82px;
 }
