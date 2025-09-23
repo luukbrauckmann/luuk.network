@@ -7,23 +7,16 @@ type Props = HTMLAttributes<"header"> & { menu: { items: any[] } };
 const { menu, class: className, ...props } = Astro.props;
 ---
 
-<enhanced-header>
-  <header class:list={["header", className]} {...props}>
-    <Nav items={menu.items} />
-  </header>
-</enhanced-header>
+<header class:list={["header", className]} {...props}>
+<Nav items={menu.items} />
+</header>
 
 <style>
-  enhanced-header {
-    display: block;
+  .header {
+    display: flex;
     position: sticky;
     z-index: 999;
     inset-block-start: 0px;
-  }
-
-  .header {
-    display: flex;
-    position: relative;
     justify-content: center;
     align-items: center;
     transition: 0.3s;
@@ -31,6 +24,9 @@ const { menu, class: className, ...props } = Astro.props;
     border: 1px solid oklch(0.269 0.042 263);
     border-block-end-color: transparent;
     background-color: #001523;
+    animation: borderIn 1s both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--spacing-lg);
   }
 
   .header::after {
@@ -44,62 +40,31 @@ const { menu, class: className, ...props } = Astro.props;
     height: var(--spacing-lg);
     pointer-events: none;
     content: "";
-  }
-
-  .header--scrolled {
-    border-block-end-color: oklch(0.269 0.042 263);
-  }
-
-  .header--scrolled::after {
-    opacity: 1;
+    animation: shadowIn 1s both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--spacing-lg);
   }
 
   .home-link {
     display: inline-block;
     padding: var(--spacing-xs);
   }
-</style>
 
-<script>
-  class EnhancedHeader extends HTMLElement {
-    header: HTMLHeadElement | null = null;
-    observer: IntersectionObserver | null = null;
-
-    constructor() {
-      super();
+  @keyframes borderIn {
+    from {
+        border-block-end-color: transparent;
     }
-
-    connectedCallback() {
-      this.header = this.querySelector("header");
-
-      if (this.header) {
-        this.observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.intersectionRatio < 1) {
-                this.header?.classList.add("header--scrolled");
-              } else {
-                this.header?.classList.remove("header--scrolled");
-              }
-            });
-          },
-          {
-            root: null,
-            rootMargin: "0px",
-            threshold: [0, 1]
-          }
-        );
-
-        this.observer.observe(this.header);
-      }
-    }
-
-    disconnectedCallback() {
-      if (this.observer) {
-        this.observer.disconnect();
-      }
+    to {
+        border-block-end-color: oklch(0.269 0.042 263);
     }
   }
 
-  customElements.define("enhanced-header", EnhancedHeader);
-</script>
+  @keyframes shadowIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>
