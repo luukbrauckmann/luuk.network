@@ -1,0 +1,6 @@
+query AllTranslations($locale: SiteLocale) {
+  allTranslations(locale: $locale) {
+    key
+    value
+  }
+}
