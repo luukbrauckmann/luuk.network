@@ -26,7 +26,7 @@ const { menu, class: className, ...props } = Astro.props;
     background-color: #001523;
     animation: borderIn 1s both;
     animation-timeline: scroll(root);
-    animation-range: 0 var(--spacing-lg);
+    animation-range: 0 var(--spacing-md);
   }
 
   .header::after {
@@ -37,17 +37,12 @@ const { menu, class: className, ...props } = Astro.props;
     inset-block-end: 0px;
     inset-inline: 0px;
     background: linear-gradient(to bottom, oklch(0.269 0.042 263), transparent);
-    height: var(--spacing-lg);
+    height: var(--spacing-md);
     pointer-events: none;
     content: "";
     animation: shadowIn 1s both;
     animation-timeline: scroll(root);
-    animation-range: 0 var(--spacing-lg);
-  }
-
-  .home-link {
-    display: inline-block;
-    padding: var(--spacing-xs);
+    animation-range: 0 var(--spacing-md);
   }
 
   @keyframes borderIn {

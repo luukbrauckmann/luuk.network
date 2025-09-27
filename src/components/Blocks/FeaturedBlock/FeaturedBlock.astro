@@ -40,9 +40,11 @@ const { block } = Astro.props;
             </ul>
         </div>
 
-        <div>
-            <LinkBlock block={block.link} />
-        </div>
+        { block.link && (
+            <div>
+                <LinkBlock block={block.link} />
+            </div>
+        ) }
     </section>
 </enhanced-featured-block>
 
@@ -80,7 +82,7 @@ const { block } = Astro.props;
         inset-block: 0px;
         inset-inline-start: 0px;
         background: linear-gradient(to right, oklch(0.269 0.042 263), transparent);
-        width: var(--spacing-lg);
+        width: var(--spacing-md);
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
@@ -93,7 +95,7 @@ const { block } = Astro.props;
         inset-block: 0px;
         inset-inline-end: 0px;
         background: linear-gradient(to left, oklch(0.269 0.042 263), transparent);
-        width: var(--spacing-lg);
+        width: var(--spacing-md);
         opacity: 0;
         transition: opacity 0.3s ease;
         pointer-events: none;
