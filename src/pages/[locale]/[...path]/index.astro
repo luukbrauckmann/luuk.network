@@ -1,8 +1,9 @@
 ---
 import { getCollection } from "astro:content";
 import { BlogPost, OverviewPage, ProjectPage, RegularPage } from "@layouts";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
-export async function getStaticPaths() {
+export const getStaticPaths = (async () => {
   const pages = await getCollection("pages");
 
   return pages.map((page) => {
@@ -13,7 +14,9 @@ export async function getStaticPaths() {
       props: { page: page.data }
     };
   });
-}
+}) satisfies GetStaticPaths;
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { page } = Astro.props;
 
