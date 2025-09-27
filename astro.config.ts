@@ -3,6 +3,7 @@ import node from "@astrojs/node";
 import graphql from "@rollup/plugin-graphql";
 import codegen from "./integrations/codegen";
 import datocms from "./integrations/datocms";
+import translations from "./integrations/translations";
 import iconsSprite from "./integrations/icons-sprite";
 import designTokens from "./integrations/design-tokens";
 import config from "./codegen.config";
@@ -13,7 +14,13 @@ export default defineConfig({
     mode: "standalone"
   }),
   prefetch: true,
-  integrations: [codegen(config), datocms(), iconsSprite(), designTokens()],
+  integrations: [
+    codegen(config),
+    datocms(),
+    translations(),
+    iconsSprite(),
+    designTokens()
+  ],
   vite: {
     plugins: [graphql()]
   },

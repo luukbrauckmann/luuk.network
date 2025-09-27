@@ -1,0 +1,24 @@
+---
+import type { ComponentProps } from "astro/types";
+import { Button } from "@components";
+
+type Props = Omit<ComponentProps<typeof Button<"a">>, 'as' | 'prefetch'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<Button
+  {...props}
+  as="a"
+  prefetch={false}
+  class:list={["kb-only", "skip-link", className]}
+>
+  <slot />
+</Button>
+
+<style>
+  .skip-link:focus {
+    position: absolute;
+    z-index: 9999;
+  }
+</style>

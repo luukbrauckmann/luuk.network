@@ -1,6 +1,6 @@
 ---
 import type { SiteLocale } from "@generated/datocms";
-import { Footer, Header, IconsSprite } from "@components";
+import { Footer, Header, IconsSprite, SkipLink } from "@components";
 
 import "@generated/tokens.css";
 import "@styles/tokens.css";
@@ -9,6 +9,7 @@ import "@styles/reset.css";
 import "@styles/theme.css";
 import "@styles/typography.css";
 import { Seo, type SeoTitleTag, type SeoOrFaviconTag } from "@datocms/astro";
+import { useTranslations } from "src/i18n/utils";
 
 type Props = {
   locale: SiteLocale;
@@ -25,6 +26,7 @@ type Props = {
 
 const { locale, seo, menu } = Astro.props;
 const title = seo.shift() as SeoTitleTag;
+const t = useTranslations(locale);
 ---
 
 <html lang={locale}>
@@ -74,10 +76,12 @@ const title = seo.shift() as SeoTitleTag;
     <meta name="generator" content={Astro.generator} />
   </head>
   <body>
+    <SkipLink href="#main-content">{t('skip_to_main_content')}</SkipLink>
+
     <div class="content-wrapper">
       <Header class="header" menu={menu} />
 
-      <main>
+      <main id="main-content">
         <slot />
       </main>
 

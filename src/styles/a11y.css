@@ -1,4 +1,5 @@
-.sr-only {
+.sr-only,
+.kb-only:not(:focus) {
   position: absolute;
   margin: -1px;
   padding: 0;
