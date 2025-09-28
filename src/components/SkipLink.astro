@@ -2,7 +2,7 @@
 import type { ComponentProps } from "astro/types";
 import { Button } from "@components";
 
-type Props = Omit<ComponentProps<typeof Button<"a">>, 'as' | 'prefetch'>;
+type Props = Omit<ComponentProps<typeof Button<"a">>, "as" | "prefetch">;
 
 const { class: className, ...props } = Astro.props;
 ---

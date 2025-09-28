@@ -8,23 +8,23 @@ const { menu, class: className, ...props } = Astro.props;
 ---
 
 <header class:list={["header", className]} {...props}>
-<Nav items={menu.items} />
+  <Nav items={menu.items} />
 </header>
 
 <style>
   .header {
     display: flex;
     position: sticky;
-    z-index: 999;
-    inset-block-start: 0px;
     justify-content: center;
     align-items: center;
+    z-index: 999;
+    animation: borderIn 1s both;
     transition: 0.3s;
     margin: -1px -1px 0px -1px;
+    inset-block-start: 0px;
     border: 1px solid oklch(0.269 0.042 263);
     border-block-end-color: transparent;
     background-color: #001523;
-    animation: borderIn 1s both;
     animation-timeline: scroll(root);
     animation-range: 0 var(--spacing-md);
   }
@@ -33,6 +33,7 @@ const { menu, class: className, ...props } = Astro.props;
     position: absolute;
     transform: translateY(100%);
     opacity: 0;
+    animation: shadowIn 1s both;
     transition: opacity 0.3s ease;
     inset-block-end: 0px;
     inset-inline: 0px;
@@ -40,17 +41,16 @@ const { menu, class: className, ...props } = Astro.props;
     height: var(--spacing-md);
     pointer-events: none;
     content: "";
-    animation: shadowIn 1s both;
     animation-timeline: scroll(root);
     animation-range: 0 var(--spacing-md);
   }
 
   @keyframes borderIn {
     from {
-        border-block-end-color: transparent;
+      border-block-end-color: transparent;
     }
     to {
-        border-block-end-color: oklch(0.269 0.042 263);
+      border-block-end-color: oklch(0.269 0.042 263);
     }
   }
 
