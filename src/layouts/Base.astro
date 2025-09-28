@@ -26,7 +26,7 @@ type Props = {
 
 const { locale, seo, menu } = Astro.props;
 const title = seo.shift() as SeoTitleTag;
-const t = useTranslations(locale);
+const { t } = useTranslations(locale);
 ---
 
 <html lang={locale}>
