@@ -18,7 +18,8 @@ const { block } = Astro.props;
         pictureClass="hero-block-picture"
         data={block.image?.responsiveImage}
         priority={true}
-        srcSetCandidates={[0.05, 0.1]}
+        srcSetCandidates={[1, 2]}
+        sizes="150px"
       />
 
       <Button
