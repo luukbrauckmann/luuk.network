@@ -1,7 +1,8 @@
 ---
 import type { FeaturedBlockFragment } from "@generated/datocms";
-import LinkBlock from "../LinkBlock/LinkBlock.astro";
+import { Image } from '@datocms/astro';
 import { Button, LinkArea } from "@components";
+import LinkBlock from "../LinkBlock/LinkBlock.astro";
 
 type Props = {
   block: FeaturedBlockFragment;
@@ -19,7 +20,19 @@ const { block } = Astro.props;
         { block.pages.map((page) => (
             <li class="featured-block-list-item">
                 <LinkArea>
-                    <img class="featured-block-list-item__image" src="" alt="">
+                  { (page?.content?.__typename === 'ProjectPageRecord' && page?.content?.image?.responsiveImage) && (
+                        <Image
+                            imgClass="featured-block-list-item__image"
+                            data={page.content.image.responsiveImage}
+                            srcSetCandidates={[
+                            0.05, 0.1, 0.15, 0.2, 0.25, 0.3,
+                            0.35, 0.4, 0.45, 0.5,
+                            0.55, 0.6, 0.65, 0.7,
+                            0.75, 0.8, 0.85, 0.9,
+                            0.95, 1
+                            ]}
+                        />
+                    ) }
                     <div class="featured-block-list-item__details">
                         <h3 class="featured-block-list-item__title">{page.title}</h3>
                         <!-- <p class="featured-block-list-item__description">{page.description}</p> -->
@@ -117,9 +130,10 @@ const { block } = Astro.props;
         flex-direction: column;
     }
 
-    .featured-block-list-item__image {
-        height: 150px;
-        width: 100%;
+   .featured-block-list-item :global(.featured-block-list-item__image) {
+        max-block-size: 200px;
+        object-fit: cover;
+        object-position: top;
     }
 
     .featured-block-list-item__details {

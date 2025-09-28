@@ -6,6 +6,24 @@ fragment FeaturedBlock on FeaturedBlockRecord {
     path
     title
     description
+    content {
+      __typename
+      ... on ProjectPageRecord {
+        id
+        image {
+          responsiveImage {
+            src
+            width
+            height
+            alt
+            title
+            aspectRatio
+            base64
+            bgColor
+          }
+        }
+      }
+    }
   }
   link {
     ...LinkBlock
