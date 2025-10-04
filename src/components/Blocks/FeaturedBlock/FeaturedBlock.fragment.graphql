@@ -11,15 +11,14 @@ fragment FeaturedBlock on FeaturedBlockRecord {
       ... on ProjectPageRecord {
         id
         image {
-          responsiveImage {
-            src
-            width
-            height
+          responsiveImage(imgixParams: { auto: format }) {
             alt
-            title
             aspectRatio
             base64
-            bgColor
+            height
+            src
+            title
+            width
           }
         }
       }
