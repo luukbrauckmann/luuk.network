@@ -1,11 +1,13 @@
 fragment HeroBlock on HeroBlockRecord {
   image {
-    responsiveImage(imgixParams: { auto: format }) {
+    responsiveImage(imgixParams: {auto: format, w: "150"}) {
       alt
       aspectRatio
       base64
       height
       src
+      srcSet
+      sizes
       title
       width
     }

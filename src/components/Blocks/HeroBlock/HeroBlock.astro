@@ -18,7 +18,6 @@ const { block } = Astro.props;
         pictureClass="hero-block-picture"
         data={block.image?.responsiveImage}
         priority={true}
-        srcSetCandidates={[0.05, 0.1]}
       />
 
       <Button
@@ -49,13 +48,12 @@ const { block } = Astro.props;
     height: var(--image-size);
   }
 
-  :global(.hero-block-picture) {
+  .hero-block :global(.hero-block-picture) {
     position: absolute;
-    bottom: 0px;
-    left: 0px;
+    inset-block-end: 0px;
+    inset-inline-start: 0px;
     width: var(--image-size);
     height: var(--image-size);
-    object-fit: cover;
   }
 
   .hero-block__content {

@@ -22,9 +22,8 @@ const { block } = Astro.props;
                 <LinkArea>
                   { (page?.content?.__typename === 'ProjectPageRecord' && page?.content?.image?.responsiveImage) && (
                         <Image
-                            imgClass="featured-block-list-item__image"
+                            pictureClass="featured-block-list-item__picture"
                             data={page.content.image.responsiveImage}
-                            sizes="(max-width: 600px) 200px, (max-width: 768px) 180px, 150px"
                         />
                     ) }
                     <div class="featured-block-list-item__details">
@@ -124,7 +123,7 @@ const { block } = Astro.props;
         flex-direction: column;
     }
 
-   .featured-block-list-item :global(.featured-block-list-item__image) {
+   .featured-block-list-item :global(.featured-block-list-item__picture) {
         max-block-size: 200px;
         block-size: 100%;
         inline-size: 100%;
